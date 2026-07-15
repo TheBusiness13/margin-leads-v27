@@ -1,6 +1,6 @@
 {
   "name": "margin-leads-private-beta",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "private": true,
   "dependencies": {
     "postgres": "^3.4.7"

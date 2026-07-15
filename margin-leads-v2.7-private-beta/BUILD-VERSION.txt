@@ -1,4 +1,3 @@
-Margin Leads v2.7.0 Private Beta
-Auth: Supabase
-AI: OpenAI Responses API-ready
-Domain target: app.marginleads.online
+MARGINBUSINESS LEADS v2.7.1 — CONNECTED PRIVATE BETA
+Build: 2026-07-15
+Branding: Original MarginBusiness Leads logo integrated
