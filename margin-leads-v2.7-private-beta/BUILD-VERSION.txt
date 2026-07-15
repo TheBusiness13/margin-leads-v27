@@ -1,0 +1,4 @@
+Margin Leads v2.7.0 Private Beta
+Auth: Supabase
+AI: OpenAI Responses API-ready
+Domain target: app.marginleads.online
