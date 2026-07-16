@@ -1,13 +1,7 @@
-const postgres = require('postgres');
-
 const DAILY_LIMIT = Number(process.env.DAILY_LIMIT || 100);
 const MAX_PER_REQUEST = Number(process.env.MAX_PER_REQUEST || 100);
 const DEFAULT_PROVIDER = String(process.env.DEFAULT_PROVIDER || 'brevo').toLowerCase();
 const CONCURRENCY = Math.max(1, Math.min(10, Number(process.env.SEND_CONCURRENCY || 5)));
-const DATABASE_URL = process.env.POSTGRES_URL || process.env.DATABASE_URL || process.env.NEON_DATABASE_URL || '';
-let sqlClient = null;
-let schemaReady = false;
-
 const ENDPOINTS = {brevo:'https://api.brevo.com/v3/smtp/email',sendgrid:'https://api.sendgrid.com/v3/mail/send',resend:'https://api.resend.com/emails'};
 function reply(res,status,payload){res.status(status).json(payload)}
 function clean(v,max=5000){return String(v??'').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g,'').trim().slice(0,max)}
@@ -15,13 +9,6 @@ function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').tr
 function htmlEscape(v){return String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
 function textToHtml(t){return `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.55;color:#111827;">${htmlEscape(t).replace(/\n/g,'<br>')}</div>`}
 function configured(p){if(p==='brevo')return !!process.env.BREVO_API_KEY;if(p==='sendgrid')return !!process.env.SENDGRID_API_KEY;if(p==='resend')return !!process.env.RESEND_API_KEY;if(p==='mailgun')return !!(process.env.MAILGUN_API_KEY&&process.env.MAILGUN_DOMAIN);return false}
-function authToken(req,b){return String(req.headers['x-leadradar-token']||b?.token||'')}
-function db(){if(!DATABASE_URL)return null;if(!sqlClient)sqlClient=postgres(DATABASE_URL,{ssl:'require',max:1,idle_timeout:20,connect_timeout:10});return sqlClient}
-async function ensureSchema(){const s=db();if(!s||schemaReady)return !!s;await s`CREATE TABLE IF NOT EXISTS lead_radar_events (id BIGSERIAL PRIMARY KEY,created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),event_type TEXT NOT NULL,provider TEXT,campaign TEXT,campaign_id TEXT,sequence_step TEXT,lead_id TEXT,recipient TEXT,message_id TEXT,success BOOLEAN,error TEXT,metadata JSONB NOT NULL DEFAULT '{}'::jsonb)`;await s`CREATE INDEX IF NOT EXISTS lead_radar_events_created_idx ON lead_radar_events(created_at DESC)`;await s`CREATE INDEX IF NOT EXISTS lead_radar_events_type_idx ON lead_radar_events(event_type)`;schemaReady=true;return true}
-async function logEvent(e){const s=db();if(!s)return false;await ensureSchema();await s`INSERT INTO lead_radar_events (event_type,provider,campaign,campaign_id,sequence_step,lead_id,recipient,message_id,success,error,metadata) VALUES (${clean(e.event_type||'system',80)},${clean(e.provider,40)||null},${clean(e.campaign,240)||null},${clean(e.campaign_id,240)||null},${clean(e.sequence_step,80)||null},${clean(e.lead_id,240)||null},${clean(e.recipient,320)||null},${clean(e.message_id,400)||null},${typeof e.success==='boolean'?e.success:null},${clean(e.error,1500)||null},${s.json(e.metadata||{})})`;return true}
-async function recentLogs(limit=100){const s=db();if(!s)return[];await ensureSchema();const n=Math.max(1,Math.min(500,Number(limit)||100));return s`SELECT id,created_at,event_type,provider,campaign,campaign_id,sequence_step,lead_id,recipient,message_id,success,error,metadata FROM lead_radar_events ORDER BY created_at DESC LIMIT ${n}`}
-async function sentToday(){const s=db();if(!s)return 0;await ensureSchema();const r=await s`SELECT COUNT(*)::int AS count FROM lead_radar_events WHERE event_type='sent' AND success=true AND created_at >= date_trunc('day',NOW() AT TIME ZONE 'UTC')`;return Number(r[0]?.count||0)}
-async function metrics(){const s=db();if(!s)return{sent:0,failed:0,attempted:0,delivered:0,opened:0,clicked:0,bounced:0,unsubscribed:0,complained:0};await ensureSchema();const r=await s`SELECT COUNT(*) FILTER (WHERE event_type='sent' AND success=true)::int sent,COUNT(*) FILTER (WHERE event_type='failed' OR success=false)::int failed,COUNT(*) FILTER (WHERE event_type IN ('sent','failed'))::int attempted,COUNT(*) FILTER (WHERE event_type='delivered')::int delivered,COUNT(*) FILTER (WHERE event_type='opened')::int opened,COUNT(*) FILTER (WHERE event_type='clicked')::int clicked,COUNT(*) FILTER (WHERE event_type='bounced')::int bounced,COUNT(*) FILTER (WHERE event_type='unsubscribed')::int unsubscribed,COUNT(*) FILTER (WHERE event_type='complained')::int complained FROM lead_radar_events`;return r[0]}
 async function parseProviderResponse(provider,response){const raw=await response.text();let data=null;try{data=raw?JSON.parse(raw):null}catch{}if(response.ok)return{ok:true,provider,status:response.status,messageId:data?.messageId||data?.id||response.headers.get('x-message-id')||null};const m=data?.message||data?.error||raw||'Unknown provider error';return{ok:false,provider,status:response.status,error:`${provider.toUpperCase()} HTTP ${response.status}: ${typeof m==='string'?m:JSON.stringify(m)}`}}
 function validateEmailPayload(e){if(!validEmail(clean(e?.to,320)))return'Invalid recipient email';if(!clean(e?.subject,250))return'Missing subject';if(!clean(e?.textContent,12000))return'Missing body';return null}
 async function sendBrevo(sender,replyTo,optOut,email){const er=validateEmailPayload(email);if(er)return{ok:false,error:er};const text=clean(email.textContent,12000);const payload={sender:{name:clean(sender.name||'MarginBusiness',160),email:clean(sender.email,320)},to:[{email:clean(email.to,320),...(clean(email.name,160)?{name:clean(email.name,160)}:{})}],subject:clean(email.subject,250),textContent:text,htmlContent:textToHtml(text),tags:['lead-radar','marginbusiness','v2-6']};if(validEmail(replyTo?.email))payload.replyTo={email:clean(replyTo.email,320)};if(validEmail(optOut))payload.headers={'List-Unsubscribe':`<mailto:${clean(optOut,320)}?subject=unsubscribe>`,'X-Lead-Radar':'MarginBusiness Lead Radar v2.6'};return parseProviderResponse('brevo',await fetch(ENDPOINTS.brevo,{method:'POST',headers:{accept:'application/json','content-type':'application/json','api-key':process.env.BREVO_API_KEY},body:JSON.stringify(payload)}))}
@@ -31,12 +18,73 @@ async function sendMailgun(sender,replyTo,optOut,email){const er=validateEmailPa
 async function sendWithProvider(p,s,r,o,e){if(!configured(p))return{ok:false,error:`Provider not configured: ${p}`};if(p==='brevo')return sendBrevo(s,r,o,e);if(p==='sendgrid')return sendSendGrid(s,r,o,e);if(p==='resend')return sendResend(s,r,o,e);if(p==='mailgun')return sendMailgun(s,r,o,e);return{ok:false,error:`Unsupported provider: ${p}`}}
 async function mapWithConcurrency(items,limit,worker){const results=new Array(items.length);let cursor=0;async function run(){while(true){const i=cursor++;if(i>=items.length)return;try{results[i]=await worker(items[i],i)}catch(e){results[i]={ok:false,error:e?.message||'Unexpected send error'}}}}await Promise.all(Array.from({length:Math.min(limit,items.length)},run));return results}
 
-module.exports=async function handler(req,res){res.setHeader('Cache-Control','no-store');if(req.method!=='POST')return reply(res,405,{ok:false,error:'POST only'});const body=typeof req.body==='string'?(()=>{try{return JSON.parse(req.body)}catch{return null}})():req.body;if(!body||typeof body!=='object')return reply(res,400,{ok:false,error:'Invalid JSON'});const expected=String(process.env.BRIDGE_TOKEN||'');if(!expected)return reply(res,500,{ok:false,error:'BRIDGE_TOKEN is not configured in Vercel'});if(authToken(req,body)!==expected)return reply(res,403,{ok:false,error:'Invalid bridge token'});const provider=clean(body.provider||DEFAULT_PROVIDER,30).toLowerCase(),action=clean(body.action,30).toLowerCase(),databaseConfigured=!!DATABASE_URL;
-try{
- if(action==='ping'){let today=databaseConfigured?await sentToday():0;await logEvent({event_type:'system_ping',provider,success:true,metadata:{runtime:'vercel-node'}}).catch(()=>{});return reply(res,200,{ok:true,runtime:'vercel-node',serverDate:new Date().toISOString(),dailyLimit:DAILY_LIMIT,maxPerRequest:MAX_PER_REQUEST,sentToday:today,remainingToday:Math.max(0,DAILY_LIMIT-today),selectedProvider:provider,providerConfigured:configured(provider),configuredProviders:{brevo:configured('brevo'),sendgrid:configured('sendgrid'),mailgun:configured('mailgun'),resend:configured('resend')},databaseConfigured,persistence:databaseConfigured?'postgres':'frontend-local'})}
- if(action==='logs'){return reply(res,200,{ok:true,databaseConfigured,events:databaseConfigured?await recentLogs(body.limit):[],serverDate:new Date().toISOString()})}
- if(action==='metrics'){return reply(res,200,{ok:true,provider,databaseConfigured,serverDate:new Date().toISOString(),totals:await metrics(),events:databaseConfigured?await recentLogs(200):[]})}
- if(action==='event'||action==='webhook'){const incoming=Array.isArray(body.events)?body.events:[body];let stored=0;for(const e of incoming){const type=clean(e.event||e.type||'webhook',80).toLowerCase();await logEvent({event_type:type,provider:clean(e.provider||provider,40),campaign:clean(e.campaign,240),campaign_id:clean(e.campaignId,240),sequence_step:clean(e.step||e.sequenceStep,80),lead_id:clean(e.leadId,240),recipient:clean(e.email||e.to,320),message_id:clean(e.messageId,400),success:!['bounced','complained','failed'].includes(type),error:clean(e.error,1500),metadata:e});stored++}return reply(res,200,{ok:true,stored,databaseConfigured})}
- const sender=body.sender||{},replyTo=body.replyTo||{},optOut=clean(body.optOutEmail,320),emails=Array.isArray(body.emails)?body.emails:[];if(!validEmail(sender.email))return reply(res,400,{ok:false,error:'Invalid sender email'});if(!emails.length)return reply(res,400,{ok:false,error:'No emails supplied'});if(emails.length>MAX_PER_REQUEST)return reply(res,400,{ok:false,error:`Too many emails in one request. Max ${MAX_PER_REQUEST}`});if(!configured(provider))return reply(res,500,{ok:false,error:`Selected provider is not configured in Vercel Environment Variables: ${provider}`});if(databaseConfigured){const today=await sentToday();if(today>=DAILY_LIMIT)return reply(res,429,{ok:false,error:'Daily bridge limit reached',sentToday:today,remainingToday:0});if(emails.length>DAILY_LIMIT-today)return reply(res,429,{ok:false,error:'Batch exceeds remaining daily limit',sentToday:today,remainingToday:DAILY_LIMIT-today})}
- const rawResults=await mapWithConcurrency(emails,CONCURRENCY,async email=>{const result=await sendWithProvider(provider,sender,replyTo,optOut,email);const row={leadId:clean(email?.leadId,200),to:clean(email?.to,320),provider,ok:!!result.ok,...(result.messageId?{messageId:result.messageId}:{}),...(!result.ok?{error:clean(result.error||'Unknown error',1000)}:{})};await logEvent({event_type:row.ok?'sent':'failed',provider,campaign:clean(body.campaign?.name,240),campaign_id:clean(body.campaign?.id,240),sequence_step:clean(body.sequenceStep,80),lead_id:row.leadId,recipient:row.to,message_id:row.messageId,success:row.ok,error:row.error,metadata:{subject:clean(email?.subject,250)}}).catch(()=>{});return row});const sent=rawResults.filter(r=>r.ok).length,failed=rawResults.length-sent,today=databaseConfigured?await sentToday():sent;return reply(res,200,{ok:true,provider,sent,failed,attempted:emails.length,results:rawResults,databaseConfigured,persistence:databaseConfigured?'postgres':'frontend-local',sentToday:today,remainingToday:Math.max(0,DAILY_LIMIT-today)})
-}catch(error){console.error('Lead Radar API error',error);return reply(res,500,{ok:false,error:clean(error?.message||'Internal server error',1200),databaseConfigured})}}
+
+const {getUser,ensureWorkspace,canSend,logActivity,recentActivity,sentTodayForWorkspace}=require('./_auth');
+function legacyTokenValid(req,body){
+  const expected=String(process.env.BRIDGE_TOKEN||'');
+  const provided=String(req.headers['x-leadradar-token']||body?.token||'');
+  return !!expected && provided===expected;
+}
+async function requestIdentity(req,body){
+  const user=await getUser(req);
+  if(user){
+    const membership=await ensureWorkspace(user);
+    return {mode:'supabase',user,membership};
+  }
+  const allowLegacy=String(process.env.ALLOW_LEGACY_BRIDGE_TOKEN||'true').toLowerCase()!=='false';
+  if(allowLegacy&&legacyTokenValid(req,body))return {mode:'legacy',user:null,membership:{workspace:{id:null,name:'Legacy workspace',plan:'internal'},role:'owner'}};
+  return null;
+}
+module.exports=async function handler(req,res){
+  res.setHeader('Cache-Control','no-store');
+  if(req.method!=='POST')return reply(res,405,{ok:false,error:'POST only'});
+  const body=typeof req.body==='string'?(()=>{try{return JSON.parse(req.body)}catch{return null}})():req.body;
+  if(!body||typeof body!=='object')return reply(res,400,{ok:false,error:'Invalid JSON'});
+  const provider=clean(body.provider||DEFAULT_PROVIDER,30).toLowerCase();
+  const action=clean(body.action,30).toLowerCase();
+  try{
+    const identity=await requestIdentity(req,body);
+    if(!identity)return reply(res,401,{ok:false,error:'Sign in again. Your session is missing or expired.'});
+    const {user,membership,mode}=identity;
+    const workspace=membership.workspace||{};
+    const workspaceId=workspace.id||null;
+    const role=membership.role||'reviewer';
+    const persistent=mode==='supabase'&&!!workspaceId;
+    const today=persistent?await sentTodayForWorkspace(workspaceId):0;
+
+    if(action==='ping'){
+      return reply(res,200,{ok:true,runtime:'vercel-node',version:'2.9',serverDate:new Date().toISOString(),authMode:mode,role,workspace:{id:workspaceId,name:workspace.name||'Private Workspace',plan:workspace.plan||'beta'},dailyLimit:DAILY_LIMIT,maxPerRequest:MAX_PER_REQUEST,sentToday:today,remainingToday:Math.max(0,DAILY_LIMIT-today),selectedProvider:provider,providerConfigured:configured(provider),configuredProviders:{brevo:configured('brevo'),sendgrid:configured('sendgrid'),mailgun:configured('mailgun'),resend:configured('resend')},databaseConfigured:persistent,persistence:persistent?'supabase':'legacy-local'});
+    }
+    if(action==='logs'||action==='metrics'){
+      const activity=persistent?await recentActivity(workspaceId,body.limit||200):[];
+      const events=activity.map(row=>{const m=row.metadata||{};return {...row,provider:m.provider||null,campaign:m.campaign||null,campaign_id:m.campaignId||null,sequence_step:m.sequenceStep||null,lead_id:row.entity_id||m.leadId||null,recipient:m.recipient||m.to||null,message_id:m.messageId||null,success:row.event_type==='email_sent'||!String(row.event_type||'').includes('failed'),error:m.error||null};});
+      const totals={sent:0,failed:0,attempted:0,delivered:0,opened:0,clicked:0,bounced:0,unsubscribed:0,complained:0};
+      for(const row of events){const t=String(row.event_type||'');if(t==='email_sent'){totals.sent++;totals.attempted++;}else if(t==='email_failed'){totals.failed++;totals.attempted++;}else if(t==='email_delivered')totals.delivered++;else if(t==='email_opened')totals.opened++;else if(t==='email_clicked')totals.clicked++;else if(t==='email_bounced')totals.bounced++;else if(t==='email_unsubscribed')totals.unsubscribed++;else if(t==='email_complained')totals.complained++;}
+      return reply(res,200,{ok:true,provider,authMode:mode,workspace,databaseConfigured:persistent,serverDate:new Date().toISOString(),totals,events,sentToday:today,remainingToday:Math.max(0,DAILY_LIMIT-today)});
+    }
+    if(action==='event'||action==='webhook'){
+      if(!persistent)return reply(res,400,{ok:false,error:'Persistent workspace logging is required for provider events'});
+      const incoming=Array.isArray(body.events)?body.events:[body];let stored=0;
+      for(const e of incoming){const type=clean(e.event||e.type||'event',80).toLowerCase();await logActivity({workspaceId,userId:user.id,eventType:`email_${type.replace(/^email_/,'')}`,entityType:'email',entityId:clean(e.leadId||e.messageId,240)||null,metadata:{...e,provider:e.provider||provider}});stored++;}
+      return reply(res,200,{ok:true,stored});
+    }
+    if(!canSend(role))return reply(res,403,{ok:false,error:`Your ${role} role can review outreach but cannot send emails.`});
+    const sender=body.sender||{},replyTo=body.replyTo||{},optOut=clean(body.optOutEmail,320),emails=Array.isArray(body.emails)?body.emails:[];
+    if(!validEmail(sender.email))return reply(res,400,{ok:false,error:'Invalid sender email'});
+    if(!emails.length)return reply(res,400,{ok:false,error:'No emails supplied'});
+    if(emails.length>MAX_PER_REQUEST)return reply(res,400,{ok:false,error:`Too many emails in one request. Max ${MAX_PER_REQUEST}`});
+    if(!configured(provider))return reply(res,500,{ok:false,error:`Selected provider is not configured in Vercel Environment Variables: ${provider}`});
+    if(today>=DAILY_LIMIT)return reply(res,429,{ok:false,error:'Daily workspace sending limit reached',sentToday:today,remainingToday:0});
+    if(emails.length>DAILY_LIMIT-today)return reply(res,429,{ok:false,error:'Batch exceeds the remaining workspace daily limit',sentToday:today,remainingToday:DAILY_LIMIT-today});
+
+    const rawResults=await mapWithConcurrency(emails,CONCURRENCY,async email=>{
+      const result=await sendWithProvider(provider,sender,replyTo,optOut,email);
+      const row={leadId:clean(email?.leadId,200),to:clean(email?.to,320),provider,ok:!!result.ok,...(result.messageId?{messageId:result.messageId}:{}),...(!result.ok?{error:clean(result.error||'Unknown error',1000)}:{})};
+      if(persistent)await logActivity({workspaceId,userId:user.id,eventType:row.ok?'email_sent':'email_failed',entityType:'lead',entityId:row.leadId||null,metadata:{recipient:row.to,provider,campaign:clean(body.campaign?.name,240),campaignId:clean(body.campaign?.id,240),sequenceStep:clean(body.sequenceStep,80),messageId:row.messageId||null,error:row.error||null,subject:clean(email?.subject,250)}}).catch(()=>{});
+      return row;
+    });
+    const sent=rawResults.filter(r=>r.ok).length,failed=rawResults.length-sent;
+    const sentNow=persistent?await sentTodayForWorkspace(workspaceId):sent;
+    return reply(res,200,{ok:true,provider,authMode:mode,workspace:{id:workspaceId,name:workspace.name},sent,failed,attempted:emails.length,results:rawResults,databaseConfigured:persistent,persistence:persistent?'supabase':'legacy-local',sentToday:sentNow,remainingToday:Math.max(0,DAILY_LIMIT-sentNow)});
+  }catch(error){console.error('Margin Leads v2.9 API error',error);return reply(res,500,{ok:false,error:clean(error?.message||'Internal server error',1200)});}
+};
