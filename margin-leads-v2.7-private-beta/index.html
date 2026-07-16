@@ -609,7 +609,7 @@
 
 
 
-    /* v2.8 Professional Workspace */
+    /* v2.8.1 Flexible Sequences */
     .workspaceShell{margin-top:18px}
     .workspaceHeader{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin-bottom:14px;padding:4px 2px}
     .workspaceHeader h2{margin:0;font-size:27px;letter-spacing:-.5px}
@@ -719,7 +719,7 @@
       <div class="titleBlock">
         <div class="badge">MarginBusiness Leads · Private Beta</div>
         <h1>Turn company intelligence into conversations</h1>
-        <div class="versionTag">Version 2.8 · Connected Private Beta Workspace</div>
+        <div class="versionTag">Version 2.8.1 · Connected Private Beta Workspace</div>
         <div class="subtitle">Create a campaign, import qualified prospects, review your outreach, and send controlled follow-up batches from one clear workspace.</div>
       </div>
       <div class="actions" style="margin-top:0; justify-content:flex-end;">
@@ -1082,7 +1082,14 @@
           <input id="gapFollow4" type="number" min="1" max="30" value="7" oninput="onBatchSettingsChanged()" />
         </div>
       </div>
-      <div class="batchGrid" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="batchGrid" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+        <div>
+          <label>Sequence rules</label>
+          <select id="sequencePolicy" onchange="onBatchSettingsChanged()">
+            <option value="flexible">Flexible — send any selected step</option>
+            <option value="strict">Strict — require steps 1 → 2 → 3 → 4</option>
+          </select>
+        </div>
         <div>
           <label>Minimum fit score</label>
           <input id="batchMinScore" type="number" min="0" max="100" value="60" oninput="onBatchSettingsChanged()" />
@@ -1099,7 +1106,7 @@
 
       <div class="cockpitStats" id="batchCockpitStats"></div>
       <div class="batchSummary" id="batchSummary">Choose a sequence step. The cockpit will show due leads and default-select up to your daily cap.</div>
-      <div class="operatorHint">Operator flow: choose Email 1–4 → review eligible leads → select up to 100 → prepare → send/copy/export. If anything looks wrong, clear the prepared batch and prepare again.</div>
+      <div class="operatorHint">Operator flow: choose any Email 1–4 in Flexible mode, or switch to Strict mode for timed 1→2→3→4 sequencing → review → prepare → send. If anything looks wrong, clear the prepared batch and prepare again.</div>
 
       <div class="cockpitToolbar">
         <div class="left">
@@ -1919,12 +1926,13 @@ function nextMove(lead){
   const o=generate(lead);
   const d1=daysSince(s.email1Sent), d2=daysSince(s.follow2Sent), d3=daysSince(s.follow3Sent);
   if(s.status==="Replied"||s.status==="Qualified"||s.status==="Call Booked") return {action:"Manual action needed", why:"This lead has moved beyond automated follow-up. Review notes and handle directly.", angle:o.risk.service, urgency:"High"};
-  if(s.email1Sent && !s.follow2Sent && d1>=4) return {action:"Send Follow-up 2 today", why:`Email 1 was sent ${d1} days ago and no follow-up 2 is marked.`, angle:o.risk.angle, urgency:"High"};
-  if(s.follow2Sent && !s.follow3Sent && d2>=5) return {action:"Send Follow-up 3", why:`Follow-up 2 was sent ${d2} days ago. Send the buyer-objection follow-up.`, angle:o.risk.hiddenPain, urgency:"Medium"};
-  if(s.follow3Sent && !s.follow4Sent && d3>=7) return {action:"Send Follow-up 4 / final insight", why:`Follow-up 3 was sent ${d3} days ago. Send the final psychological insight and close the loop.`, angle:o.risk.decisionFear, urgency:"Medium"};
-  if(!s.email1Sent && score>=75) return {action:"Send Email 1", why:"Strong-fit lead with no first email marked as sent.", angle:o.risk.service, urgency:"High"};
-  if(!s.email1Sent) return {action:"Review before contacting", why:"Fit is not high enough to prioritize blindly. Use manual AI only if the lead looks strategically useful.", angle:o.risk.angle, urgency:"Low"};
-  return {action:"Wait / monitor", why:"No follow-up is due based on the saved sent dates.", angle:o.risk.consequence, urgency:"Low"};
+  if(s.follow4Sent) return {action:"Sequence complete", why:"Follow-up 4 is marked as sent. Earlier sequence steps may have been intentionally skipped.", angle:o.risk.consequence, urgency:"Low"};
+  if(s.follow3Sent && !s.follow4Sent && d3>=7) return {action:"Send Follow-up 4 / final insight", why:`Follow-up 3 was sent ${d3} days ago. Send the final insight or choose another message manually.`, angle:o.risk.decisionFear, urgency:"Medium"};
+  if(s.follow2Sent && !s.follow3Sent && d2>=5) return {action:"Send Follow-up 3", why:`Follow-up 2 was sent ${d2} days ago. Send the buyer-objection follow-up or choose another message manually.`, angle:o.risk.hiddenPain, urgency:"Medium"};
+  if(s.email1Sent && !s.follow2Sent && d1>=4) return {action:"Send Follow-up 2 today", why:`Email 1 was sent ${d1} days ago. Continue the sequence or choose a later standalone message.`, angle:o.risk.angle, urgency:"High"};
+  if(!s.email1Sent && !s.follow2Sent && !s.follow3Sent && score>=75) return {action:"Choose your first message", why:"Strong-fit lead with no outreach marked. Flexible mode allows Email 1, 2, 3 or 4 as the opening angle.", angle:o.risk.service, urgency:"High"};
+  if(!s.email1Sent && !s.follow2Sent && !s.follow3Sent) return {action:"Review before contacting", why:"Choose the message that best fits this lead; the sequence no longer has to begin with Email 1.", angle:o.risk.angle, urgency:"Low"};
+  return {action:"Wait / monitor", why:"No follow-up is due based on the saved dates. You can still select any unsent step in Flexible mode.", angle:o.risk.consequence, urgency:"Low"};
 }
 function getFiltered(){
   const search=document.getElementById("search").value.toLowerCase();
@@ -2079,7 +2087,8 @@ function getBatchSettings(){
     gap3: Math.max(1, parseInt(document.getElementById("gapFollow3")?.value || "5",10) || 5),
     gap4: Math.max(1, parseInt(document.getElementById("gapFollow4")?.value || "7",10) || 7),
     minScore: Math.max(0, Math.min(100, parseInt(minEl && minEl.value ? minEl.value : "60",10) || 0)),
-    emailOnly: !document.getElementById("batchEmailOnly") || document.getElementById("batchEmailOnly").value === "yes"
+    emailOnly: !document.getElementById("batchEmailOnly") || document.getElementById("batchEmailOnly").value === "yes",
+    sequencePolicy: document.getElementById("sequencePolicy")?.value || "flexible"
   };
 }
 function stepLabel(step){
@@ -2139,6 +2148,15 @@ function dueReasonForStep(lead, step, settings){
   const follow2Done=!!follow2Date || statusLooksSent(st,"follow2") || !!follow3Date || !!follow4Date;
   const follow3Done=!!follow3Date || statusLooksSent(st,"follow3") || !!follow4Date;
   const follow4Done=!!follow4Date || statusLooksSent(st,"follow4");
+  const flexible=(settings.sequencePolicy || "flexible") === "flexible";
+  if(flexible){
+    const doneMap={email1:email1Done, follow2:follow2Done, follow3:follow3Done, follow4:follow4Done};
+    if(doneMap[normalized]) return null;
+    if(normalized==="email1") return "Email 1 not yet sent";
+    if(normalized==="follow2") return "Flexible sequence — Follow-up 2 selected as a standalone message";
+    if(normalized==="follow3") return "Flexible sequence — Follow-up 3 selected as a standalone message";
+    if(normalized==="follow4") return "Flexible sequence — Follow-up 4 selected as a standalone message";
+  }
   if(normalized==="email1"){
     if(email1Done) return null;
     return "No first email marked as sent";
@@ -2213,7 +2231,7 @@ function saveBatchSelection(settings){
 }
 function onBatchSettingsChanged(){
   const settings=getBatchSettings();
-  const key=`${getCurrentCampaign().id}|${settings.step}|${settings.cap}|${settings.minScore}|${settings.emailOnly}|${settings.gap2}|${settings.gap3}|${settings.gap4}`;
+  const key=`${getCurrentCampaign().id}|${settings.step}|${settings.cap}|${settings.minScore}|${settings.emailOnly}|${settings.gap2}|${settings.gap3}|${settings.gap4}|${settings.sequencePolicy}`;
   if(key !== batchCandidateKey){
     batchCandidateKey = key;
     batchSelection = new Set();
@@ -2690,7 +2708,7 @@ function buildBrevoPayload(){
     const body=stripSubject(full) + suffix;
     return { leadId: lead.id, campaignId: campaign.id, campaignName: campaign.name, sequenceStep: normalizeStep(settings.step), rowNumber: lead.rowNumber, to: (lead.email || "").trim(), name: (lead.contact || "").trim(), company: (lead.company || "").trim(), subject, textContent: body, dueReason: item.reason };
   }).filter(x=>x.to);
-  return { app:"Margin Leads", version:"2.6", provider: brevo.provider || "brevo", sentAt: new Date().toISOString(), campaign:{ id: campaign.id, name: campaign.name }, sequenceStep: normalizeStep(settings.step), sequenceLabel: stepLabel(settings.step), dailyCap: settings.cap, sender:{ name: brevo.fromName, email: brevo.fromEmail }, replyTo:{ email: brevo.replyTo || brevo.fromEmail }, optOutEmail: brevo.optOutEmail || brevo.replyTo || brevo.fromEmail, emails };
+  return { app:"Margin Leads", version:"2.8.1", provider: brevo.provider || "brevo", sentAt: new Date().toISOString(), campaign:{ id: campaign.id, name: campaign.name }, sequenceStep: normalizeStep(settings.step), sequenceLabel: stepLabel(settings.step), dailyCap: settings.cap, sender:{ name: brevo.fromName, email: brevo.fromEmail }, replyTo:{ email: brevo.replyTo || brevo.fromEmail }, optOutEmail: brevo.optOutEmail || brevo.replyTo || brevo.fromEmail, emails };
 }
 function validateBrevoBeforeSend(settings, payload){
   if(!settings.bridgeUrl) return "Bridge URL is missing.";
@@ -2706,7 +2724,7 @@ async function testBrevoBridge(){
   if(!s.bridgeUrl || !s.bridgeToken){ setBrevoStatus("Add bridge URL and bridge token first.", true); return; }
   setBrevoStatus("Testing bridge connection...", false);
   try{
-    const res=await fetch(s.bridgeUrl, { method:"POST", headers:{"Content-Type":"application/json", "X-LeadRadar-Token":s.bridgeToken}, body:JSON.stringify({action:"ping", app:"Margin Leads", version:"2.6", provider:s.provider || "brevo"}) });
+    const res=await fetch(s.bridgeUrl, { method:"POST", headers:{"Content-Type":"application/json", "X-LeadRadar-Token":s.bridgeToken}, body:JSON.stringify({action:"ping", app:"Margin Leads", version:"2.8.1", provider:s.provider || "brevo"}) });
     const data=await res.json();
     if(!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
     setBrevoStatus(`Bridge OK. Provider: ${data.selectedProvider || s.provider || "unknown"}. Configured: ${data.providerConfigured ? "yes" : "no"}. Daily limit: ${data.dailyLimit || "unknown"}. Sent today: ${data.sentToday || 0}. Remaining: ${data.remainingToday ?? "unknown"}.`, !data.providerConfigured);
@@ -2820,7 +2838,7 @@ function forceSaveAll(){
 }
 function buildBackup(){
   saveCurrentCampaignLeads();
-  return { app:"Margin Leads", version:"2.6", exportedAt:new Date().toISOString(), currentCampaignId:getCurrentCampaignId(), campaigns:getCampaigns(), leadState:getStore() };
+  return { app:"Margin Leads", version:"2.8.1", exportedAt:new Date().toISOString(), currentCampaignId:getCurrentCampaignId(), campaigns:getCampaigns(), leadState:getStore() };
 }
 function exportBackupJSON(){
   const backup=buildBackup();
