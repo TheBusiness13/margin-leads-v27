@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v2.8 — Connected Private Beta</title>
+  <title>MarginBusiness Leads v2.9 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -239,7 +239,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v2.8'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v2.9'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -410,7 +410,7 @@
     @media(max-width:680px){ .setupChecklist,.templateGrid{grid-template-columns:1fr;} .v24ModalBox{padding:17px;} }
 
 
-    /* v2.7 Connected Intelligence Premium UI */
+    /* v2.9 Secure Connected Intelligence UI */
     :root {
       --bg:#07101b;
       --panel:#0c1726;
@@ -544,7 +544,7 @@
 
   
 
-    /* v2.7 Premium Connected OS */
+    /* v2.9 Secure Connected OS */
     :root{
       --bg:#07101d; --panel:#0c1728; --panel2:#081321; --line:#20324a;
       --text:#f7f9fc; --muted:#91a0b5; --green:#24c78f; --green2:#8ce8c5;
@@ -596,7 +596,7 @@
     @media(max-width:680px){.healthStrip{grid-template-columns:1fr;}}
 
 
-    /* v2.7 Private Beta authentication */
+    /* v2.9 Supabase workspace authentication */
     #loginGate{background:radial-gradient(circle at 18% 5%,#16355a 0,#07111f 38%,#040a12 100%);}
     .betaLoginShell{width:min(1040px,100%);display:grid;grid-template-columns:1.05fr .95fr;background:rgba(8,19,33,.96);border:1px solid rgba(255,255,255,.08);border-radius:30px;overflow:hidden;box-shadow:0 35px 100px rgba(0,0,0,.46)}
     .betaLoginStory{padding:54px;background:linear-gradient(145deg,rgba(16,185,129,.13),rgba(59,130,246,.10) 58%,rgba(139,92,246,.08));display:flex;flex-direction:column;justify-content:space-between;min-height:610px}
@@ -609,7 +609,7 @@
 
 
 
-    /* v2.8.1 Flexible Sequences */
+    /* v2.9 Flexible Sequences */
     .workspaceShell{margin-top:18px}
     .workspaceHeader{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin-bottom:14px;padding:4px 2px}
     .workspaceHeader h2{margin:0;font-size:27px;letter-spacing:-.5px}
@@ -648,7 +648,7 @@
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v2.8</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v2.9</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>AI-ready</strong>Structured intelligence, not generic copy.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -691,7 +691,7 @@
   <aside class="saasSidebar" aria-label="Margin Leads navigation">
     <div class="sideBrand">
       <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="sideBrandLogo" />
-      <span>AI outreach intelligence · Professional Workspace v2.8</span>
+      <span>AI outreach intelligence · Secure Beta Workspace v2.9</span>
     </div>
     <div class="sideMenu">
       <button class="sideBtn" onclick="scrollToSection('missionSection')">Dashboard <span>Today</span></button>
@@ -719,7 +719,7 @@
       <div class="titleBlock">
         <div class="badge">MarginBusiness Leads · Private Beta</div>
         <h1>Turn company intelligence into conversations</h1>
-        <div class="versionTag">Version 2.8.1 · Connected Private Beta Workspace</div>
+        <div class="versionTag">Version 2.9 · Secure Connected Beta Workspace</div>
         <div class="subtitle">Create a campaign, import qualified prospects, review your outreach, and send controlled follow-up batches from one clear workspace.</div>
       </div>
       <div class="actions" style="margin-top:0; justify-content:flex-end;">
@@ -944,7 +944,7 @@
       <div class="dataVaultSummary" id="dataVaultSummary"></div>
       <details class="softPanel" id="accessPrepPanel">
         <summary><strong>User & access preparation</strong> · future Vercel login model</summary>
-        <div class="small" style="margin-top:10px;">v2.8 uses Supabase email/password authentication for private beta access. Workspace roles and server-side activity are prepared for the connected data layer; provider secrets remain in Vercel Environment Variables.</div>
+        <div class="small" style="margin-top:10px;">v2.9 verifies every send against the signed-in Supabase user, workspace membership, and role. Provider secrets remain server-side in Vercel Environment Variables.</div>
         <div class="accessGrid">
           <div><label>Operator name</label><input id="operatorName" placeholder="Example: Omar" oninput="saveOperatorProfile()" /></div>
           <div><label>Operator role</label><select id="operatorRole" onchange="saveOperatorProfile()"><option value="CEO / Admin">CEO / Admin</option><option value="Growth Operator">Growth Operator</option><option value="Outreach Assistant">Outreach Assistant</option><option value="Read-only Review">Read-only Review</option></select></div>
@@ -1153,8 +1153,8 @@
             <input id="brevoBridgeUrl" value="/api/mail-bridge" placeholder="/api/mail-bridge" />
           </div>
           <div>
-            <label>Bridge token</label>
-            <input id="brevoBridgeToken" type="password" placeholder="Same token as PHP bridge" />
+            <label>Legacy bridge token (optional)</label>
+            <input id="brevoBridgeToken" type="password" placeholder="Optional fallback during migration" />
           </div>
           <div>
             <label>From name</label>
@@ -1257,11 +1257,12 @@ async function showPasswordUpdate(){const next=prompt('Enter your new Margin Lea
 async function betaSignOut(){if(mlSupabase)await mlSupabase.auth.signOut();location.reload();}
 function openPrivateWorkspace(session){
   document.getElementById('loginGate').style.display='none';document.body.classList.add('authenticated');const user=session?.user||{};const email=user.email||'Private beta user';const name=user.user_metadata?.full_name||user.user_metadata?.name||email.split('@')[0];document.getElementById('userName').textContent=name;document.getElementById('userEmail').textContent=email;document.getElementById('userAvatar').textContent=(name[0]||'M').toUpperCase();sessionStorage.setItem('ml_beta_authenticated','1');
-  try{loadSaved();}catch(e){console.error('Workspace load error',e)}
+  try{loadSaved();loadSecureWorkspace();}catch(e){console.error('Workspace load error',e)}
 }
 function closePrivateWorkspace(){document.getElementById('loginGate').style.display='flex';document.body.classList.remove('authenticated');sessionStorage.removeItem('ml_beta_authenticated');}
 async function mlAccessToken(){if(!mlSupabase)return'';const {data:{session}}=await mlSupabase.auth.getSession();return session?.access_token||'';}
 async function mlAuthorizedFetch(url,options={}){const token=await mlAccessToken();const headers={...(options.headers||{}),...(token?{Authorization:`Bearer ${token}`}:{})};return fetch(url,{...options,headers});}
+async function loadSecureWorkspace(){try{const r=await mlAuthorizedFetch('/api/workspace',{cache:'no-store'});const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.error||'Workspace unavailable');window.mlWorkspace=d.workspace;window.mlWorkspaceRole=d.role;const role=document.getElementById('operatorModePill');if(role)role.textContent=`${d.workspace?.name||'Private Workspace'} · ${d.role||'member'}`;return d;}catch(e){console.error('Workspace connection error',e);showToast('Workspace connection needs attention');return null;}}
 window.addEventListener('DOMContentLoaded',initBetaAuth);
 
 
@@ -1271,7 +1272,7 @@ async function runAIForActiveLead(){
   catch(e){box.innerHTML=`<div class="hint">${escapeHtml(e.message)}</div>`}
 }
 
-const PAGE_PASSWORD = ""; // v2.7 uses Supabase authentication; legacy page password retired.
+const PAGE_PASSWORD = ""; // v2.9 uses Supabase workspace authentication; legacy page password retired.
 const STORAGE_CAMPAIGNS = "mbLeadRadarLite.campaigns.v15";
 const STORAGE_CURRENT_CAMPAIGN = "mbLeadRadarLite.currentCampaign.v15";
 const STORAGE_STATE = "mbLeadRadarLite.leadState.v15";
@@ -1903,7 +1904,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v2.8\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v2.9\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -2432,7 +2433,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v2.8 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v2.9 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
@@ -2708,11 +2709,10 @@ function buildBrevoPayload(){
     const body=stripSubject(full) + suffix;
     return { leadId: lead.id, campaignId: campaign.id, campaignName: campaign.name, sequenceStep: normalizeStep(settings.step), rowNumber: lead.rowNumber, to: (lead.email || "").trim(), name: (lead.contact || "").trim(), company: (lead.company || "").trim(), subject, textContent: body, dueReason: item.reason };
   }).filter(x=>x.to);
-  return { app:"Margin Leads", version:"2.8.1", provider: brevo.provider || "brevo", sentAt: new Date().toISOString(), campaign:{ id: campaign.id, name: campaign.name }, sequenceStep: normalizeStep(settings.step), sequenceLabel: stepLabel(settings.step), dailyCap: settings.cap, sender:{ name: brevo.fromName, email: brevo.fromEmail }, replyTo:{ email: brevo.replyTo || brevo.fromEmail }, optOutEmail: brevo.optOutEmail || brevo.replyTo || brevo.fromEmail, emails };
+  return { app:"Margin Leads", version:"2.9", provider: brevo.provider || "brevo", sentAt: new Date().toISOString(), campaign:{ id: campaign.id, name: campaign.name }, sequenceStep: normalizeStep(settings.step), sequenceLabel: stepLabel(settings.step), dailyCap: settings.cap, sender:{ name: brevo.fromName, email: brevo.fromEmail }, replyTo:{ email: brevo.replyTo || brevo.fromEmail }, optOutEmail: brevo.optOutEmail || brevo.replyTo || brevo.fromEmail, emails };
 }
 function validateBrevoBeforeSend(settings, payload){
   if(!settings.bridgeUrl) return "Bridge URL is missing.";
-  if(!settings.bridgeToken) return "Bridge token is missing. Add the same token you set as BRIDGE_TOKEN in Vercel Environment Variables.";
   if(!payload.sender.email || !/^\S+@\S+\.\S+$/.test(payload.sender.email)) return "From email is missing or invalid.";
   if(!payload.replyTo.email || !/^\S+@\S+\.\S+$/.test(payload.replyTo.email)) return "Reply-to email is missing or invalid.";
   if(!payload.emails.length) return "No valid emails in the current batch.";
@@ -2721,16 +2721,17 @@ function validateBrevoBeforeSend(settings, payload){
 }
 async function testBrevoBridge(){
   const s=saveBrevoSettings();
-  if(!s.bridgeUrl || !s.bridgeToken){ setBrevoStatus("Add bridge URL and bridge token first.", true); return; }
-  setBrevoStatus("Testing bridge connection...", false);
+  if(!s.bridgeUrl){ setBrevoStatus("Add the bridge URL first.", true); return; }
+  setBrevoStatus("Testing secure workspace connection...", false);
   try{
-    const res=await fetch(s.bridgeUrl, { method:"POST", headers:{"Content-Type":"application/json", "X-LeadRadar-Token":s.bridgeToken}, body:JSON.stringify({action:"ping", app:"Margin Leads", version:"2.8.1", provider:s.provider || "brevo"}) });
+    const res=await mlAuthorizedFetch(s.bridgeUrl, { method:"POST", headers:{"Content-Type":"application/json", ...(s.bridgeToken?{"X-LeadRadar-Token":s.bridgeToken}:{})}, body:JSON.stringify({action:"ping", app:"Margin Leads", version:"2.9", provider:s.provider || "brevo"}) });
     const data=await res.json();
     if(!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
-    setBrevoStatus(`Bridge OK. Provider: ${data.selectedProvider || s.provider || "unknown"}. Configured: ${data.providerConfigured ? "yes" : "no"}. Daily limit: ${data.dailyLimit || "unknown"}. Sent today: ${data.sentToday || 0}. Remaining: ${data.remainingToday ?? "unknown"}.`, !data.providerConfigured);
+    setBrevoStatus(`Secure bridge connected. Workspace: ${data.workspace?.name || "Private Workspace"}. Role: ${data.role || "unknown"}. Provider: ${data.selectedProvider || s.provider || "unknown"}. Configured: ${data.providerConfigured ? "yes" : "no"}. Remaining today: ${data.remainingToday ?? "unknown"}.`, !data.providerConfigured);
   } catch(err){
     console.error(err);
-    setBrevoStatus(`Bridge test failed: ${err.message}\nCheck that /api/mail-bridge is deployed, the BRIDGE_TOKEN matches, and the selected provider key is configured in Vercel.`, true);
+    setBrevoStatus(`Secure bridge test failed: ${err.message}
+Sign in again and confirm the provider API key is configured in Vercel.`, true);
   }
 }
 async function sendBatchViaBrevo(){
@@ -2751,7 +2752,7 @@ async function sendBatchViaBrevo(){
   addSendJournalEntry({id:journalId, status:"Sending", payload});
   setBrevoStatus(`Sending ${payload.emails.length} emails through mail bridge...`, false);
   try{
-    const res=await fetch(brevo.bridgeUrl, { method:"POST", headers:{"Content-Type":"application/json", "X-LeadRadar-Token":brevo.bridgeToken}, body:JSON.stringify(payload) });
+    const res=await mlAuthorizedFetch(brevo.bridgeUrl, { method:"POST", headers:{"Content-Type":"application/json", ...(brevo.bridgeToken?{"X-LeadRadar-Token":brevo.bridgeToken}:{})}, body:JSON.stringify(payload) });
     const rawText=await res.text();
     let data={}; try{ data=JSON.parse(rawText); } catch(parseErr){ throw new Error(`Bridge returned non-JSON response: ${rawText.slice(0,140)}`); }
     if(!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
@@ -2838,7 +2839,7 @@ function forceSaveAll(){
 }
 function buildBackup(){
   saveCurrentCampaignLeads();
-  return { app:"Margin Leads", version:"2.8.1", exportedAt:new Date().toISOString(), currentCampaignId:getCurrentCampaignId(), campaigns:getCampaigns(), leadState:getStore() };
+  return { app:"Margin Leads", version:"2.9", exportedAt:new Date().toISOString(), currentCampaignId:getCurrentCampaignId(), campaigns:getCampaigns(), leadState:getStore() };
 }
 function exportBackupJSON(){
   const backup=buildBackup();
@@ -3428,7 +3429,7 @@ updateSideHealth();
 initV24();
 
 
-// ===== v2.7 CONNECTED ACTIVITY CENTER =====
+// ===== v2.9 SECURE CONNECTED ACTIVITY CENTER =====
 let connectedLogRows=[];
 function currentBridgeConfig(){
   // loadBrevoSettings() only populates the form and does not return a value.
@@ -3448,8 +3449,7 @@ function healthNode(label,status,detail,state=''){
 function setConnectedHealth(nodes){const el=document.getElementById('connectedHealthStrip');if(el)el.innerHTML=nodes.join('');}
 async function bridgeAction(payload){
   const c=currentBridgeConfig();
-  if(!c.token) throw new Error('Bridge token is empty in Margin Leads Admin settings.');
-  const res=await fetch(c.url,{method:'POST',headers:{'Content-Type':'application/json','X-LeadRadar-Token':c.token},body:JSON.stringify({...payload,provider:payload.provider||c.provider})});
+  const res=await mlAuthorizedFetch(c.url,{method:'POST',headers:{'Content-Type':'application/json',...(c.token?{'X-LeadRadar-Token':c.token}:{})},body:JSON.stringify({...payload,provider:payload.provider||c.provider})});
   let data={};try{data=await res.json();}catch{}
   if(!res.ok||data.ok===false) throw new Error(data.error||`Bridge HTTP ${res.status}`);
   return data;
@@ -3458,7 +3458,7 @@ async function runSystemDiagnostics(){
   setConnectedHealth([
     healthNode('Frontend','Ready','Margin Leads loaded in this browser.','good'),
     healthNode('Vercel API','Checking…','Contacting /api/mail-bridge.'),
-    healthNode('Bridge token','Checking…','Validating authentication.'),
+    healthNode('Workspace access','Checking…','Validating your signed-in session and role.'),
     healthNode('Provider','Checking…','Reading provider readiness.'),
     healthNode('Database','Checking…','Reading persistence status.')
   ]);
@@ -3467,7 +3467,7 @@ async function runSystemDiagnostics(){
     setConnectedHealth([
       healthNode('Frontend','Ready','Margin Leads loaded in this browser.','good'),
       healthNode('Vercel API','Connected',`${d.runtime||'Vercel Node'} · ${d.serverDate?formatLogTime(d.serverDate):'online'}`,'good'),
-      healthNode('Bridge token','Authenticated','Frontend and API secrets match.','good'),
+      healthNode('Workspace access','Authenticated',`${d.workspace?.name||'Private Workspace'} · ${d.role||'member'}`,'good'),
       healthNode((d.selectedProvider||'Provider').toUpperCase(),d.providerConfigured?'Configured':'Missing API key',d.providerConfigured?'Provider is ready for sending.':'Add the provider API key in Vercel.',d.providerConfigured?'good':'bad'),
       healthNode('Database',d.databaseConfigured?'Persistent':'Local fallback',d.databaseConfigured?'Server activity is stored in Postgres.':'Connect Postgres for cross-device logs.',d.databaseConfigured?'good':'warn')
     ]);
@@ -3481,7 +3481,7 @@ async function runSystemDiagnostics(){
     setConnectedHealth([
       healthNode('Frontend','Ready','Margin Leads loaded in this browser.','good'),
       healthNode('Vercel API',tokenIssue?'Responding':'Check deployment',tokenIssue?'The API replied, so the route is live.':msg,tokenIssue?'good':'bad'),
-      healthNode('Bridge token',tokenIssue?'Mismatch':'Not confirmed',tokenIssue?'Paste the exact BRIDGE_TOKEN value and save settings.':msg,tokenIssue?'bad':'warn'),
+      healthNode('Workspace access','Failed',msg,'bad'),
       healthNode('Provider','Not checked','Authentication must pass first.','warn'),
       healthNode('Database','Not checked','Authentication must pass first.','warn')
     ]);
