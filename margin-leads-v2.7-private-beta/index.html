@@ -653,7 +653,58 @@
     .authDivider{display:flex;align-items:center;gap:10px;margin:15px 0;color:#6f8198;font-size:11px;text-transform:uppercase;letter-spacing:.08em}.authDivider:before,.authDivider:after{content:'';height:1px;background:rgba(148,163,184,.16);flex:1}.googleAuthBtn{width:100%;display:none;align-items:center;justify-content:center;gap:9px;background:#fff;color:#111827;border:0;border-radius:12px;padding:12px 14px;font-weight:800;cursor:pointer}.googleAuthBtn.visible{display:flex}.connectionBanner{display:none;margin:12px 0 0;padding:11px 13px;border-radius:12px;border:1px solid rgba(251,191,36,.24);background:rgba(251,191,36,.07);color:#f8d98a;font-size:12px;line-height:1.45}.connectionBanner.visible{display:block}
     @media(max-width:780px){.serviceStrip{grid-template-columns:1fr}}
 
-  </style>
+  
+
+    /* v3.0.1 — Premium sidebar proportion and overflow polish */
+    @media (min-width:1221px) {
+      .saasSidebar {
+        left:20px;
+        top:20px;
+        bottom:20px;
+        width:286px;
+        padding:18px;
+        gap:14px;
+        border-radius:24px;
+        overflow-y:auto;
+        overflow-x:hidden;
+        scrollbar-width:thin;
+        scrollbar-color:rgba(148,163,184,.28) transparent;
+      }
+      .saasSidebar::-webkit-scrollbar { width:6px; }
+      .saasSidebar::-webkit-scrollbar-track { background:transparent; }
+      .saasSidebar::-webkit-scrollbar-thumb { background:rgba(148,163,184,.24); border-radius:999px; }
+      .wrap { margin-left:330px; margin-right:26px; }
+      .sideMenu { flex:0 0 auto; overflow:visible; padding-right:0; gap:6px; }
+      .sideBtn { min-height:43px; padding:11px 12px; font-size:14px; }
+      .sideBrand { padding:10px 10px 16px; }
+      .sideBrandLogo { width:198px; margin:0 auto 12px; }
+      .sideBrand span { font-size:11.5px; line-height:1.45; }
+      .userDock { margin-top:4px; }
+      .userCard { padding:11px; }
+      .sideFooter { margin-top:0; }
+      .sideHealth { padding:12px 13px; line-height:1.5; }
+      .serviceStrip { grid-template-columns:1fr 1fr; gap:8px; }
+      .serviceChip { min-width:0; padding:9px 10px; justify-content:flex-start; }
+      .serviceChip:last-child { grid-column:1 / -1; }
+      .connectionBanner { padding:12px 13px; font-size:11.5px; line-height:1.5; }
+    }
+
+    @media (min-width:1221px) and (max-height:820px) {
+      .saasSidebar { top:12px; bottom:12px; padding:14px; gap:9px; }
+      .sideBrand { padding:5px 8px 10px; }
+      .sideBrandLogo { width:174px; margin-bottom:7px; }
+      .sideBrand span { font-size:10.5px; }
+      .sideMenu { gap:3px; }
+      .sideBtn { min-height:37px; padding:8px 10px; font-size:13px; }
+      .userDock { padding-top:8px; }
+      .userCard { padding:8px; }
+      .sideFooter { padding-top:8px; }
+      .sideHealth { padding:9px 10px; font-size:11px; }
+      .serviceStrip { margin-top:8px; gap:6px; }
+      .serviceChip { padding:7px 8px; font-size:11px; }
+      .connectionBanner { margin-top:8px; padding:9px 10px; font-size:10.5px; }
+    }
+</style>
 </head>
 <body>
   <div id="loginGate">
@@ -703,7 +754,7 @@
   <aside class="saasSidebar" aria-label="Margin Leads navigation">
     <div class="sideBrand">
       <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="sideBrandLogo" />
-      <span>AI outreach intelligence · Private Beta Workspace v3.0</span>
+      <span>AI outreach intelligence · Private Beta Workspace v3.0.1</span>
     </div>
     <div class="sideMenu">
       <button class="sideBtn" onclick="scrollToSection('missionSection')">Dashboard <span>Today</span></button>
@@ -729,9 +780,9 @@
         <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="brand-logo" />
       </div>
       <div class="titleBlock">
-        <div class="badge">MarginBusiness Leads · Private Beta v3.0</div>
+        <div class="badge">MarginBusiness Leads · Private Beta v3.0.1</div>
         <h1>Turn company intelligence into conversations</h1>
-        <div class="versionTag">Version 3.0 · AI-Connected Private Beta</div>
+        <div class="versionTag">Version 3.0.1 · Interface Polish</div>
         <div class="subtitle">Create a campaign, import qualified prospects, review your outreach, and send controlled follow-up batches from one clear workspace.</div>
       </div>
       <div class="actions" style="margin-top:0; justify-content:flex-end;">
