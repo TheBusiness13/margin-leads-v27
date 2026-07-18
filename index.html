@@ -716,7 +716,7 @@
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v3.1.5</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v3.2.0</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -1330,6 +1330,39 @@ async function betaResetPassword(){
 }
 async function showPasswordUpdate(){const next=prompt('Enter your new Margin Leads password (minimum 8 characters):');if(!next)return;if(next.length<8){alert('Please use at least 8 characters.');return}const {error}=await mlSupabase.auth.updateUser({password:next});alert(error?error.message:'Password updated successfully.');}
 async function betaSignOut(){if(mlSupabase)await mlSupabase.auth.signOut();location.reload();}
+
+let mlStateSyncTimer=null;
+let mlStateHydrating=false;
+const ML_SERVER_STATE_KEYS=['campaigns','currentCampaign','state','brevo','preparedBatch','batchSelection','operatorProfile','emailMetrics','sendJournal','onboarding','advanced'];
+function collectWorkspaceState(){
+  if(!mlWorkspaceStorageReady) return {};
+  const map={campaigns:STORAGE_CAMPAIGNS,currentCampaign:STORAGE_CURRENT_CAMPAIGN,state:STORAGE_STATE,brevo:STORAGE_BREVO,preparedBatch:STORAGE_PREPARED_BATCH,batchSelection:STORAGE_BATCH_SELECTION,operatorProfile:STORAGE_OPERATOR_PROFILE,emailMetrics:STORAGE_EMAIL_METRICS,sendJournal:STORAGE_SEND_JOURNAL,onboarding:STORAGE_V24_ONBOARDING,advanced:STORAGE_V24_ADVANCED};
+  const state={}; for(const [k,key] of Object.entries(map)){const v=localStorage.getItem(key); if(v!==null) state[k]=v;} return state;
+}
+function applyWorkspaceState(state){
+  if(!mlWorkspaceStorageReady) throw new Error('Workspace storage is not ready');
+  mlStateHydrating=true;
+  const map={campaigns:STORAGE_CAMPAIGNS,currentCampaign:STORAGE_CURRENT_CAMPAIGN,state:STORAGE_STATE,brevo:STORAGE_BREVO,preparedBatch:STORAGE_PREPARED_BATCH,batchSelection:STORAGE_BATCH_SELECTION,operatorProfile:STORAGE_OPERATOR_PROFILE,emailMetrics:STORAGE_EMAIL_METRICS,sendJournal:STORAGE_SEND_JOURNAL,onboarding:STORAGE_V24_ONBOARDING,advanced:STORAGE_V24_ADVANCED};
+  for(const key of Object.values(map)) localStorage.removeItem(key);
+  if(state&&typeof state==='object') for(const [k,v] of Object.entries(state)){if(map[k]&&v!==null&&v!==undefined)localStorage.setItem(map[k],String(v));}
+  mlStateHydrating=false;
+}
+async function loadWorkspaceServerState(){
+  const r=await mlAuthorizedFetch('/api/state',{cache:'no-store'}); const d=await r.json();
+  if(!r.ok) throw new Error(d.error||'Could not load private workspace data');
+  applyWorkspaceState(d.state||{}); return d;
+}
+async function pushWorkspaceServerState(){
+  if(!mlWorkspaceStorageReady||mlStateHydrating) return;
+  const state=collectWorkspaceState();
+  const r=await mlAuthorizedFetch('/api/state',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({state})});
+  const d=await r.json().catch(()=>({})); if(!r.ok) throw new Error(d.error||'Could not save workspace data');
+}
+function scheduleWorkspaceStateSync(){
+  if(!mlWorkspaceStorageReady||mlStateHydrating) return;
+  clearTimeout(mlStateSyncTimer); mlStateSyncTimer=setTimeout(()=>pushWorkspaceServerState().catch(e=>console.error('Workspace sync failed',e)),500);
+}
+
 async function openPrivateWorkspace(session){
   document.getElementById('loginGate').style.display='none';
   document.body.classList.add('authenticated');
@@ -1344,7 +1377,11 @@ async function openPrivateWorkspace(session){
     const workspaceData=await loadSecureWorkspace();
     if(!workspaceData?.workspace?.id) throw new Error('A private workspace could not be assigned.');
     applyWorkspaceStorageNamespace(workspaceData.workspace.id);
-    migrateLegacyAdminStorageOnce(workspaceData.workspace.id,!!workspaceData.isPlatformAdmin);
+    const serverState=await loadWorkspaceServerState();
+    if(workspaceData.isPlatformAdmin && !serverState.hasState){
+      migrateLegacyAdminStorageOnce(workspaceData.workspace.id,true);
+      await pushWorkspaceServerState();
+    }
     leads=[]; selectedId=null; activeTab='overview'; currentBatch=[]; currentBatchMeta=null;
     batchSelection=new Set(); batchCandidateIds=[]; backOfficeSelected=new Set();
     loadSaved();
@@ -1497,6 +1534,7 @@ function saveOperatorProfile(){
     updatedAt:new Date().toISOString()
   };
   localStorage.setItem(STORAGE_OPERATOR_PROFILE, JSON.stringify(profile));
+  scheduleWorkspaceStateSync();
   renderOperatorProfile();
 }
 function renderOperatorProfile(){
@@ -1579,9 +1617,9 @@ function getCampaigns(){
   if(!mlWorkspaceStorageReady) return [];
   try { const data = JSON.parse(localStorage.getItem(STORAGE_CAMPAIGNS) || "[]"); return Array.isArray(data) ? data : []; } catch(e){ return []; }
 }
-function saveCampaigns(campaigns){ if(!mlWorkspaceStorageReady) return; localStorage.setItem(STORAGE_CAMPAIGNS, JSON.stringify(campaigns)); }
+function saveCampaigns(campaigns){ if(!mlWorkspaceStorageReady) return; localStorage.setItem(STORAGE_CAMPAIGNS, JSON.stringify(campaigns)); scheduleWorkspaceStateSync(); }
 function getCurrentCampaignId(){ return mlWorkspaceStorageReady ? (localStorage.getItem(STORAGE_CURRENT_CAMPAIGN) || "default") : "default"; }
-function setCurrentCampaignId(id){ if(mlWorkspaceStorageReady) localStorage.setItem(STORAGE_CURRENT_CAMPAIGN, id); }
+function setCurrentCampaignId(id){ if(mlWorkspaceStorageReady){ localStorage.setItem(STORAGE_CURRENT_CAMPAIGN, id); scheduleWorkspaceStateSync(); } }
 function getCurrentCampaign(){
   let campaigns = getCampaigns();
   if(!campaigns.length){ campaigns = [defaultCampaign()]; saveCampaigns(campaigns); setCurrentCampaignId("default"); }
@@ -1688,7 +1726,7 @@ function migrateIfNeeded(){
   let oldLeads = [];
   const oldRaw = localStorage.getItem(OLD_STORAGE_LEADS);
   if(oldRaw){ try { oldLeads = JSON.parse(oldRaw); } catch(e){ oldLeads = []; } }
-  if(!Array.isArray(oldLeads) || !oldLeads.length){ oldLeads = parseRows(sampleData); }
+  if(!Array.isArray(oldLeads)){ oldLeads = []; }
   const c = defaultCampaign();
   c.leads = oldLeads;
   campaigns = [c];
@@ -1708,7 +1746,7 @@ function loadSaved(){
 }
 
 function getStore(){ try { return JSON.parse(localStorage.getItem(STORAGE_STATE) || "{}"); } catch(e){ return {}; } }
-function setStore(data){ localStorage.setItem(STORAGE_STATE, JSON.stringify(data)); }
+function setStore(data){ localStorage.setItem(STORAGE_STATE, JSON.stringify(data)); scheduleWorkspaceStateSync(); }
 function leadKey(lead){ const campaignId = getCurrentCampaign().id || "default"; return [campaignId, lead.company, lead.email, lead.product].map(x=>String(x||"").trim().toLowerCase()).join("|"); }
 function getLeadState(lead){
   const store = getStore();
@@ -2380,11 +2418,11 @@ function batchSelectionKey(campaignId, step){ return `${campaignId || getCurrent
 function getPreparedBatchStore(){
   try { const data=JSON.parse(localStorage.getItem(STORAGE_PREPARED_BATCH) || "{}"); return data && typeof data==="object" ? data : {}; } catch(e){ return {}; }
 }
-function savePreparedBatchStore(data){ localStorage.setItem(STORAGE_PREPARED_BATCH, JSON.stringify(data || {})); }
+function savePreparedBatchStore(data){ localStorage.setItem(STORAGE_PREPARED_BATCH, JSON.stringify(data || {})); scheduleWorkspaceStateSync(); }
 function getSelectionStore(){
   try { const data=JSON.parse(localStorage.getItem(STORAGE_BATCH_SELECTION) || "{}"); return data && typeof data==="object" ? data : {}; } catch(e){ return {}; }
 }
-function saveSelectionStore(data){ localStorage.setItem(STORAGE_BATCH_SELECTION, JSON.stringify(data || {})); }
+function saveSelectionStore(data){ localStorage.setItem(STORAGE_BATCH_SELECTION, JSON.stringify(data || {})); scheduleWorkspaceStateSync(); }
 function getPreparedBatch(){
   const c=getCurrentCampaign();
   const settings=getBatchSettings();
@@ -2776,7 +2814,7 @@ function markLeadIdsSent(leadIds, step){
 function getSendJournalStore(){
   try { const data=JSON.parse(localStorage.getItem(STORAGE_SEND_JOURNAL) || "[]"); return Array.isArray(data) ? data : []; } catch(e){ return []; }
 }
-function saveSendJournalStore(rows){ localStorage.setItem(STORAGE_SEND_JOURNAL, JSON.stringify((rows || []).slice(0,60))); }
+function saveSendJournalStore(rows){ localStorage.setItem(STORAGE_SEND_JOURNAL, JSON.stringify((rows || []).slice(0,60))); scheduleWorkspaceStateSync(); }
 function addSendJournalEntry(entry){
   const rows=getSendJournalStore();
   rows.unshift({...entry, id: entry.id || makeId("send"), time: entry.time || new Date().toISOString()});
@@ -2861,7 +2899,7 @@ function saveBrevoSettings(){
     optOutEmail:(document.getElementById("brevoOptOutEmail")?.value || "").trim(),
     complianceLine:(document.getElementById("brevoComplianceLine")?.value || "soft")
   };
-  localStorage.setItem(STORAGE_BREVO, JSON.stringify(settings));
+  localStorage.setItem(STORAGE_BREVO, JSON.stringify(settings)); scheduleWorkspaceStateSync();
   setBrevoStatus("Mail bridge settings saved locally in this browser. API keys stay only in Vercel Environment Variables.", false);
   showToast("Mail settings saved");
   return settings;
@@ -3340,7 +3378,7 @@ function slugify(x){ return String(x||"campaign").toLowerCase().replace(/[^a-z0-
 function getEmailMetricsStore(){
   try { const data=JSON.parse(localStorage.getItem(STORAGE_EMAIL_METRICS) || "{}"); return data && typeof data==="object" ? data : {}; } catch(e){ return {}; }
 }
-function saveEmailMetricsStore(data){ localStorage.setItem(STORAGE_EMAIL_METRICS, JSON.stringify(data || {})); }
+function saveEmailMetricsStore(data){ localStorage.setItem(STORAGE_EMAIL_METRICS, JSON.stringify(data || {})); scheduleWorkspaceStateSync(); }
 function metricKeyFromParts(campaignId, leadId, step, to){ return [campaignId||"campaign", leadId||to||"lead", normalizeStep(step||"email1")].join("|"); }
 function normalizeMetricEvent(event){
   const e=String(event||"").toLowerCase().replace(/[^a-z0-9]+/g,"_");
@@ -3529,7 +3567,7 @@ function openV24Modal(id){ const el=document.getElementById(id); if(el) el.class
 function closeV24Modal(id){ const el=document.getElementById(id); if(el) el.classList.remove("open"); }
 function openCampaignTemplateModal(){ openV24Modal("campaignTemplateModal"); }
 function openOnboarding(){ onboardingStep=0; renderOnboardingStep(); openV24Modal("onboardingModal"); }
-function finishOnboarding(){ localStorage.setItem(STORAGE_V24_ONBOARDING,"complete"); closeV24Modal("onboardingModal"); renderV24Experience(); }
+function finishOnboarding(){ localStorage.setItem(STORAGE_V24_ONBOARDING,"complete"); scheduleWorkspaceStateSync(); closeV24Modal("onboardingModal"); renderV24Experience(); }
 function changeOnboardingStep(delta){
   onboardingStep=Math.max(0,Math.min(3,onboardingStep+delta));
   if(onboardingStep===3 && delta>0 && document.querySelectorAll(".onboardingStep")[3]?.classList.contains("active")){ finishOnboarding(); return; }
@@ -3557,7 +3595,7 @@ function createCampaignFromTemplate(key){
 }
 function toggleAdvancedMode(){
   const enabled=!document.body.classList.contains("advancedMode");
-  document.body.classList.toggle("advancedMode",enabled); localStorage.setItem(STORAGE_V24_ADVANCED,enabled?"yes":"no");
+  document.body.classList.toggle("advancedMode",enabled); localStorage.setItem(STORAGE_V24_ADVANCED,enabled?"yes":"no"); scheduleWorkspaceStateSync();
   document.querySelectorAll("#advancedToggle,.advancedToggle").forEach(b=>b.textContent=enabled?"Hide advanced tools":"Advanced tools");
 }
 function loadV24Mode(){
