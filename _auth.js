@@ -23,33 +23,52 @@ async function jsonOrError(r){
   if(!r.ok)throw new Error(d?.message||d?.error||txt||`Supabase HTTP ${r.status}`);
   return d;
 }
-async function ensureWorkspace(user){
-  // Private-beta rule: every account gets its own owner workspace first.
-  // This prevents an accidental/shared membership from making a customer
-  // inherit the platform admin workspace.
-  const ownerRes=await serviceFetch(`workspaces?owner_id=eq.${encodeURIComponent(user.id)}&select=id,name,slug,plan&order=created_at.asc&limit=1`);
-  const owned=await jsonOrError(ownerRes);
-  if(Array.isArray(owned)&&owned[0]){
-    const memRes=await serviceFetch('workspace_members',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({workspace_id:owned[0].id,user_id:user.id,role:'owner'})});
-    if(!memRes.ok)await jsonOrError(memRes);
-    return {workspace:owned[0],role:'owner'};
+async function ensureWorkspaceEntitlements(workspace){
+  if(!workspace?.id)throw new Error('Workspace is missing');
+  const wid=encodeURIComponent(workspace.id);
+  const trialEnds=workspace.trial_ends_at||new Date(Date.now()+14*86400000).toISOString();
+
+  const subRows=await jsonOrError(await serviceFetch(`workspace_subscriptions?workspace_id=eq.${wid}&select=workspace_id&limit=1`));
+  if(!Array.isArray(subRows)||!subRows[0]){
+    const subRes=await serviceFetch('workspace_subscriptions',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({workspace_id:workspace.id,plan_code:'trial',status:'trialing',trial_ends_at:trialEnds})});
+    if(!subRes.ok)await jsonOrError(subRes);
   }
 
-  // Existing invited memberships are intentionally ignored during the private
-  // beta unless the user also owns that workspace. Team workspaces will be
-  // introduced later with an explicit workspace switcher.
+  const creditRows=await jsonOrError(await serviceFetch(`workspace_credit_balances?workspace_id=eq.${wid}&select=workspace_id,balance&limit=1`));
+  if(!Array.isArray(creditRows)||!creditRows[0]){
+    const creditRes=await serviceFetch('workspace_credit_balances',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({workspace_id:workspace.id,balance:10,lifetime_granted:10,period_granted:10,period_ends_at:trialEnds})});
+    if(!creditRes.ok)await jsonOrError(creditRes);
+    const ledgerRes=await serviceFetch('credit_ledger',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({workspace_id:workspace.id,user_id:workspace.owner_id||null,amount:10,balance_after:10,reason:'Protected trial grant',reference_id:'trial-initial-grant',metadata:{source:'workspace_bootstrap'}})});
+    if(!ledgerRes.ok)await jsonOrError(ledgerRes);
+  }
+}
+
+async function ensureWorkspace(user){
+  // Every account receives and uses a workspace owned by that exact user.
+  const ownerRes=await serviceFetch(`workspaces?owner_id=eq.${encodeURIComponent(user.id)}&select=id,name,slug,plan,owner_id,trial_ends_at&order=created_at.asc&limit=1`);
+  const owned=await jsonOrError(ownerRes);
+  if(Array.isArray(owned)&&owned[0]){
+    const workspace=owned[0];
+    const memRows=await jsonOrError(await serviceFetch(`workspace_members?workspace_id=eq.${encodeURIComponent(workspace.id)}&user_id=eq.${encodeURIComponent(user.id)}&select=workspace_id&limit=1`));
+    if(!Array.isArray(memRows)||!memRows[0]){
+      const memRes=await serviceFetch('workspace_members',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({workspace_id:workspace.id,user_id:user.id,role:'owner'})});
+      if(!memRes.ok)await jsonOrError(memRes);
+    }
+    await ensureWorkspaceEntitlements(workspace);
+    return {workspace,role:'owner'};
+  }
+
   const email=String(user.email||'user');
   const name=String(user.user_metadata?.workspace_name||user.user_metadata?.full_name||user.user_metadata?.name||email.split('@')[0]||'Private Workspace').slice(0,100);
   const slugBase=name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||'workspace';
   const slug=`${slugBase}-${String(user.id).slice(0,8)}`;
-  const createRes=await serviceFetch('workspaces',{method:'POST',headers:{Prefer:'return=representation'},body:JSON.stringify({name,slug,owner_id:user.id,plan:'trial',signup_source:user.app_metadata?.provider||'email',trial_started_at:new Date().toISOString(),trial_ends_at:new Date(Date.now()+14*86400000).toISOString()})});
+  const trialEnds=new Date(Date.now()+14*86400000).toISOString();
+  const createRes=await serviceFetch('workspaces',{method:'POST',headers:{Prefer:'return=representation'},body:JSON.stringify({name,slug,owner_id:user.id,plan:'trial',signup_source:user.app_metadata?.provider||'email',trial_started_at:new Date().toISOString(),trial_ends_at:trialEnds})});
   const created=await jsonOrError(createRes);const workspace=Array.isArray(created)?created[0]:created;
   if(!workspace?.id)throw new Error('Could not create the private workspace');
-  const memRes=await serviceFetch('workspace_members',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({workspace_id:workspace.id,user_id:user.id,role:'owner'})});
+  const memRes=await serviceFetch('workspace_members',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({workspace_id:workspace.id,user_id:user.id,role:'owner'})});
   if(!memRes.ok)await jsonOrError(memRes);
-  const trialEnds=workspace.trial_ends_at||new Date(Date.now()+14*86400000).toISOString();
-  await serviceFetch('workspace_subscriptions',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({workspace_id:workspace.id,plan_code:'trial',status:'trialing',trial_ends_at:trialEnds})}).catch(()=>{});
-  await serviceFetch('workspace_credit_balances',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({workspace_id:workspace.id,balance:10,lifetime_granted:10,period_granted:10,period_ends_at:trialEnds})}).catch(()=>{});
+  await ensureWorkspaceEntitlements({...workspace,owner_id:user.id,trial_ends_at:trialEnds});
   return {workspace:{...workspace,plan:'trial'},role:'owner'};
 }
 function normalizeMembership(row){
