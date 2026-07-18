@@ -2367,13 +2367,16 @@ function dueReasonForStep(lead, step, settings){
   }
   return null;
 }
-function buildDueBatch(){
+function buildBatchForStep(step){
   const settings=getBatchSettings();
-  settings.step = normalizeStep(settings.step);
+  settings.step = normalizeStep(step || settings.step);
   const due=leads.map(lead=>({lead, reason:dueReasonForStep(lead, settings.step, settings)}))
     .filter(x=>x.reason)
     .sort((a,b)=>fitScore(b.lead)-fitScore(a.lead) || (a.lead.rowNumber||0)-(b.lead.rowNumber||0));
   return { settings, due, batch: due.slice(0, settings.cap) };
+}
+function buildDueBatch(){
+  return buildBatchForStep(getBatchSettings().step);
 }
 function preparedBatchKey(campaignId, step){ return `${campaignId || getCurrentCampaign().id}|${normalizeStep(step || getBatchSettings().step)}`; }
 function batchSelectionKey(campaignId, step){ return `${campaignId || getCurrentCampaign().id}|${normalizeStep(step || getBatchSettings().step)}`; }
