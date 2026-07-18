@@ -716,7 +716,7 @@
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v3.0</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v3.1.4</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -1370,7 +1370,7 @@ async function loadSecureWorkspace(){
     const r=await mlAuthorizedFetch('/api/workspace',{cache:'no-store'});const d=await r.json();
     if(!r.ok||!d.ok)throw new Error(d.error||'Workspace unavailable');
     window.mlWorkspace=d.workspace;window.mlWorkspaceRole=d.role;window.mlIsPlatformAdmin=!!d.isPlatformAdmin;
-    const role=document.getElementById('operatorModePill');if(role)role.textContent=`${d.workspace?.name||'Private Workspace'} · ${d.role||'member'}`;
+    const role=document.getElementById('operatorModePill');if(role)role.textContent=`${d.workspace?.name||'Private Workspace'} · ${d.role||'member'} · ${String(d.workspace?.id||'').slice(0,8)}`;
     const credits=Number(d.credits?.balance||0), used=Number(d.credits?.period_used||0), total=Math.max(credits+used,10);
     document.getElementById('creditBalance').textContent=credits;
     document.getElementById('planName').textContent=String(d.subscription?.plan_code||d.workspace?.plan||'trial').replace(/_/g,' ');
