@@ -1,1 +1,1 @@
-MarginBusiness Leads v3.1.0 — Customer Access, Credits and Admin Foundation
+MarginBusiness Leads v3.1.1 — Workspace Isolation Hotfix

@@ -1330,9 +1330,36 @@ async function betaResetPassword(){
 }
 async function showPasswordUpdate(){const next=prompt('Enter your new Margin Leads password (minimum 8 characters):');if(!next)return;if(next.length<8){alert('Please use at least 8 characters.');return}const {error}=await mlSupabase.auth.updateUser({password:next});alert(error?error.message:'Password updated successfully.');}
 async function betaSignOut(){if(mlSupabase)await mlSupabase.auth.signOut();location.reload();}
-function openPrivateWorkspace(session){
-  document.getElementById('loginGate').style.display='none';document.body.classList.add('authenticated');const user=session?.user||{};const email=user.email||'Private beta user';const name=user.user_metadata?.full_name||user.user_metadata?.name||email.split('@')[0];document.getElementById('userName').textContent=name;document.getElementById('userEmail').textContent=email;document.getElementById('userAvatar').textContent=(name[0]||'M').toUpperCase();sessionStorage.setItem('ml_beta_authenticated','1');
-  try{loadSaved();loadSecureWorkspace();}catch(e){console.error('Workspace load error',e)}
+async function openPrivateWorkspace(session){
+  document.getElementById('loginGate').style.display='none';
+  document.body.classList.add('authenticated');
+  const user=session?.user||{};
+  const email=user.email||'Private beta user';
+  const name=user.user_metadata?.full_name||user.user_metadata?.name||email.split('@')[0];
+  document.getElementById('userName').textContent=name;
+  document.getElementById('userEmail').textContent=email;
+  document.getElementById('userAvatar').textContent=(name[0]||'M').toUpperCase();
+  sessionStorage.setItem('ml_beta_authenticated','1');
+  try{
+    const workspaceData=await loadSecureWorkspace();
+    if(!workspaceData?.workspace?.id) throw new Error('A private workspace could not be assigned.');
+    applyWorkspaceStorageNamespace(workspaceData.workspace.id);
+    migrateLegacyAdminStorageOnce(workspaceData.workspace.id,!!workspaceData.isPlatformAdmin);
+    leads=[]; selectedId=null; activeTab='overview'; currentBatch=[]; currentBatchMeta=null;
+    batchSelection=new Set(); batchCandidateIds=[]; backOfficeSelected=new Set();
+    loadSaved();
+    loadBrevoSettings();
+    enforceDailyCap100();
+    renderEmailPerformance();
+    renderSendJournal();
+    updateSideHealth();
+    initV24();
+    runSystemDiagnostics().catch(()=>{});
+  }catch(e){
+    console.error('Workspace load error',e);
+    const banner=document.getElementById('connectionBanner');
+    if(banner){banner.textContent=`Workspace isolation error: ${e.message}`;banner.classList.add('visible');}
+  }
 }
 function closePrivateWorkspace(){document.getElementById('loginGate').style.display='flex';document.body.classList.remove('authenticated');sessionStorage.removeItem('ml_beta_authenticated');}
 async function mlAccessToken(){if(!mlSupabase)return'';const {data:{session}}=await mlSupabase.auth.getSession();return session?.access_token||'';}
@@ -1379,16 +1406,69 @@ async function runAIForActiveLead(){
 }
 
 const PAGE_PASSWORD = ""; // v2.9 uses Supabase workspace authentication; legacy page password retired.
-const STORAGE_CAMPAIGNS = "mbLeadRadarLite.campaigns.v15";
-const STORAGE_CURRENT_CAMPAIGN = "mbLeadRadarLite.currentCampaign.v15";
-const STORAGE_STATE = "mbLeadRadarLite.leadState.v15";
-const STORAGE_BREVO = "mbLeadRadarLite.brevoBridge.v19";
-const STORAGE_PREPARED_BATCH = "mbLeadRadarLite.preparedBatch.v21";
-const STORAGE_BATCH_SELECTION = "mbLeadRadarLite.batchSelection.v21";
-const STORAGE_OPERATOR_PROFILE = "mbLeadRadarLite.operatorProfile.v118";
-const STORAGE_EMAIL_METRICS = "mbLeadRadarLite.emailMetrics.v22";
-const STORAGE_SEND_JOURNAL = "mbLeadRadarLite.sendJournal.v22";
-const OLD_STORAGE_LEADS = "mbLeadRadarLite.currentLeads.v1";
+const STORAGE_BASE = {
+  campaigns: "mbLeadRadarLite.campaigns.v15",
+  currentCampaign: "mbLeadRadarLite.currentCampaign.v15",
+  state: "mbLeadRadarLite.leadState.v15",
+  brevo: "mbLeadRadarLite.brevoBridge.v19",
+  preparedBatch: "mbLeadRadarLite.preparedBatch.v21",
+  batchSelection: "mbLeadRadarLite.batchSelection.v21",
+  operatorProfile: "mbLeadRadarLite.operatorProfile.v118",
+  emailMetrics: "mbLeadRadarLite.emailMetrics.v22",
+  sendJournal: "mbLeadRadarLite.sendJournal.v22",
+  oldLeads: "mbLeadRadarLite.currentLeads.v1",
+  onboarding: "mbLeadRadarLite.onboarding.v24",
+  advanced: "mbLeadRadarLite.advancedMode.v24"
+};
+let STORAGE_CAMPAIGNS = "";
+let STORAGE_CURRENT_CAMPAIGN = "";
+let STORAGE_STATE = "";
+let STORAGE_BREVO = "";
+let STORAGE_PREPARED_BATCH = "";
+let STORAGE_BATCH_SELECTION = "";
+let STORAGE_OPERATOR_PROFILE = "";
+let STORAGE_EMAIL_METRICS = "";
+let STORAGE_SEND_JOURNAL = "";
+let OLD_STORAGE_LEADS = "";
+let STORAGE_V24_ONBOARDING = "";
+let STORAGE_V24_ADVANCED = "";
+let mlWorkspaceStorageReady = false;
+function workspaceStorageKey(base, workspaceId){ return `${base}.workspace.${workspaceId}`; }
+function applyWorkspaceStorageNamespace(workspaceId){
+  if(!workspaceId) throw new Error("Workspace ID is required before loading private data.");
+  STORAGE_CAMPAIGNS = workspaceStorageKey(STORAGE_BASE.campaigns, workspaceId);
+  STORAGE_CURRENT_CAMPAIGN = workspaceStorageKey(STORAGE_BASE.currentCampaign, workspaceId);
+  STORAGE_STATE = workspaceStorageKey(STORAGE_BASE.state, workspaceId);
+  STORAGE_BREVO = workspaceStorageKey(STORAGE_BASE.brevo, workspaceId);
+  STORAGE_PREPARED_BATCH = workspaceStorageKey(STORAGE_BASE.preparedBatch, workspaceId);
+  STORAGE_BATCH_SELECTION = workspaceStorageKey(STORAGE_BASE.batchSelection, workspaceId);
+  STORAGE_OPERATOR_PROFILE = workspaceStorageKey(STORAGE_BASE.operatorProfile, workspaceId);
+  STORAGE_EMAIL_METRICS = workspaceStorageKey(STORAGE_BASE.emailMetrics, workspaceId);
+  STORAGE_SEND_JOURNAL = workspaceStorageKey(STORAGE_BASE.sendJournal, workspaceId);
+  OLD_STORAGE_LEADS = workspaceStorageKey(STORAGE_BASE.oldLeads, workspaceId);
+  STORAGE_V24_ONBOARDING = workspaceStorageKey(STORAGE_BASE.onboarding, workspaceId);
+  STORAGE_V24_ADVANCED = workspaceStorageKey(STORAGE_BASE.advanced, workspaceId);
+  mlWorkspaceStorageReady = true;
+}
+function migrateLegacyAdminStorageOnce(workspaceId, isPlatformAdmin){
+  if(!isPlatformAdmin) return;
+  const marker=`mbLeadRadarLite.legacyMigrated.${workspaceId}`;
+  if(localStorage.getItem(marker)==="yes") return;
+  const pairs=[
+    [STORAGE_BASE.campaigns,STORAGE_CAMPAIGNS],[STORAGE_BASE.currentCampaign,STORAGE_CURRENT_CAMPAIGN],
+    [STORAGE_BASE.state,STORAGE_STATE],[STORAGE_BASE.brevo,STORAGE_BREVO],
+    [STORAGE_BASE.preparedBatch,STORAGE_PREPARED_BATCH],[STORAGE_BASE.batchSelection,STORAGE_BATCH_SELECTION],
+    [STORAGE_BASE.operatorProfile,STORAGE_OPERATOR_PROFILE],[STORAGE_BASE.emailMetrics,STORAGE_EMAIL_METRICS],
+    [STORAGE_BASE.sendJournal,STORAGE_SEND_JOURNAL],[STORAGE_BASE.oldLeads,OLD_STORAGE_LEADS],
+    [STORAGE_BASE.onboarding,STORAGE_V24_ONBOARDING],[STORAGE_BASE.advanced,STORAGE_V24_ADVANCED]
+  ];
+  for(const [legacy,namespaced] of pairs){
+    if(localStorage.getItem(namespaced)===null && localStorage.getItem(legacy)!==null){
+      localStorage.setItem(namespaced,localStorage.getItem(legacy));
+    }
+  }
+  localStorage.setItem(marker,"yes");
+}
 
 let leads = [];
 let selectedId = null;
@@ -1496,11 +1576,12 @@ function defaultCampaign(){
 }
 
 function getCampaigns(){
+  if(!mlWorkspaceStorageReady) return [];
   try { const data = JSON.parse(localStorage.getItem(STORAGE_CAMPAIGNS) || "[]"); return Array.isArray(data) ? data : []; } catch(e){ return []; }
 }
-function saveCampaigns(campaigns){ localStorage.setItem(STORAGE_CAMPAIGNS, JSON.stringify(campaigns)); }
-function getCurrentCampaignId(){ return localStorage.getItem(STORAGE_CURRENT_CAMPAIGN) || "default"; }
-function setCurrentCampaignId(id){ localStorage.setItem(STORAGE_CURRENT_CAMPAIGN, id); }
+function saveCampaigns(campaigns){ if(!mlWorkspaceStorageReady) return; localStorage.setItem(STORAGE_CAMPAIGNS, JSON.stringify(campaigns)); }
+function getCurrentCampaignId(){ return mlWorkspaceStorageReady ? (localStorage.getItem(STORAGE_CURRENT_CAMPAIGN) || "default") : "default"; }
+function setCurrentCampaignId(id){ if(mlWorkspaceStorageReady) localStorage.setItem(STORAGE_CURRENT_CAMPAIGN, id); }
 function getCurrentCampaign(){
   let campaigns = getCampaigns();
   if(!campaigns.length){ campaigns = [defaultCampaign()]; saveCampaigns(campaigns); setCurrentCampaignId("default"); }
@@ -3436,8 +3517,7 @@ function safeUrl(url){ if(!url) return "#"; return url.startsWith("http") ? url 
 function escapeHtml(str){ return String(str||"").replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m])); }
 
 /* v2.4 guided customer experience */
-const STORAGE_V24_ONBOARDING = "mbLeadRadarLite.onboarding.v24";
-const STORAGE_V24_ADVANCED = "mbLeadRadarLite.advancedMode.v24";
+
 let onboardingStep = 0;
 const CAMPAIGN_TEMPLATES = {
   brand:{name:"Amazon Brand Outreach",source:"Apollo",profile:"Apollo",minScore:60,gap2:4,gap3:5,gap4:7},
@@ -3526,13 +3606,7 @@ function initV24(){
 }
 
 checkGate();
-loadSaved();
-loadBrevoSettings();
-enforceDailyCap100();
-renderEmailPerformance();
-renderSendJournal();
-updateSideHealth();
-initV24();
+// Private campaign data is loaded only after /api/workspace returns a verified workspace ID.
 
 
 // ===== v2.9 SECURE CONNECTED ACTIVITY CENTER =====
@@ -3626,7 +3700,7 @@ function exportConnectedLogsCSV(){
   const csv=[cols.join(','),...connectedLogRows.map(r=>cols.map(c=>'"'+String(r[c]??'').replaceAll('"','""')+'"').join(','))].join('\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`lead-radar-activity-${new Date().toISOString().slice(0,10)}.csv`;a.click();URL.revokeObjectURL(a.href);
 }
-window.addEventListener('load',()=>{setTimeout(()=>{runSystemDiagnostics().catch(()=>{});},900);});
+// Diagnostics start after the authenticated workspace namespace is active.
 
 </script>
 
