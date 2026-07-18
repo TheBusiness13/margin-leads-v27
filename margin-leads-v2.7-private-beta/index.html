@@ -2130,7 +2130,7 @@ function getFiltered(){
 function updateSideHealth(){
   const box=document.getElementById("sideHealthBox"); if(!box) return;
   const rows=metricRows ? metricRows() : []; const stats=calculateMetricStats ? calculateMetricStats(rows) : {sent:0,failed:0};
-  const due=["email1","follow2","follow3","follow4"].reduce((sum,step)=>sum+buildBatchForStep(step).due.length,0);
+  const due=["email1","follow2","follow3","follow4"].reduce((sum,step)=>sum+countDueForStep(step),0);
   box.innerHTML=`Due now: <strong>${due}</strong><br>Sent tracked: <strong>${stats.sent}</strong><br>Failed: <strong>${stats.failed}</strong>`;
 }
 async function refreshWorkspace(){
@@ -2367,16 +2367,13 @@ function dueReasonForStep(lead, step, settings){
   }
   return null;
 }
-function buildBatchForStep(step){
+function buildDueBatch(){
   const settings=getBatchSettings();
-  settings.step = normalizeStep(step || settings.step);
+  settings.step = normalizeStep(settings.step);
   const due=leads.map(lead=>({lead, reason:dueReasonForStep(lead, settings.step, settings)}))
     .filter(x=>x.reason)
     .sort((a,b)=>fitScore(b.lead)-fitScore(a.lead) || (a.lead.rowNumber||0)-(b.lead.rowNumber||0));
   return { settings, due, batch: due.slice(0, settings.cap) };
-}
-function buildDueBatch(){
-  return buildBatchForStep(getBatchSettings().step);
 }
 function preparedBatchKey(campaignId, step){ return `${campaignId || getCurrentCampaign().id}|${normalizeStep(step || getBatchSettings().step)}`; }
 function batchSelectionKey(campaignId, step){ return `${campaignId || getCurrentCampaign().id}|${normalizeStep(step || getBatchSettings().step)}`; }
