@@ -1,4 +1,4 @@
-const {getUser,ensureWorkspace,logActivity}=require('./_auth');
+const {getUser,ensureWorkspace,logActivity,serviceFetch,jsonOrError}=require('./_auth');
 
 function clean(value,max=2000){return String(value??'').replace(/\0/g,'').trim().slice(0,max)}
 function extractText(data){
@@ -19,6 +19,11 @@ module.exports=async function handler(req,res){
     const apiKey=process.env.OPENAI_API_KEY||'';if(!apiKey)return res.status(503).json({ok:false,code:'OPENAI_NOT_CONFIGURED',error:'OpenAI is not connected yet. Add OPENAI_API_KEY in Vercel and redeploy.'});
     const body=typeof req.body==='string'?JSON.parse(req.body):req.body||{};
     const lead=safeLead(body.lead||{});const campaign=body.campaign||{};
+    const creditCost=Math.max(1,Math.min(5,Number(body.creditCost)||1));
+    const creditRef=`ai-${user.id}-${Date.now()}`;
+    const reserve=await jsonOrError(await serviceFetch('rpc/consume_workspace_credits',{method:'POST',headers:{Prefer:'return=representation'},body:JSON.stringify({p_workspace_id:workspace.id,p_user_id:user.id,p_amount:creditCost,p_reason:'ai_lead_analysis',p_reference_id:creditRef,p_metadata:{company:lead.company||null}})}));
+    const creditResult=Array.isArray(reserve)?reserve[0]:reserve;
+    if(!creditResult?.ok)return res.status(402).json({ok:false,code:'CREDITS_REQUIRED',error:creditResult?.message||'Not enough Margin Credits',credits:creditResult?.balance??0});
     if(!lead.company&&!lead.website&&!lead.email)return res.status(400).json({ok:false,error:'Select a lead with at least a company, website, or email.'});
     const schema={type:'object',additionalProperties:false,properties:{
       opportunity_score:{type:'integer',minimum:0,maximum:100},
@@ -36,6 +41,6 @@ module.exports=async function handler(req,res){
     const text=extractText(data);if(!text)throw new Error('OpenAI returned no structured analysis');
     const analysis=JSON.parse(text);
     await logActivity({workspaceId:workspace.id,userId:user.id,eventType:'ai_analysis_completed',entityType:'lead',entityId:clean(body.lead?.id,200)||null,metadata:{model:data.model||requestBody.model,company:lead.company||null,usage:data.usage||null}}).catch(()=>{});
-    return res.status(200).json({ok:true,analysis,model:data.model||requestBody.model,workspace:{id:workspace.id,name:workspace.name},usage:data.usage||null});
+    return res.status(200).json({ok:true,analysis,model:data.model||requestBody.model,workspace:{id:workspace.id,name:workspace.name},usage:data.usage||null,credits:{used:creditCost,remaining:creditResult.balance}});
   }catch(error){console.error('Margin AI error',error);return res.status(500).json({ok:false,error:clean(error?.message||'AI analysis failed',800)});}
 };

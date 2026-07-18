@@ -704,6 +704,11 @@
       .serviceChip { padding:7px 8px; font-size:11px; }
       .connectionBanner { margin-top:8px; padding:9px 10px; font-size:10.5px; }
     }
+
+    .accountPlanCard{margin-top:12px;padding:14px;border:1px solid rgba(72,108,140,.45);border-radius:16px;background:linear-gradient(145deg,rgba(12,30,44,.92),rgba(7,18,29,.92));}
+    .accountPlanTop{display:flex;justify-content:space-between;align-items:center;gap:8px}.accountPlanTop strong{font-size:13px}.planBadge{font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:5px 8px;border-radius:999px;background:rgba(37,211,156,.12);color:#74e6bd;border:1px solid rgba(37,211,156,.26)}
+    .creditBalance{font-size:28px;font-weight:900;margin-top:10px}.creditLabel{font-size:11px;color:#8fa4b8}.creditBar{height:6px;border-radius:999px;background:#17293a;margin-top:10px;overflow:hidden}.creditBar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#25d39c,#52a9ff);border-radius:999px}.accountPlanMeta{display:flex;justify-content:space-between;gap:8px;margin-top:9px;color:#8fa4b8;font-size:10px}
+    .adminOnly{display:none}.adminOnly.visible{display:flex}.adminPanel{display:none;margin:18px 0}.adminPanel.visible{display:block}.adminTable{width:100%;border-collapse:collapse}.adminTable th,.adminTable td{padding:10px;border-bottom:1px solid #223446;text-align:left;font-size:12px}.adminTable th{color:#8fa4b8}.adminActions{display:flex;gap:6px;flex-wrap:wrap}.adminActions button{padding:6px 9px;font-size:11px}
 </style>
 </head>
 <body>
@@ -754,7 +759,7 @@
   <aside class="saasSidebar" aria-label="Margin Leads navigation">
     <div class="sideBrand">
       <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="sideBrandLogo" />
-      <span>AI outreach intelligence · Private Beta Workspace v3.0.1</span>
+      <span>AI outreach intelligence · Customer Workspace v3.1</span>
     </div>
     <div class="sideMenu">
       <button class="sideBtn" onclick="scrollToSection('missionSection')">Dashboard <span>Today</span></button>
@@ -764,13 +769,13 @@
       <button class="sideBtn" data-advanced="true" onclick="scrollToSection('performanceSection')">Reports <span>Results</span></button>
       <button class="sideBtn" data-advanced="true" onclick="scrollToSection('backOfficeSection')">Lead database <span>Manage</span></button>
       <button class="sideBtn" onclick="scrollToSection('leadsSection')">Leads <span>Import</span></button>
-      <button class="sideBtn" data-advanced="true" onclick="scrollToSection('settingsSection')">Settings <span>Email</span></button>
+      <button class="sideBtn" data-advanced="true" onclick="scrollToSection('settingsSection')">Settings <span>Email</span></button><button class="sideBtn adminOnly" id="adminNavBtn" onclick="openAdminConsole()">Admin console <span>Owner</span></button>
     </div>
     <div class="userDock" id="userDock">
       <div class="userCard"><div class="userAvatar" id="userAvatar">O</div><div class="userMeta"><strong id="userName">Private beta user</strong><span id="userEmail">Loading account…</span></div><button class="logoutBtn" onclick="betaSignOut()">Sign out</button></div>
     </div>
     <div class="sideFooter">
-      <div class="sideHealth" id="sideHealthBox">Ready. Work from Dashboard → Sending → Performance.</div><div class="serviceStrip"><div class="serviceChip" id="serviceSupabase"><span class="serviceDot"></span>Workspace</div><div class="serviceChip" id="serviceOpenAI"><span class="serviceDot"></span>Margin AI</div><div class="serviceChip" id="serviceBrevo"><span class="serviceDot"></span>Email</div></div><div class="connectionBanner" id="connectionBanner"></div>
+      <div class="sideHealth" id="sideHealthBox">Ready. Work from Dashboard → Sending → Performance.</div><div class="accountPlanCard"><div class="accountPlanTop"><strong id="planName">Free trial</strong><span class="planBadge" id="planStatus">Protected</span></div><div class="creditBalance" id="creditBalance">—</div><div class="creditLabel">Margin Credits available</div><div class="creditBar"><i id="creditBarFill"></i></div><div class="accountPlanMeta"><span id="creditUsage">AI usage protected</span><span id="creditRenewal">Invite-only beta</span></div></div><div class="serviceStrip"><div class="serviceChip" id="serviceSupabase"><span class="serviceDot"></span>Workspace</div><div class="serviceChip" id="serviceOpenAI"><span class="serviceDot"></span>Margin AI</div><div class="serviceChip" id="serviceBrevo"><span class="serviceDot"></span>Email</div></div><div class="connectionBanner" id="connectionBanner"></div>
     </div>
   </aside>
 
@@ -780,9 +785,9 @@
         <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="brand-logo" />
       </div>
       <div class="titleBlock">
-        <div class="badge">MarginBusiness Leads · Private Beta v3.0.1</div>
+        <div class="badge">MarginBusiness Leads · Private Beta v3.1</div>
         <h1>Turn company intelligence into conversations</h1>
-        <div class="versionTag">Version 3.0.1 · Interface Polish</div>
+        <div class="versionTag">Version 3.1 · Customer Access & Credits</div>
         <div class="subtitle">Create a campaign, import qualified prospects, review your outreach, and send controlled follow-up batches from one clear workspace.</div>
       </div>
       <div class="actions" style="margin-top:0; justify-content:flex-end;">
@@ -1337,8 +1342,16 @@ async function loadSecureWorkspace(){
   try{
     const r=await mlAuthorizedFetch('/api/workspace',{cache:'no-store'});const d=await r.json();
     if(!r.ok||!d.ok)throw new Error(d.error||'Workspace unavailable');
-    window.mlWorkspace=d.workspace;window.mlWorkspaceRole=d.role;
+    window.mlWorkspace=d.workspace;window.mlWorkspaceRole=d.role;window.mlIsPlatformAdmin=!!d.isPlatformAdmin;
     const role=document.getElementById('operatorModePill');if(role)role.textContent=`${d.workspace?.name||'Private Workspace'} · ${d.role||'member'}`;
+    const credits=Number(d.credits?.balance||0), used=Number(d.credits?.period_used||0), total=Math.max(credits+used,10);
+    document.getElementById('creditBalance').textContent=credits;
+    document.getElementById('planName').textContent=String(d.subscription?.plan_code||d.workspace?.plan||'trial').replace(/_/g,' ');
+    document.getElementById('planStatus').textContent=d.subscription?.status||'active';
+    document.getElementById('creditUsage').textContent=`${used} used this period`;
+    document.getElementById('creditBarFill').style.width=`${Math.max(0,Math.min(100,(credits/total)*100))}%`;
+    const end=d.subscription?.current_period_end||d.subscription?.trial_ends_at;document.getElementById('creditRenewal').textContent=end?`Until ${new Date(end).toLocaleDateString()}`:'Protected usage';
+    document.getElementById('adminNavBtn')?.classList.toggle('visible',!!d.isPlatformAdmin);
     document.getElementById('serviceSupabase')?.classList.add('good');
     if(d.services?.brevo)document.getElementById('serviceBrevo')?.classList.add('good');else document.getElementById('serviceBrevo')?.classList.add('warn');
     if(d.services?.openai)document.getElementById('serviceOpenAI')?.classList.add('good');else document.getElementById('serviceOpenAI')?.classList.add('warn');
@@ -1351,12 +1364,17 @@ async function loadSecureWorkspace(){
     return null;
   }
 }
+
+async function openAdminConsole(){if(!window.mlIsPlatformAdmin){showToast('Admin access required');return}document.getElementById('adminConsoleSection')?.classList.add('visible');document.getElementById('adminConsoleSection')?.scrollIntoView({behavior:'smooth'});await loadAdminConsole();}
+async function loadAdminConsole(){const box=document.getElementById('adminConsoleBody');box.innerHTML='<div class="small">Loading customer workspaces…</div>';try{const r=await mlAuthorizedFetch('/api/admin',{cache:'no-store'}),d=await r.json();if(!r.ok)throw new Error(d.error||'Admin access failed');const rows=d.workspaces||[];box.innerHTML=`<table class="adminTable"><thead><tr><th>Customer</th><th>Plan</th><th>Credits</th><th>Status</th><th>Controls</th></tr></thead><tbody>${rows.map(w=>{const sub=Array.isArray(w.workspace_subscriptions)?w.workspace_subscriptions[0]:w.workspace_subscriptions||{};const bal=Array.isArray(w.workspace_credit_balances)?w.workspace_credit_balances[0]:w.workspace_credit_balances||{};return `<tr><td><strong>${escapeHtml(w.name||'Workspace')}</strong><br><span class="small">${escapeHtml(w.slug||'')}</span></td><td>${escapeHtml(sub.plan_code||w.plan||'trial')}</td><td>${Number(bal.balance||0)}</td><td>${escapeHtml(w.account_status||'active')}</td><td><div class="adminActions"><button class="secondary" onclick="adminGrantCredits('${w.id}',25)">+25 credits</button><button class="secondary" onclick="adminSetStatus('${w.id}','${w.account_status==='suspended'?'active':'suspended'}')">${w.account_status==='suspended'?'Activate':'Suspend'}</button></div></td></tr>`}).join('')}</tbody></table>`}catch(e){box.innerHTML=`<div class="hint">${escapeHtml(e.message)}</div>`}}
+async function adminGrantCredits(workspaceId,amount){const r=await mlAuthorizedFetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'grant_credits',workspaceId,amount})}),d=await r.json();if(!r.ok){showToast(d.error||'Could not grant credits');return}showToast(`${amount} credits granted`);loadAdminConsole();}
+async function adminSetStatus(workspaceId,status){const r=await mlAuthorizedFetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'set_status',workspaceId,status})}),d=await r.json();if(!r.ok){showToast(d.error||'Could not update customer');return}showToast(`Workspace ${status}`);loadAdminConsole();}
 window.addEventListener('DOMContentLoaded',initBetaAuth);
 
 
 async function runAIForActiveLead(){
   const lead=(typeof currentLead!=='undefined'&&currentLead)?currentLead:((typeof leads!=='undefined'&&Array.isArray(leads))?leads.find(x=>x.id===selectedId)||leads[0]:null);openV24Modal('aiIntelligenceModal');const box=document.getElementById('aiIntelligenceContent');if(!lead){box.innerHTML='<div class="small">Import or select a lead first.</div>';return}box.innerHTML='<div class="small">Analyzing commercial opportunity, buyer psychology, evidence strength, and the lowest-friction reply path…</div>';
-  try{const r=await mlAuthorizedFetch('/api/ai-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lead,campaign:typeof getCurrentCampaign==='function'?getCurrentCampaign():null})});const d=await r.json();if(!r.ok)throw new Error(d.error||'AI analysis failed');const a=d.analysis||{};box.innerHTML=`<div class="grid4" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px"><div class="metric"><div class="label">Opportunity</div><div class="value">${a.opportunity_score||'—'}</div></div><div class="metric"><div class="label">Evidence</div><div class="value">${a.evidence_confidence||'—'}</div></div><div class="metric"><div class="label">Reply path</div><div class="value" style="font-size:17px">${escapeHtml(a.reply_goal||'—')}</div></div></div><div class="kv"><div class="kvbox full"><div class="kvlabel">Commercial observation</div><div class="kvvalue">${escapeHtml(a.commercial_observation||'—')}</div></div><div class="kvbox"><div class="kvlabel">Decision motivation</div><div class="kvvalue">${escapeHtml(a.decision_motivation||'—')}</div></div><div class="kvbox"><div class="kvlabel">Likely objection</div><div class="kvvalue">${escapeHtml(a.likely_objection||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Recommended angle</div><div class="kvvalue">${escapeHtml(a.recommended_angle||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Opening</div><div class="kvvalue">${escapeHtml(a.email_opening||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Suggested CTA</div><div class="kvvalue">${escapeHtml(a.cta||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Subject-line options</div><div class="kvvalue">${(a.subject_lines||[]).map(x=>'• '+escapeHtml(x)).join('<br>')||'—'}</div></div></div>`}
+  try{const r=await mlAuthorizedFetch('/api/ai-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lead,campaign:typeof getCurrentCampaign==='function'?getCurrentCampaign():null})});const d=await r.json();if(!r.ok){if(d.code==='CREDITS_REQUIRED')throw new Error(`${d.error}. Upgrade or add credits to continue.`);throw new Error(d.error||'AI analysis failed')}const a=d.analysis||{};if(d.credits){document.getElementById('creditBalance').textContent=d.credits.remaining;document.getElementById('creditUsage').textContent=`1 credit used just now`;}box.innerHTML=`<div class="grid4" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px"><div class="metric"><div class="label">Opportunity</div><div class="value">${a.opportunity_score||'—'}</div></div><div class="metric"><div class="label">Evidence</div><div class="value">${a.evidence_confidence||'—'}</div></div><div class="metric"><div class="label">Reply path</div><div class="value" style="font-size:17px">${escapeHtml(a.reply_goal||'—')}</div></div></div><div class="kv"><div class="kvbox full"><div class="kvlabel">Commercial observation</div><div class="kvvalue">${escapeHtml(a.commercial_observation||'—')}</div></div><div class="kvbox"><div class="kvlabel">Decision motivation</div><div class="kvvalue">${escapeHtml(a.decision_motivation||'—')}</div></div><div class="kvbox"><div class="kvlabel">Likely objection</div><div class="kvvalue">${escapeHtml(a.likely_objection||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Recommended angle</div><div class="kvvalue">${escapeHtml(a.recommended_angle||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Opening</div><div class="kvvalue">${escapeHtml(a.email_opening||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Suggested CTA</div><div class="kvvalue">${escapeHtml(a.cta||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Subject-line options</div><div class="kvvalue">${(a.subject_lines||[]).map(x=>'• '+escapeHtml(x)).join('<br>')||'—'}</div></div></div>`}
   catch(e){box.innerHTML=`<div class="hint">${escapeHtml(e.message)}</div>`}
 }
 

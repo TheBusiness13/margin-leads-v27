@@ -44,7 +44,10 @@ async function ensureWorkspace(user){
   if(!workspace?.id)throw new Error('Could not create the private workspace');
   const memRes=await serviceFetch('workspace_members',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({workspace_id:workspace.id,user_id:user.id,role:'owner'})});
   if(!memRes.ok)await jsonOrError(memRes);
-  return {workspace,role:'owner'};
+  const trialEnds=new Date(Date.now()+14*86400000).toISOString();
+  await serviceFetch('workspace_subscriptions',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({workspace_id:workspace.id,plan_code:'trial',status:'trialing',trial_ends_at:trialEnds})}).catch(()=>{});
+  await serviceFetch('workspace_credit_balances',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({workspace_id:workspace.id,balance:10,lifetime_granted:10,period_granted:10,period_ends_at:trialEnds})}).catch(()=>{});
+  return {workspace:{...workspace,plan:'trial'},role:'owner'};
 }
 function normalizeMembership(row){
   const w=Array.isArray(row.workspaces)?row.workspaces[0]:row.workspaces;
@@ -68,4 +71,5 @@ async function sentTodayForWorkspace(workspaceId){
   if(Number.isFinite(total))return total;
   const rows=await r.json();return Array.isArray(rows)?rows.length:0;
 }
-module.exports={getUser,ensureWorkspace,canSend,logActivity,recentActivity,sentTodayForWorkspace,serviceFetch,jsonOrError};
+async function isPlatformAdmin(userId){const r=await serviceFetch(`platform_admins?user_id=eq.${encodeURIComponent(userId)}&select=user_id&limit=1`);const d=await jsonOrError(r);return !!(Array.isArray(d)&&d[0]);}
+module.exports={getUser,ensureWorkspace,canSend,logActivity,recentActivity,sentTodayForWorkspace,serviceFetch,jsonOrError,isPlatformAdmin};
