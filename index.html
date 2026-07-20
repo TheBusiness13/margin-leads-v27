@@ -1,9 +1,10 @@
+<!-- © 2026 MarginBusiness FZE LLC. Proprietary software. Unauthorized copying, resale, reverse engineering, and distribution prohibited. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v3.2.1 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v3.3.0 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -709,6 +710,13 @@
     .accountPlanTop{display:flex;justify-content:space-between;align-items:center;gap:8px}.accountPlanTop strong{font-size:13px}.planBadge{font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:5px 8px;border-radius:999px;background:rgba(37,211,156,.12);color:#74e6bd;border:1px solid rgba(37,211,156,.26)}
     .creditBalance{font-size:28px;font-weight:900;margin-top:10px}.creditLabel{font-size:11px;color:#8fa4b8}.creditBar{height:6px;border-radius:999px;background:#17293a;margin-top:10px;overflow:hidden}.creditBar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#25d39c,#52a9ff);border-radius:999px}.accountPlanMeta{display:flex;justify-content:space-between;gap:8px;margin-top:9px;color:#8fa4b8;font-size:10px}
     .adminOnly{display:none}.adminOnly.visible{display:flex}.adminPanel{display:none;margin:18px 0}.adminPanel.visible{display:block}.adminTable{width:100%;border-collapse:collapse}.adminTable th,.adminTable td{padding:10px;border-bottom:1px solid #223446;text-align:left;font-size:12px}.adminTable th{color:#8fa4b8}.adminActions{display:flex;gap:6px;flex-wrap:wrap}.adminActions button{padding:6px 9px;font-size:11px}
+
+    /* v3.3 mainstream product polish */
+    .saasSidebar,.sideNav{scrollbar-width:none;-ms-overflow-style:none}
+    .saasSidebar::-webkit-scrollbar,.sideNav::-webkit-scrollbar{display:none}
+    .importWizard{display:grid;gap:14px}.importStep{border:1px solid rgba(148,163,184,.15);background:rgba(255,255,255,.025);border-radius:16px;padding:16px}.importStepHead{display:flex;align-items:center;gap:10px;margin-bottom:10px}.importStepNo{display:grid;place-items:center;width:28px;height:28px;border-radius:999px;background:rgba(36,199,143,.13);border:1px solid rgba(36,199,143,.28);color:#9af0cf;font-weight:900;font-size:12px}.dropZone{border:1px dashed rgba(82,169,255,.42);background:linear-gradient(180deg,rgba(82,169,255,.07),rgba(36,199,143,.035));border-radius:16px;padding:24px;text-align:center;cursor:pointer;transition:.18s}.dropZone:hover,.dropZone.dragover{transform:translateY(-1px);border-color:#52a9ff;background:rgba(82,169,255,.1)}.dropZone input{display:none}.dropZone strong{display:block;font-size:16px;margin-bottom:5px}.dropZone span{font-size:12px;color:#8fa4b8}.importLimits{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.limitPill{font-size:11px;color:#9fb0c4;background:#0a1624;border:1px solid rgba(148,163,184,.13);border-radius:999px;padding:6px 9px}.importPreviewWrap{display:none}.importPreviewWrap.visible{display:block}.importPreviewTable{width:100%;border-collapse:collapse;font-size:11px;min-width:760px}.importPreviewTable th,.importPreviewTable td{padding:8px;border-bottom:1px solid rgba(148,163,184,.12);text-align:left;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.importStats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}.importStat{padding:10px;border-radius:12px;background:#081522;border:1px solid rgba(148,163,184,.12)}.importStat strong{display:block;font-size:18px}.importStat span{font-size:10px;color:#8fa4b8}.advancedPaste{margin-top:12px}.advancedPaste summary{font-size:12px;color:#9fb0c4;cursor:pointer}.advancedPaste textarea{margin-top:10px}.senderHealthCard{margin-top:12px;padding:14px;border-radius:16px;background:linear-gradient(135deg,rgba(36,199,143,.08),rgba(82,169,255,.05));border:1px solid rgba(36,199,143,.18)}.senderHealthTop{display:flex;justify-content:space-between;gap:12px;align-items:center}.senderHealthScore{font-weight:900;color:#9af0cf}.senderHealthGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.senderHealthGrid div{padding:9px;border-radius:11px;background:rgba(3,11,20,.48);font-size:10px;color:#8fa4b8}.senderHealthGrid strong{display:block;color:#eaf1fb;font-size:14px;margin-top:3px}.legalFooter{margin:24px 0 8px;padding:14px 16px;border-top:1px solid rgba(148,163,184,.12);color:#6f8198;font-size:10px;line-height:1.55;text-align:center}.legalFooter strong{color:#91a5bc}.aiDecisionBrief{margin-top:12px;padding:12px;border-radius:14px;border:1px solid rgba(82,169,255,.17);background:rgba(82,169,255,.045)}
+    @media(max-width:800px){.importStats,.senderHealthGrid{grid-template-columns:repeat(2,1fr)}}
+
 </style>
 </head>
 <body>
@@ -759,7 +767,7 @@
   <aside class="saasSidebar" aria-label="Margin Leads navigation">
     <div class="sideBrand">
       <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="sideBrandLogo" />
-      <span>AI outreach intelligence · Customer Workspace v3.2.1</span>
+      <span>AI outreach intelligence · Customer Workspace v3.3.0</span>
     </div>
     <div class="sideMenu">
       <button class="sideBtn" onclick="scrollToSection('missionSection')">Dashboard <span>Today</span></button>
@@ -792,7 +800,7 @@
       </div>
       <div class="actions" style="margin-top:0; justify-content:flex-end;">
         <button class="primary" onclick="openCampaignTemplateModal()">+ New campaign</button>
-        <button class="secondary" onclick="scrollToSection('leadsSection')">Import leads</button><button class="blue" onclick="runAIForActiveLead()">AI analyze lead</button>
+        <button class="secondary" onclick="openLeadImporter()">Import leads</button><button class="blue" onclick="runAIForActiveLead()">AI analyze lead</button>
         <button class="advancedToggle" id="advancedToggle" onclick="toggleAdvancedMode()">Advanced tools</button>
       </div>
     </div>
@@ -1135,7 +1143,7 @@
         </div>
         <div>
           <label>Daily cap</label>
-          <input id="dailyCap" type="number" min="1" max="100" value="100" oninput="onBatchSettingsChanged()" />
+          <input id="dailyCap" type="number" min="1" max="100" value="50" oninput="onBatchSettingsChanged()" /><div class="senderHealthCard"><div class="senderHealthTop"><div><strong>Sender protection</strong><div class="small">50/day is the standard safe allowance. Higher volume unlocks only after healthy sending history.</div></div><span class="senderHealthScore" id="senderHealthScore">Protected</span></div><div class="senderHealthGrid"><div>Daily allowance<strong id="senderAllowance">50</strong></div><div>Sent today<strong id="senderSentToday">0</strong></div><div>Remaining<strong id="senderRemaining">50</strong></div><div>Risk status<strong id="senderRisk">Low</strong></div></div></div>
         </div>
         <div>
           <label>Email 2 after days</label>
@@ -1173,14 +1181,14 @@
       </div>
 
       <div class="cockpitStats" id="batchCockpitStats"></div>
-      <div class="batchSummary" id="batchSummary">Choose a sequence step. The cockpit will show due leads and default-select up to your daily cap.</div>
+      <div class="batchSummary" id="batchSummary">Choose a sequence step. The cockpit will show due leads and default-select the strongest leads up to your protected daily allowance.</div>
       <div class="operatorHint">Operator flow: choose any Email 1–4 in Flexible mode, or switch to Strict mode for timed 1→2→3→4 sequencing → review → prepare → send. If anything looks wrong, clear the prepared batch and prepare again.</div>
 
       <div class="cockpitToolbar">
         <div class="left">
           <button class="secondary" onclick="selectVisibleBatchCandidates(true)">Select visible</button>
           <button class="secondary" onclick="selectVisibleBatchCandidates(false)">Clear visible</button>
-          <button class="secondary" onclick="selectTopBatchCandidates()">Select best 100</button>
+          <button class="secondary" onclick="selectTopBatchCandidates()">Select best daily allowance</button>
           <button class="danger" onclick="clearPreparedBatch()">Clear prepared batch</button>
         </div>
         <div class="right">
@@ -1271,22 +1279,25 @@
       </div>
 
       <details class="importDrawer" id="leadImporter">
-        <summary><span>Import and update lead data</span></summary>
+        <summary><span>Import leads — guided setup</span></summary>
         <div class="importDrawerBody">
-          <p class="small" id="importHelp">Upload Excel/CSV or paste rows copied from your sheet. Header rows are supported when column names are clear.</p>
-          <div class="uploadBox">
-            <h4>Upload Excel / CSV leads</h4>
-            <div class="small">Supported: .xlsx, .xls, .csv and .tsv. Files are processed in your browser before import.</div>
-            <input id="leadFile" type="file" accept=".xlsx,.xls,.csv,.tsv" onchange="handleLeadFile(event)" />
-            <div class="uploadGrid">
-              <div><label style="margin-top:10px;">Sheet / tab</label><select id="sheetSelect" onchange="loadSelectedSheet()"><option value="">No file uploaded</option></select></div>
-              <div><label style="margin-top:10px;">Action</label><button class="secondary" style="width:100%;" onclick="loadSelectedSheet()">Reload selected sheet</button></div>
+          <div class="importWizard">
+            <div class="importStep">
+              <div class="importStepHead"><span class="importStepNo">1</span><div><strong>Upload your lead file</strong><div class="small">Your file is validated before it is processed. Raw spreadsheet data stays hidden.</div></div></div>
+              <label class="dropZone" id="leadDropZone" for="leadFile"><strong>Drop Excel or CSV here</strong><span>or click to choose a file</span><input id="leadFile" type="file" accept=".xlsx,.csv,.tsv" onchange="handleLeadFile(event)" /></label>
+              <div class="importLimits"><span class="limitPill">Maximum 10 MB</span><span class="limitPill">Maximum 10,000 rows</span><span class="limitPill">CSV or XLSX</span><span class="limitPill">Trial workspace limit applies</span></div>
+              <div class="fileName" id="fileName">No file selected.</div>
             </div>
-            <div class="fileName" id="fileName">No file uploaded yet.</div>
-            <div class="importReport" id="importReport">No import yet. Import results and duplicates will appear here.</div>
+            <div class="importStep importPreviewWrap" id="importPreviewWrap">
+              <div class="importStepHead"><span class="importStepNo">2</span><div><strong>Review the import</strong><div class="small">Check the first five rows before anything is added.</div></div></div>
+              <div class="uploadGrid"><div><label>Sheet / tab</label><select id="sheetSelect" onchange="prepareSelectedSheetPreview()"><option value="">No file uploaded</option></select></div><div><label>Import action</label><select id="importMode"><option value="append">Add to current campaign</option><option value="replace">Replace current campaign leads</option><option value="new">Create a new campaign</option></select></div></div>
+              <div class="importStats"><div class="importStat"><strong id="previewValid">0</strong><span>valid leads</span></div><div class="importStat"><strong id="previewMissing">0</strong><span>missing email</span></div><div class="importStat"><strong id="previewDuplicates">0</strong><span>possible duplicates</span></div><div class="importStat"><strong id="previewSkipped">0</strong><span>rows skipped</span></div></div>
+              <div style="overflow:auto"><table class="importPreviewTable"><thead><tr><th>Company</th><th>Contact</th><th>Role</th><th>Email</th><th>Website</th><th>Category</th></tr></thead><tbody id="importPreviewBody"></tbody></table></div>
+              <div class="importReport" id="importReport">No import prepared yet.</div>
+              <div class="actions"><button class="primary" onclick="confirmPreparedImport()">Confirm import</button><button class="secondary" onclick="resetLeadImporter()">Choose another file</button></div>
+            </div>
+            <details class="advancedPaste"><summary>Advanced: paste spreadsheet rows manually</summary><textarea id="raw" style="min-height:150px" placeholder="Paste tab-separated rows here. This area is optional and hidden by default."></textarea><div class="actions"><button class="secondary" onclick="importRows()">Preview pasted rows</button><button class="secondary" onclick="document.getElementById('raw').value=''">Clear</button></div></details>
           </div>
-          <label>Paste spreadsheet rows</label><textarea id="raw" style="min-height:170px"></textarea>
-          <div class="actions"><button class="primary" onclick="importRows()">Import leads</button><button class="secondary" onclick="document.getElementById('raw').value=''">Clear</button></div>
         </div>
       </details>
 
@@ -1438,7 +1449,7 @@ window.addEventListener('DOMContentLoaded',initBetaAuth);
 
 async function runAIForActiveLead(){
   const lead=(typeof currentLead!=='undefined'&&currentLead)?currentLead:((typeof leads!=='undefined'&&Array.isArray(leads))?leads.find(x=>x.id===selectedId)||leads[0]:null);openV24Modal('aiIntelligenceModal');const box=document.getElementById('aiIntelligenceContent');if(!lead){box.innerHTML='<div class="small">Import or select a lead first.</div>';return}box.innerHTML='<div class="small">Analyzing commercial opportunity, buyer psychology, evidence strength, and the lowest-friction reply path…</div>';
-  try{const r=await mlAuthorizedFetch('/api/ai-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lead,campaign:typeof getCurrentCampaign==='function'?getCurrentCampaign():null})});const d=await r.json();if(!r.ok){if(d.code==='CREDITS_REQUIRED')throw new Error(`${d.error}. Upgrade or add credits to continue.`);throw new Error(d.error||'AI analysis failed')}const a=d.analysis||{};if(d.credits){document.getElementById('creditBalance').textContent=d.credits.remaining;document.getElementById('creditUsage').textContent=`1 credit used just now`;}box.innerHTML=`<div class="grid4" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px"><div class="metric"><div class="label">Opportunity</div><div class="value">${a.opportunity_score||'—'}</div></div><div class="metric"><div class="label">Evidence</div><div class="value">${a.evidence_confidence||'—'}</div></div><div class="metric"><div class="label">Reply path</div><div class="value" style="font-size:17px">${escapeHtml(a.reply_goal||'—')}</div></div></div><div class="kv"><div class="kvbox full"><div class="kvlabel">Commercial observation</div><div class="kvvalue">${escapeHtml(a.commercial_observation||'—')}</div></div><div class="kvbox"><div class="kvlabel">Decision motivation</div><div class="kvvalue">${escapeHtml(a.decision_motivation||'—')}</div></div><div class="kvbox"><div class="kvlabel">Likely objection</div><div class="kvvalue">${escapeHtml(a.likely_objection||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Recommended angle</div><div class="kvvalue">${escapeHtml(a.recommended_angle||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Opening</div><div class="kvvalue">${escapeHtml(a.email_opening||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Suggested CTA</div><div class="kvvalue">${escapeHtml(a.cta||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Subject-line options</div><div class="kvvalue">${(a.subject_lines||[]).map(x=>'• '+escapeHtml(x)).join('<br>')||'—'}</div></div></div>`}
+  try{const r=await mlAuthorizedFetch('/api/ai-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lead,campaign:typeof getCurrentCampaign==='function'?getCurrentCampaign():null})});const d=await r.json();if(!r.ok){if(d.code==='CREDITS_REQUIRED')throw new Error(`${d.error}. Upgrade or add credits to continue.`);throw new Error(d.error||'AI analysis failed')}const a=d.analysis||{};if(d.credits){document.getElementById('creditBalance').textContent=d.credits.remaining;document.getElementById('creditUsage').textContent=`1 credit used just now`;}box.innerHTML=`<div class="grid4" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px"><div class="metric"><div class="label">Opportunity</div><div class="value">${a.opportunity_score||'—'}</div></div><div class="metric"><div class="label">Evidence</div><div class="value">${a.evidence_confidence||'—'}</div></div><div class="metric"><div class="label">Reply path</div><div class="value" style="font-size:17px">${escapeHtml(a.reply_goal||'—')}</div></div></div><div class="kv"><div class="kvbox full"><div class="kvlabel">Commercial observation</div><div class="kvvalue">${escapeHtml(a.commercial_observation||'—')}</div></div><div class="kvbox"><div class="kvlabel">Evidence used</div><div class="kvvalue">${(a.evidence_used||[]).map(x=>'• '+escapeHtml(x)).join('<br>')||'—'}</div></div><div class="kvbox"><div class="kvlabel">Verify before sending</div><div class="kvvalue">${(a.assumptions_to_verify||[]).map(x=>'• '+escapeHtml(x)).join('<br>')||'—'}</div></div><div class="kvbox"><div class="kvlabel">Decision motivation</div><div class="kvvalue">${escapeHtml(a.decision_motivation||'—')}</div></div><div class="kvbox"><div class="kvlabel">Likely objection</div><div class="kvvalue">${escapeHtml(a.likely_objection||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Recommended angle</div><div class="kvvalue">${escapeHtml(a.recommended_angle||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Opening</div><div class="kvvalue">${escapeHtml(a.email_opening||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Suggested CTA</div><div class="kvvalue">${escapeHtml(a.cta||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Subject-line options</div><div class="kvvalue">${(a.subject_lines||[]).map(x=>'• '+escapeHtml(x)).join('<br>')||'—'}</div></div><div class="kvbox full"><div class="kvlabel">Margin AI first email · Quality ${escapeHtml(a.quality_score||'—')}/100</div><div class="kvvalue" style="white-space:pre-wrap">${escapeHtml(a.first_email||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Follow-up sequence</div><div class="kvvalue" style="white-space:pre-wrap"><strong>Follow-up 2</strong><br>${escapeHtml(a.follow_up_2||'—')}<br><br><strong>Follow-up 3</strong><br>${escapeHtml(a.follow_up_3||'—')}<br><br><strong>Follow-up 4</strong><br>${escapeHtml(a.follow_up_4||'—')}</div></div><div class="kvbox full"><div class="kvlabel">Do not say</div><div class="kvvalue">${(a.do_not_say||[]).map(x=>'• '+escapeHtml(x)).join('<br>')||'—'}</div></div></div>`}
   catch(e){box.innerHTML=`<div class="hint">${escapeHtml(e.message)}</div>`}
 }
 
@@ -1898,57 +1909,92 @@ function renderImportReport(){
   const dupes = (r.duplicates||[]).length ? `<div>Possible duplicates detected: <strong>${(r.duplicates||[]).length}</strong> (kept in the list, not removed).</div>` : "";
   box.innerHTML = `<div><strong>${r.imported}</strong> leads imported from <strong>${r.totalRows}</strong> data rows.</div>${dupes}${skipped}${moreSkipped}`;
 }
+const ML_MAX_FILE_BYTES=10*1024*1024;
+const ML_MAX_IMPORT_ROWS=10000;
+let preparedImport=null;
+function openLeadImporter(){
+  const drawer=document.getElementById('leadImporter');
+  if(drawer){drawer.open=true;drawer.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>document.getElementById('leadDropZone')?.focus(),350);}
+}
+function validateImportFile(file){
+  const ext=(file.name.split('.').pop()||'').toLowerCase();
+  if(!['xlsx','csv','tsv'].includes(ext))throw new Error('Use an XLSX, CSV or TSV file.');
+  if(file.size>ML_MAX_FILE_BYTES)throw new Error('This file is larger than 10 MB. Split it into smaller files and upload again.');
+}
 function importRows(){
-  const result = parseRowsDetailed(document.getElementById("raw").value);
-  leads = result.leads;
-  lastImportReport = result.report;
-  selectedId = leads[0] ? leads[0].id : null;
-  activeTab = "overview";
-  saveCurrentCampaignLeads();
-  updateCurrentCampaignMeta();
-  updateCategories();
-  renderImportReport();
-  render();
+  const raw=document.getElementById('raw').value;
+  const result=parseRowsDetailed(raw);
+  preparedImport={leads:result.leads,report:result.report,source:'pasted rows'};
+  showPreparedImport();
 }
 function rowsArrayToRaw(rows){
-  return rows
-    .filter(row => row && row.some(cell => String(cell || "").trim() !== ""))
-    .map(row => row.map(cell => String(cell || "").replace(/\t/g," ").replace(/\r?\n/g," ").trim()).join("\t"))
-    .join("\n");
+  return rows.filter(row=>row&&row.some(cell=>String(cell||'').trim()!=='')).map(row=>row.map(cell=>String(cell||'').replace(/\t/g,' ').replace(/\r?\n/g,' ').trim()).join('\t')).join('\n');
 }
 function handleLeadFile(event){
-  const file = event.target.files && event.target.files[0];
-  if(!file) return;
-  if(typeof XLSX === "undefined"){
-    alert("Excel parser did not load. Please check your internet connection. You can still paste rows manually.");
-    return;
-  }
-  const reader = new FileReader();
-  reader.onload = function(e){
-    try {
-      uploadedWorkbook = XLSX.read(e.target.result, { type:"array", cellDates:false });
-      const sheetSelect = document.getElementById("sheetSelect");
-      sheetSelect.innerHTML = uploadedWorkbook.SheetNames.map(name => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join("");
-      document.getElementById("fileName").textContent = `Loaded: ${file.name}`;
-      loadSelectedSheet();
-    } catch(err){
-      console.error(err);
-      alert("Could not read this file. Try exporting it as .xlsx or .csv and upload again.");
-    }
-  };
+  const file=event.target.files&&event.target.files[0];if(!file)return;
+  try{validateImportFile(file)}catch(err){showToast(err.message);event.target.value='';return;}
+  if(typeof XLSX==='undefined'){showToast('Excel parser did not load. Export the file as CSV or refresh the page.');return;}
+  const reader=new FileReader();
+  reader.onload=function(e){try{
+    uploadedWorkbook=XLSX.read(e.target.result,{type:'array',cellDates:false});
+    const sheetSelect=document.getElementById('sheetSelect');
+    sheetSelect.innerHTML=uploadedWorkbook.SheetNames.map(name=>`<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join('');
+    document.getElementById('fileName').textContent=`Ready to review: ${file.name} · ${(file.size/1024/1024).toFixed(2)} MB`;
+    prepareSelectedSheetPreview();
+  }catch(err){console.error(err);showToast('Could not read this file. Export it as XLSX or CSV and try again.')}};
+  reader.onerror=()=>showToast('The file could not be read.');
   reader.readAsArrayBuffer(file);
 }
-function loadSelectedSheet(){
-  if(!uploadedWorkbook) return;
-  const sheetName = document.getElementById("sheetSelect").value || uploadedWorkbook.SheetNames[0];
-  const sheet = uploadedWorkbook.Sheets[sheetName];
-  const rows = XLSX.utils.sheet_to_json(sheet, { header:1, defval:"", raw:false });
-  const raw = rowsArrayToRaw(rows);
-  document.getElementById("raw").value = raw;
-  document.getElementById("fileName").textContent = `Loaded sheet: ${sheetName} · ${Math.max(rows.length-1,0)} visible rows`;
-  importRows();
+function prepareSelectedSheetPreview(){
+  if(!uploadedWorkbook)return;
+  const sheetName=document.getElementById('sheetSelect').value||uploadedWorkbook.SheetNames[0];
+  const sheet=uploadedWorkbook.Sheets[sheetName];
+  const rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:false});
+  const dataRows=Math.max(rows.length-1,0);
+  if(dataRows>ML_MAX_IMPORT_ROWS){preparedImport=null;document.getElementById('importPreviewWrap')?.classList.remove('visible');showToast(`This sheet contains ${dataRows.toLocaleString()} rows. The maximum is ${ML_MAX_IMPORT_ROWS.toLocaleString()}.`);return;}
+  const result=parseRowsDetailed(rowsArrayToRaw(rows));
+  preparedImport={leads:result.leads,report:result.report,source:sheetName};
+  showPreparedImport();
 }
-function leadsToRaw(list){ return list.map(l=>[l.company,l.revenueRaw,l.category,l.product,l.website,l.contact,l.role,l.email,l.linkedin,l.sent,l.status].join("\t")).join("\n"); }
+function showPreparedImport(){
+  if(!preparedImport)return;
+  const r=preparedImport.report||{};const list=preparedImport.leads||[];
+  document.getElementById('importPreviewWrap')?.classList.add('visible');
+  document.getElementById('previewValid').textContent=list.length.toLocaleString();
+  document.getElementById('previewMissing').textContent=list.filter(x=>!x.email).length.toLocaleString();
+  document.getElementById('previewDuplicates').textContent=(r.duplicates||[]).length.toLocaleString();
+  document.getElementById('previewSkipped').textContent=(r.skipped||[]).length.toLocaleString();
+  const body=document.getElementById('importPreviewBody');
+  if(body)body.innerHTML=list.slice(0,5).map(x=>`<tr><td>${escapeHtml(x.company||'—')}</td><td>${escapeHtml(x.contact||'—')}</td><td>${escapeHtml(x.role||'—')}</td><td>${escapeHtml(x.email||'—')}</td><td>${escapeHtml(x.website||'—')}</td><td>${escapeHtml(x.category||'—')}</td></tr>`).join('')||'<tr><td colspan="6">No usable leads found.</td></tr>';
+  lastImportReport=r;renderImportReport();
+}
+function confirmPreparedImport(){
+  if(!preparedImport||!preparedImport.leads.length){showToast('No valid leads are ready to import.');return;}
+  const mode=document.getElementById('importMode')?.value||'append';
+  const incoming=preparedImport.leads.map((x,i)=>({...x,id:makeId('lead')+'-'+i,rowNumber:i+1}));
+  if(mode==='new'){
+    const name=prompt('Name the new campaign:','Imported campaign');if(!name)return;
+    const campaign={id:makeId('campaign'),name:name.trim()||'Imported campaign',source:'File import',profile:'Standard',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),leads:incoming};
+    const campaigns=getCampaigns();campaigns.push(campaign);saveCampaigns(campaigns);setCurrentCampaignId(campaign.id);leads=incoming;
+  }else if(mode==='replace'){
+    leads=incoming;
+  }else{
+    const existingKeys=new Set(leads.map(x=>[x.email,x.linkedin,x.website,x.company].map(v=>normalizeHeader(v)).join('|')));
+    const cleanIncoming=incoming.filter(x=>{const k=[x.email,x.linkedin,x.website,x.company].map(v=>normalizeHeader(v)).join('|');if(existingKeys.has(k))return false;existingKeys.add(k);return true;});
+    leads=[...leads,...cleanIncoming];
+  }
+  lastImportReport=preparedImport.report;selectedId=leads[0]?.id||null;activeTab='overview';saveCurrentCampaignLeads();updateCurrentCampaignMeta();updateCategories();render();showToast(`${preparedImport.leads.length.toLocaleString()} leads imported safely`);resetLeadImporter(false);
+}
+function resetLeadImporter(clearReport=true){
+  preparedImport=null;uploadedWorkbook=null;
+  const file=document.getElementById('leadFile');if(file)file.value='';
+  const sel=document.getElementById('sheetSelect');if(sel)sel.innerHTML='<option value="">No file uploaded</option>';
+  document.getElementById('importPreviewWrap')?.classList.remove('visible');
+  const fn=document.getElementById('fileName');if(fn)fn.textContent='No file selected.';
+  if(clearReport){lastImportReport=null;renderImportReport();}
+}
+function loadSelectedSheet(){prepareSelectedSheetPreview();}
+function leadsToRaw(list){return list.map(l=>[l.company,l.revenueRaw,l.category,l.product,l.website,l.contact,l.role,l.email,l.linkedin,l.sent,l.status].join('\t')).join('\n');}
 function updateCategories(){
   const select=document.getElementById("category");
   const cats=["All",...Array.from(new Set(leads.map(l=>l.category).filter(Boolean)))];
@@ -2308,7 +2354,7 @@ function getBatchSettings(){
   const stepEl=document.getElementById("batchStep");
   return {
     step: normalizeStep(stepEl ? stepEl.value : "email1"),
-    cap: Math.max(1, Math.min(100, parseInt(capEl && capEl.value ? capEl.value : "100",10) || 100)),
+    cap: Math.max(1, Math.min(100, parseInt(capEl && capEl.value ? capEl.value : "50",10) || 50)),
     gap2: Math.max(1, parseInt(document.getElementById("gapFollow2")?.value || "4",10) || 4),
     gap3: Math.max(1, parseInt(document.getElementById("gapFollow3")?.value || "5",10) || 5),
     gap4: Math.max(1, parseInt(document.getElementById("gapFollow4")?.value || "7",10) || 7),
@@ -2455,7 +2501,7 @@ function saveBatchSelection(settings){
   store[batchSelectionKey(c.id, settings.step)] = Array.from(batchSelection);
   saveSelectionStore(store);
 }
-function onBatchSettingsChanged(){
+function onBatchSettingsChanged(){updateSenderProtection();
   const settings=getBatchSettings();
   const key=`${getCurrentCampaign().id}|${settings.step}|${settings.cap}|${settings.minScore}|${settings.emailOnly}|${settings.gap2}|${settings.gap3}|${settings.gap4}|${settings.sequencePolicy}`;
   if(key !== batchCandidateKey){
@@ -2611,7 +2657,7 @@ function prepareLockedBatch(showNotice){
     clearPreparedBatch(false);
     renderBatchQueue(false, {useStored:false});
     const visibleChecked=collectVisibleBatchCheckboxIds(true).length;
-    showToast(`No ${stepLabel(settings.step)} batch prepared. Due: ${due.length}. Visible checked: ${visibleChecked}. Use Select best 100 or check Back Office dates.`);
+    showToast(`No ${stepLabel(settings.step)} batch prepared. Due: ${due.length}. Visible checked: ${visibleChecked}. Use Select best daily allowance or check Back Office dates.`);
     return [];
   }
   selectedItems=selectedItems.slice(0, settings.cap);
@@ -3540,7 +3586,8 @@ function exportMetricsCSV(){
   const blob=new Blob([csv],{type:"text/csv;charset=utf-8"}); const url=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download=`lead-radar-email-metrics-${today()}.csv`; a.click(); URL.revokeObjectURL(url); showToast("Metrics CSV exported");
 }
 function clearEmailMetrics(){ if(confirm("Clear local email metrics from this browser?")){ localStorage.removeItem(STORAGE_EMAIL_METRICS); renderEmailPerformance(); } }
-function enforceDailyCap100(){ const cap=document.getElementById("dailyCap"); if(cap && (!cap.value || cap.value==="20")){ cap.value="100"; } }
+function enforceDailyCap100(){ const cap=document.getElementById("dailyCap"); if(cap && (!cap.value || cap.value==="20" || cap.value==="100")){ cap.value="50"; } updateSenderProtection(); }
+function updateSenderProtection(){const cap=Math.max(1,Math.min(100,parseInt(document.getElementById("dailyCap")?.value||"50",10)||50));const sent=(typeof metricRows==="function"?metricRows():[]).filter(r=>String(r.sentAt||"").slice(0,10)===today()).length;const remaining=Math.max(0,cap-sent);document.getElementById("senderAllowance")&&(document.getElementById("senderAllowance").textContent=cap);document.getElementById("senderSentToday")&&(document.getElementById("senderSentToday").textContent=sent);document.getElementById("senderRemaining")&&(document.getElementById("senderRemaining").textContent=remaining);const risk=cap>50?"Review":"Low";document.getElementById("senderRisk")&&(document.getElementById("senderRisk").textContent=risk);document.getElementById("senderHealthScore")&&(document.getElementById("senderHealthScore").textContent=cap>50?"Elevated volume":"Protected");}
 
 function clearLocalData(){
   if(!confirm("Clear all campaigns, saved leads, statuses, notes and sent dates from this browser?")) return;
@@ -3635,7 +3682,7 @@ function renderV24Experience(){
 function renderV24EmptyStates(){
   const s=v24SetupState();
   const queue=document.getElementById("queue"), details=document.getElementById("details");
-  if(!s.hasLeads && queue) queue.innerHTML=`<div class="emptyState"><div class="emptyStateIcon">+</div><h3>No leads in this campaign yet</h3><p>Import a spreadsheet or paste your prospect list to start qualifying and organizing leads.</p><button class="primary" onclick="scrollToSection('leadsSection')">Import leads</button></div>`;
+  if(!s.hasLeads && queue) queue.innerHTML=`<div class="emptyState"><div class="emptyStateIcon">+</div><h3>No leads in this campaign yet</h3><p>Import a spreadsheet or paste your prospect list to start qualifying and organizing leads.</p><button class="primary" onclick="openLeadImporter()">Import leads</button></div>`;
   if(!s.hasLeads && details) details.innerHTML=`<div class="emptyState"><div class="emptyStateIcon">✓</div><h3>Your lead details will appear here</h3><p>Select an imported lead to review the company, fit score, outreach sequence, and follow-up status.</p></div>`;
 }
 function initV24(){
