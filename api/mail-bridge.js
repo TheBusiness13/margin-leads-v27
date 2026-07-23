@@ -8,18 +8,39 @@ function clean(v,max=5000){return String(v??'').replace(/[\u0000-\u0008\u000B\u0
 function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim())}
 function htmlEscape(v){return String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
 function textToHtml(t){return `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.55;color:#111827;">${htmlEscape(t).replace(/\n/g,'<br>')}</div>`}
-function configured(p){if(p==='brevo')return !!process.env.BREVO_API_KEY;if(p==='sendgrid')return !!process.env.SENDGRID_API_KEY;if(p==='resend')return !!process.env.RESEND_API_KEY;if(p==='mailgun')return !!(process.env.MAILGUN_API_KEY&&process.env.MAILGUN_DOMAIN);return false}
+function globalConfigured(p){
+  if(p==='brevo')return !!process.env.BREVO_API_KEY;
+  if(p==='sendgrid')return !!process.env.SENDGRID_API_KEY;
+  if(p==='resend')return !!process.env.RESEND_API_KEY;
+  if(p==='mailgun')return !!(process.env.MAILGUN_API_KEY&&process.env.MAILGUN_DOMAIN);
+  return false;
+}
 async function parseProviderResponse(provider,response){const raw=await response.text();let data=null;try{data=raw?JSON.parse(raw):null}catch{}if(response.ok)return{ok:true,provider,status:response.status,messageId:data?.messageId||data?.id||response.headers.get('x-message-id')||null};const m=data?.message||data?.error||raw||'Unknown provider error';return{ok:false,provider,status:response.status,error:`${provider.toUpperCase()} HTTP ${response.status}: ${typeof m==='string'?m:JSON.stringify(m)}`}}
 function validateEmailPayload(e){if(!validEmail(clean(e?.to,320)))return'Invalid recipient email';if(!clean(e?.subject,250))return'Missing subject';if(!clean(e?.textContent,12000))return'Missing body';return null}
-async function sendBrevo(sender,replyTo,optOut,email){const er=validateEmailPayload(email);if(er)return{ok:false,error:er};const text=clean(email.textContent,12000);const payload={sender:{name:clean(sender.name||'MarginBusiness',160),email:clean(sender.email,320)},to:[{email:clean(email.to,320),...(clean(email.name,160)?{name:clean(email.name,160)}:{})}],subject:clean(email.subject,250),textContent:text,htmlContent:textToHtml(text),tags:['lead-radar','marginbusiness','v2-6']};if(validEmail(replyTo?.email))payload.replyTo={email:clean(replyTo.email,320)};if(validEmail(optOut))payload.headers={'List-Unsubscribe':`<mailto:${clean(optOut,320)}?subject=unsubscribe>`,'X-Lead-Radar':'MarginBusiness Lead Radar v2.6'};return parseProviderResponse('brevo',await fetch(ENDPOINTS.brevo,{method:'POST',headers:{accept:'application/json','content-type':'application/json','api-key':process.env.BREVO_API_KEY},body:JSON.stringify(payload)}))}
-async function sendSendGrid(sender,replyTo,optOut,email){const er=validateEmailPayload(email);if(er)return{ok:false,error:er};const text=clean(email.textContent,12000);const payload={personalizations:[{to:[{email:clean(email.to,320),...(clean(email.name,160)?{name:clean(email.name,160)}:{})}]}],from:{email:clean(sender.email,320),name:clean(sender.name||'MarginBusiness',160)},subject:clean(email.subject,250),content:[{type:'text/plain',value:text},{type:'text/html',value:textToHtml(text)}],categories:['lead-radar','marginbusiness']};if(validEmail(replyTo?.email))payload.reply_to={email:clean(replyTo.email,320)};if(validEmail(optOut))payload.headers={'List-Unsubscribe':`<mailto:${clean(optOut,320)}?subject=unsubscribe>`};return parseProviderResponse('sendgrid',await fetch(ENDPOINTS.sendgrid,{method:'POST',headers:{accept:'application/json','content-type':'application/json',authorization:`Bearer ${process.env.SENDGRID_API_KEY}`},body:JSON.stringify(payload)}))}
-async function sendResend(sender,replyTo,optOut,email){const er=validateEmailPayload(email);if(er)return{ok:false,error:er};const text=clean(email.textContent,12000),fe=clean(sender.email,320),fn=clean(sender.name||'MarginBusiness',160),te=clean(email.to,320),tn=clean(email.name,160);const payload={from:fn?`${fn} <${fe}>`:fe,to:[tn?`${tn} <${te}>`:te],subject:clean(email.subject,250),text,html:textToHtml(text),tags:[{name:'app',value:'lead-radar'}]};if(validEmail(replyTo?.email))payload.reply_to=[clean(replyTo.email,320)];if(validEmail(optOut))payload.headers={'List-Unsubscribe':`<mailto:${clean(optOut,320)}?subject=unsubscribe>`};return parseProviderResponse('resend',await fetch(ENDPOINTS.resend,{method:'POST',headers:{accept:'application/json','content-type':'application/json',authorization:`Bearer ${process.env.RESEND_API_KEY}`},body:JSON.stringify(payload)}))}
-async function sendMailgun(sender,replyTo,optOut,email){const er=validateEmailPayload(email);if(er)return{ok:false,error:er};const form=new URLSearchParams(),fe=clean(sender.email,320),fn=clean(sender.name||'MarginBusiness',160),te=clean(email.to,320),tn=clean(email.name,160),text=clean(email.textContent,12000);form.set('from',fn?`${fn} <${fe}>`:fe);form.set('to',tn?`${tn} <${te}>`:te);form.set('subject',clean(email.subject,250));form.set('text',text);form.set('html',textToHtml(text));form.set('o:tag','lead-radar');if(validEmail(replyTo?.email))form.set('h:Reply-To',clean(replyTo.email,320));if(validEmail(optOut))form.set('h:List-Unsubscribe',`<mailto:${clean(optOut,320)}?subject=unsubscribe>`);const base=String(process.env.MAILGUN_BASE_URL||'https://api.mailgun.net').replace(/\/$/,'');const auth=Buffer.from(`api:${process.env.MAILGUN_API_KEY}`).toString('base64');return parseProviderResponse('mailgun',await fetch(`${base}/v3/${process.env.MAILGUN_DOMAIN}/messages`,{method:'POST',headers:{accept:'application/json',authorization:`Basic ${auth}`,'content-type':'application/x-www-form-urlencoded'},body:form.toString()}))}
-async function sendWithProvider(p,s,r,o,e){if(!configured(p))return{ok:false,error:`Provider not configured: ${p}`};if(p==='brevo')return sendBrevo(s,r,o,e);if(p==='sendgrid')return sendSendGrid(s,r,o,e);if(p==='resend')return sendResend(s,r,o,e);if(p==='mailgun')return sendMailgun(s,r,o,e);return{ok:false,error:`Unsupported provider: ${p}`}}
+async function sendBrevo(credentials,sender,replyTo,optOut,email){
+  const er=validateEmailPayload(email);if(er)return{ok:false,error:er};
+  const text=clean(email.textContent,12000);
+  const payload={sender:{name:clean(sender.name||'MarginBusiness',160),email:clean(sender.email,320)},to:[{email:clean(email.to,320),...(clean(email.name,160)?{name:clean(email.name,160)}:{})}],subject:clean(email.subject,250),textContent:text,htmlContent:textToHtml(text),tags:['marginbusiness-leads']};
+  if(validEmail(replyTo?.email))payload.replyTo={email:clean(replyTo.email,320)};
+  if(validEmail(optOut))payload.headers={'List-Unsubscribe':`<mailto:${clean(optOut,320)}?subject=unsubscribe>`};
+  return parseProviderResponse('brevo',await fetch(ENDPOINTS.brevo,{method:'POST',headers:{accept:'application/json','content-type':'application/json','api-key':credentials.apiKey},body:JSON.stringify(payload)}));
+}
+async function sendSendGrid(credentials,sender,replyTo,optOut,email){const er=validateEmailPayload(email);if(er)return{ok:false,error:er};const text=clean(email.textContent,12000);const payload={personalizations:[{to:[{email:clean(email.to,320),...(clean(email.name,160)?{name:clean(email.name,160)}:{})}]}],from:{email:clean(sender.email,320),name:clean(sender.name||'MarginBusiness',160)},subject:clean(email.subject,250),content:[{type:'text/plain',value:text},{type:'text/html',value:textToHtml(text)}],categories:['lead-radar','marginbusiness']};if(validEmail(replyTo?.email))payload.reply_to={email:clean(replyTo.email,320)};if(validEmail(optOut))payload.headers={'List-Unsubscribe':`<mailto:${clean(optOut,320)}?subject=unsubscribe>`};return parseProviderResponse('sendgrid',await fetch(ENDPOINTS.sendgrid,{method:'POST',headers:{accept:'application/json','content-type':'application/json',authorization:`Bearer ${credentials.apiKey}`},body:JSON.stringify(payload)}))}
+async function sendResend(credentials,sender,replyTo,optOut,email){const er=validateEmailPayload(email);if(er)return{ok:false,error:er};const text=clean(email.textContent,12000),fe=clean(sender.email,320),fn=clean(sender.name||'MarginBusiness',160),te=clean(email.to,320),tn=clean(email.name,160);const payload={from:fn?`${fn} <${fe}>`:fe,to:[tn?`${tn} <${te}>`:te],subject:clean(email.subject,250),text,html:textToHtml(text),tags:[{name:'app',value:'lead-radar'}]};if(validEmail(replyTo?.email))payload.reply_to=[clean(replyTo.email,320)];if(validEmail(optOut))payload.headers={'List-Unsubscribe':`<mailto:${clean(optOut,320)}?subject=unsubscribe>`};return parseProviderResponse('resend',await fetch(ENDPOINTS.resend,{method:'POST',headers:{accept:'application/json','content-type':'application/json',authorization:`Bearer ${credentials.apiKey}`},body:JSON.stringify(payload)}))}
+async function sendMailgun(credentials,sender,replyTo,optOut,email){const er=validateEmailPayload(email);if(er)return{ok:false,error:er};const form=new URLSearchParams(),fe=clean(sender.email,320),fn=clean(sender.name||'MarginBusiness',160),te=clean(email.to,320),tn=clean(email.name,160),text=clean(email.textContent,12000);form.set('from',fn?`${fn} <${fe}>`:fe);form.set('to',tn?`${tn} <${te}>`:te);form.set('subject',clean(email.subject,250));form.set('text',text);form.set('html',textToHtml(text));form.set('o:tag','lead-radar');if(validEmail(replyTo?.email))form.set('h:Reply-To',clean(replyTo.email,320));if(validEmail(optOut))form.set('h:List-Unsubscribe',`<mailto:${clean(optOut,320)}?subject=unsubscribe>`);const base=String(credentials.settings?.baseUrl||'https://api.mailgun.net').replace(/\/$/,'');const domain=String(credentials.settings?.domain||'');if(!domain)return{ok:false,error:'Mailgun domain is missing'};const auth=Buffer.from(`api:${credentials.apiKey}`).toString('base64');return parseProviderResponse('mailgun',await fetch(`${base}/v3/${domain}/messages`,{method:'POST',headers:{accept:'application/json',authorization:`Basic ${auth}`,'content-type':'application/x-www-form-urlencoded'},body:form.toString()}))}
+async function sendWithProvider(p,credentials,s,r,o,e){
+  if(!credentials?.apiKey)return{ok:false,error:`Your ${p} connection is not configured`};
+  if(p==='brevo')return sendBrevo(credentials,s,r,o,e);
+  if(p==='sendgrid')return sendSendGrid(credentials,s,r,o,e);
+  if(p==='resend')return sendResend(credentials,s,r,o,e);
+  if(p==='mailgun')return sendMailgun(credentials,s,r,o,e);
+  return{ok:false,error:`Unsupported provider: ${p}`};
+}
 async function mapWithConcurrency(items,limit,worker){const results=new Array(items.length);let cursor=0;async function run(){while(true){const i=cursor++;if(i>=items.length)return;try{results[i]=await worker(items[i],i)}catch(e){results[i]={ok:false,error:e?.message||'Unexpected send error'}}}}await Promise.all(Array.from({length:Math.min(limit,items.length)},run));return results}
 
 
-const {getUser,ensureWorkspace,canSend,logActivity,recentActivity,sentTodayForWorkspace}=require('./_auth');
+const {getUser,ensureWorkspace,canSend,logActivity,recentActivity,sentTodayForWorkspace,isPlatformAdmin}=require('./_auth');
+const {getWorkspaceProvider}=require('./_provider');
 function legacyTokenValid(req,body){
   const expected=String(process.env.BRIDGE_TOKEN||'');
   const provided=String(req.headers['x-leadradar-token']||body?.token||'');
@@ -51,9 +72,17 @@ module.exports=async function handler(req,res){
     const role=membership.role||'reviewer';
     const persistent=mode==='supabase'&&!!workspaceId;
     const today=persistent?await sentTodayForWorkspace(workspaceId):0;
+    const platformAdmin=mode==='supabase'&&user?await isPlatformAdmin(user.id).catch(()=>false):false;
+    let providerCredentials=persistent?await getWorkspaceProvider(workspaceId,provider).catch(()=>null):null;
+    let providerSource=providerCredentials?'workspace':null;
+    if(!providerCredentials&&platformAdmin&&globalConfigured(provider)){
+      const envMap={brevo:process.env.BREVO_API_KEY,sendgrid:process.env.SENDGRID_API_KEY,resend:process.env.RESEND_API_KEY,mailgun:process.env.MAILGUN_API_KEY};
+      providerCredentials={apiKey:envMap[provider],settings:{domain:process.env.MAILGUN_DOMAIN||'',baseUrl:process.env.MAILGUN_BASE_URL||''}};
+      providerSource='platform-admin-fallback';
+    }
 
     if(action==='ping'){
-      return reply(res,200,{ok:true,runtime:'vercel-node',version:'2.9',serverDate:new Date().toISOString(),authMode:mode,role,workspace:{id:workspaceId,name:workspace.name||'Private Workspace',plan:workspace.plan||'beta'},dailyLimit:DAILY_LIMIT,maxPerRequest:MAX_PER_REQUEST,sentToday:today,remainingToday:Math.max(0,DAILY_LIMIT-today),selectedProvider:provider,providerConfigured:configured(provider),configuredProviders:{brevo:configured('brevo'),sendgrid:configured('sendgrid'),mailgun:configured('mailgun'),resend:configured('resend')},databaseConfigured:persistent,persistence:persistent?'supabase':'legacy-local'});
+      return reply(res,200,{ok:true,runtime:'vercel-node',version:'2.9',serverDate:new Date().toISOString(),authMode:mode,role,workspace:{id:workspaceId,name:workspace.name||'Private Workspace',plan:workspace.plan||'beta'},dailyLimit:DAILY_LIMIT,maxPerRequest:MAX_PER_REQUEST,sentToday:today,remainingToday:Math.max(0,DAILY_LIMIT-today),selectedProvider:provider,providerConfigured:!!providerCredentials,providerSource,configuredProviders:{[provider]:!!providerCredentials},databaseConfigured:persistent,persistence:persistent?'supabase':'legacy-local'});
     }
     if(action==='logs'||action==='metrics'){
       const activity=persistent?await recentActivity(workspaceId,body.limit||200):[];
@@ -73,12 +102,12 @@ module.exports=async function handler(req,res){
     if(!validEmail(sender.email))return reply(res,400,{ok:false,error:'Invalid sender email'});
     if(!emails.length)return reply(res,400,{ok:false,error:'No emails supplied'});
     if(emails.length>MAX_PER_REQUEST)return reply(res,400,{ok:false,error:`Too many emails in one request. Max ${MAX_PER_REQUEST}`});
-    if(!configured(provider))return reply(res,500,{ok:false,error:`Selected provider is not configured in Vercel Environment Variables: ${provider}`});
+    if(!providerCredentials)return reply(res,409,{ok:false,error:`Connect your own ${provider} account in Integrations & Settings before sending.`});
     if(today>=DAILY_LIMIT)return reply(res,429,{ok:false,error:'Daily workspace sending limit reached',sentToday:today,remainingToday:0});
     if(emails.length>DAILY_LIMIT-today)return reply(res,429,{ok:false,error:'Batch exceeds the remaining workspace daily limit',sentToday:today,remainingToday:DAILY_LIMIT-today});
 
     const rawResults=await mapWithConcurrency(emails,CONCURRENCY,async email=>{
-      const result=await sendWithProvider(provider,sender,replyTo,optOut,email);
+      const result=await sendWithProvider(provider,providerCredentials,sender,replyTo,optOut,email);
       const row={leadId:clean(email?.leadId,200),to:clean(email?.to,320),provider,ok:!!result.ok,...(result.messageId?{messageId:result.messageId}:{}),...(!result.ok?{error:clean(result.error||'Unknown error',1000)}:{})};
       if(persistent)await logActivity({workspaceId,userId:user.id,eventType:row.ok?'email_sent':'email_failed',entityType:'lead',entityId:row.leadId||null,metadata:{recipient:row.to,provider,campaign:clean(body.campaign?.name,240),campaignId:clean(body.campaign?.id,240),sequenceStep:clean(body.sequenceStep,80),messageId:row.messageId||null,error:row.error||null,subject:clean(email?.subject,250)}}).catch(()=>{});
       return row;
