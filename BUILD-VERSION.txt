@@ -1,1 +1,2 @@
-MarginBusiness Leads v3.3.1
+MarginBusiness Leads v4.0.0
+Professional customer interface built on the stable multitenant backend.
