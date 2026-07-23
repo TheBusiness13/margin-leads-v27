@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v4.1.7 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v4.1.8 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v4.1.7'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v4.1.8'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -782,14 +782,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
 
 
-/* v4.1.7 security/UI fix:
+/* v4.1.8 security/UI fix:
    the generic .sideBtn rule uses display:flex!important, so adminOnly needs
    a stronger selector to remain hidden until the server confirms platform admin. */
 .sideBtn.adminOnly:not(.visible){display:none!important}
 .sideBtn.adminOnly.visible{display:flex!important}
 
 
-/* v4.1.7 admin modal and private provider connection */
+/* v4.1.8 admin modal and private provider connection */
 .mlModalBackdrop{position:fixed;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
 .mlModalBackdrop.open{display:flex}
 .mlModal{width:min(1180px,96vw);max-height:88vh;overflow:auto;background:#0a1725;border:1px solid #27425b;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:22px}
@@ -798,6 +798,106 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 .providerPrivateBox{margin:14px 0;padding:16px;border:1px solid #28465d;background:#091927;border-radius:16px}
 .providerPrivateBox .statusGood{color:#8bf0c7}.providerPrivateBox .statusBad{color:#f7c87a}
 
+
+/* v4.1.8 premium application header */
+.premiumAppHeader{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:40px!important;
+  min-height:176px!important;
+  padding:30px 34px!important;
+  margin-bottom:18px!important;
+  border-radius:24px!important;
+  border:1px solid rgba(116,145,180,.22)!important;
+  background:
+    radial-gradient(circle at 88% 18%,rgba(16,185,129,.10),transparent 28%),
+    linear-gradient(135deg,#0c192a 0%,#091524 58%,#0a1726 100%)!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.24)!important;
+  overflow:hidden!important;
+}
+.premiumAppHeader .titleBlock{
+  flex:1 1 720px!important;
+  min-width:0!important;
+  max-width:820px!important;
+}
+.premiumAppHeader .badge{
+  display:inline-flex!important;
+  align-items:center!important;
+  width:auto!important;
+  margin:0 0 15px!important;
+  padding:7px 11px!important;
+  border-radius:999px!important;
+  font-size:10px!important;
+  line-height:1!important;
+  letter-spacing:.11em!important;
+  color:#89edc8!important;
+  background:rgba(16,185,129,.10)!important;
+  border:1px solid rgba(16,185,129,.36)!important;
+}
+.premiumAppHeader h1{
+  max-width:760px!important;
+  margin:0!important;
+  font-size:clamp(30px,2.55vw,46px)!important;
+  line-height:1.04!important;
+  letter-spacing:-.045em!important;
+  text-wrap:balance!important;
+}
+.premiumAppHeader .subtitle{
+  max-width:720px!important;
+  margin-top:14px!important;
+  font-size:14px!important;
+  line-height:1.65!important;
+  color:#9fb0c5!important;
+}
+.premiumHeaderActions{
+  flex:0 0 auto!important;
+  width:min(420px,34vw)!important;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(150px,1fr))!important;
+  gap:10px!important;
+  margin:0!important;
+  justify-content:stretch!important;
+  align-items:stretch!important;
+}
+.premiumHeaderActions button{
+  min-height:46px!important;
+  width:100%!important;
+  padding:11px 16px!important;
+  border-radius:12px!important;
+  white-space:nowrap!important;
+  transition:transform .16s ease,filter .16s ease,border-color .16s ease!important;
+}
+.premiumHeaderActions button:hover{
+  transform:translateY(-1px)!important;
+  filter:brightness(1.07)!important;
+}
+.premiumHeaderActions .advancedToggle{
+  color:#aab7c8!important;
+  border:1px solid rgba(148,163,184,.16)!important;
+  background:rgba(15,29,47,.64)!important;
+}
+@media(max-width:1120px){
+  .premiumAppHeader{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+    gap:24px!important;
+  }
+  .premiumHeaderActions{
+    width:100%!important;
+    max-width:650px!important;
+    grid-template-columns:repeat(4,minmax(130px,1fr))!important;
+  }
+}
+@media(max-width:760px){
+  .premiumAppHeader{padding:24px!important;min-height:auto!important}
+  .premiumHeaderActions{grid-template-columns:1fr 1fr!important;max-width:none!important}
+  .premiumAppHeader h1{font-size:32px!important}
+}
+@media(max-width:480px){
+  .premiumHeaderActions{grid-template-columns:1fr!important}
+}
+
 </style>
 </head>
 <body>
@@ -805,7 +905,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v4.1.7</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v4.1.8</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -848,7 +948,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
   <aside class="saasSidebar" aria-label="Margin Leads navigation">
     <div class="sideBrand">
       <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="sideBrandLogo" />
-      <span>AI outreach intelligence · Customer Workspace v4.1.7</span>
+      <span>AI outreach intelligence · Customer Workspace v4.1.8</span>
     </div>
     <div class="sideMenu professionalMenu">
       <div class="sideGroupLabel">Overview</div>
@@ -874,16 +974,16 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
   </aside>
 
   <div class="wrap">
-    <div class="top">
+    <div class="top premiumAppHeader">
       <div class="titleBlock">
-        <div class="badge">MarginBusiness Leads · Private Beta v4.1.7</div>
-        <h1>Turn ecommerce opportunities into qualified conversations</h1>
-        <div class="versionTag">Version 4.1.7 · Mainstream Readiness</div>
-        <div class="subtitle">Create a campaign, import qualified prospects, review your outreach, and send controlled follow-up batches from one clear workspace.</div>
+        <div class="badge">PRIVATE BETA · v4.1.8</div>
+        <h1>Turn ecommerce opportunities into qualified conversations.</h1>
+        <div class="subtitle">Identify the right prospects, uncover the strongest commercial angle, and launch controlled outreach from one focused workspace.</div>
       </div>
-      <div class="actions" style="margin-top:0; justify-content:flex-end;">
+      <div class="actions premiumHeaderActions">
         <button class="primary" onclick="openCampaignTemplateModal()">+ New campaign</button>
-        <button class="secondary" onclick="openLeadImporter()">Import leads</button><button class="blue" onclick="runAIForActiveLead()">AI analyze lead</button>
+        <button class="secondary" onclick="openLeadImporter()">Import leads</button>
+        <button class="blue" onclick="runAIForActiveLead()">Analyze lead</button>
         <button class="advancedToggle" id="advancedToggle" onclick="toggleAdvancedMode()">Advanced tools</button>
       </div>
     </div>
@@ -2346,7 +2446,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v4.1.7\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v4.1.8\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -2875,7 +2975,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v4.1.7 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v4.1.8 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
