@@ -82,7 +82,7 @@ module.exports=async function handler(req,res){
     }
 
     if(action==='ping'){
-      return reply(res,200,{ok:true,runtime:'vercel-node',version:'2.9',serverDate:new Date().toISOString(),authMode:mode,role,workspace:{id:workspaceId,name:workspace.name||'Private Workspace',plan:workspace.plan||'beta'},dailyLimit:DAILY_LIMIT,maxPerRequest:MAX_PER_REQUEST,sentToday:today,remainingToday:Math.max(0,DAILY_LIMIT-today),selectedProvider:provider,providerConfigured:!!providerCredentials,providerSource,configuredProviders:{[provider]:!!providerCredentials},databaseConfigured:persistent,persistence:persistent?'supabase':'legacy-local'});
+      return reply(res,200,{ok:true,runtime:'platform-node',version:'2.9',serverDate:new Date().toISOString(),authMode:mode,role,workspace:{id:workspaceId,name:workspace.name||'Private Workspace',plan:workspace.plan||'beta'},dailyLimit:DAILY_LIMIT,maxPerRequest:MAX_PER_REQUEST,sentToday:today,remainingToday:Math.max(0,DAILY_LIMIT-today),selectedProvider:provider,providerConfigured:!!providerCredentials,providerSource,configuredProviders:{[provider]:!!providerCredentials},databaseConfigured:persistent,persistence:persistent?'supabase':'legacy-local'});
     }
     if(action==='logs'||action==='metrics'){
       const activity=persistent?await recentActivity(workspaceId,body.limit||200):[];

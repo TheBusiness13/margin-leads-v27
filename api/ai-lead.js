@@ -16,7 +16,7 @@ module.exports=async function handler(req,res){
   try{
     const user=await getUser(req);if(!user)return res.status(401).json({ok:false,error:'Sign in again before using AI.'});
     const membership=await ensureWorkspace(user);const workspace=membership.workspace||{};
-    const apiKey=process.env.OPENAI_API_KEY||'';if(!apiKey)return res.status(503).json({ok:false,code:'OPENAI_NOT_CONFIGURED',error:'OpenAI is not connected yet. Add OPENAI_API_KEY in Vercel and redeploy.'});
+    const apiKey=process.env.OPENAI_API_KEY||'';if(!apiKey)return res.status(503).json({ok:false,code:'OPENAI_NOT_CONFIGURED',error:'OpenAI is not connected yet. Add OPENAI_API_KEY in platform and redeploy.'});
     const body=typeof req.body==='string'?JSON.parse(req.body):req.body||{};
     const lead=safeLead(body.lead||{});const campaign=body.campaign||{};
     const creditCost=Math.max(1,Math.min(5,Number(body.creditCost)||1));
