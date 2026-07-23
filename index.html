@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v4.1.1 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v4.1.2 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v4.1.1'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v4.1.2'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -782,11 +782,21 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
 
 
-/* v4.1.1 security/UI fix:
+/* v4.1.2 security/UI fix:
    the generic .sideBtn rule uses display:flex!important, so adminOnly needs
    a stronger selector to remain hidden until the server confirms platform admin. */
 .sideBtn.adminOnly:not(.visible){display:none!important}
 .sideBtn.adminOnly.visible{display:flex!important}
+
+
+/* v4.1.2 admin modal and private provider connection */
+.mlModalBackdrop{position:fixed;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
+.mlModalBackdrop.open{display:flex}
+.mlModal{width:min(1180px,96vw);max-height:88vh;overflow:auto;background:#0a1725;border:1px solid #27425b;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:22px}
+.mlModalHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}
+.mlModalClose{border:1px solid #314a61;background:#102337;color:#fff;border-radius:10px;padding:9px 12px;cursor:pointer}
+.providerPrivateBox{margin:14px 0;padding:16px;border:1px solid #28465d;background:#091927;border-radius:16px}
+.providerPrivateBox .statusGood{color:#8bf0c7}.providerPrivateBox .statusBad{color:#f7c87a}
 
 </style>
 </head>
@@ -795,7 +805,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v4.1.1</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v4.1.2</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -838,7 +848,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
   <aside class="saasSidebar" aria-label="Margin Leads navigation">
     <div class="sideBrand">
       <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="sideBrandLogo" />
-      <span>AI outreach intelligence · Customer Workspace v4.1.1</span>
+      <span>AI outreach intelligence · Customer Workspace v4.1.2</span>
     </div>
     <div class="sideMenu professionalMenu">
       <div class="sideGroupLabel">Overview</div>
@@ -853,7 +863,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
       <button class="sideBtn shellNav" data-shell-page="results" onclick="openShellPage('results')"><b>Performance</b><span>Results</span></button>
       <div class="sideGroupLabel">Workspace</div>
       <button class="sideBtn shellNav" data-shell-page="settings" onclick="openShellPage('settings')"><b>Integrations & Settings</b><span>Manage</span></button>
-      <button class="sideBtn adminOnly" id="adminNavBtn" onclick="openAdminConsole()"><b>Admin console</b><span>Owner</span></button>
+      <button type="button" class="sideBtn adminOnly" id="adminNavBtn" onclick="openAdminConsole(event)"><b>Admin console</b><span>Owner</span></button>
     </div>
     <div class="userDock" id="userDock">
       <div class="userCard"><div class="userAvatar" id="userAvatar">O</div><div class="userMeta"><strong id="userName">Private beta user</strong><span id="userEmail">Loading account…</span></div><button class="logoutBtn" onclick="betaSignOut()">Sign out</button></div>
@@ -869,9 +879,9 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="brand-logo" />
       </div>
       <div class="titleBlock">
-        <div class="badge">MarginBusiness Leads · Private Beta v4.1.1</div>
+        <div class="badge">MarginBusiness Leads · Private Beta v4.1.2</div>
         <h1>Turn ecommerce opportunities into qualified conversations</h1>
-        <div class="versionTag">Version 4.1.1 · Mainstream Readiness</div>
+        <div class="versionTag">Version 4.1.2 · Mainstream Readiness</div>
         <div class="subtitle">Create a campaign, import qualified prospects, review your outreach, and send controlled follow-up batches from one clear workspace.</div>
       </div>
       <div class="actions" style="margin-top:0; justify-content:flex-end;">
@@ -1092,7 +1102,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
       <div class="dataVaultSummary" id="dataVaultSummary"></div>
       <details class="softPanel" id="accessPrepPanel">
         <summary><strong>User & access preparation</strong> · future Vercel login model</summary>
-        <div class="small" style="margin-top:10px;">v4.1.1 verifies every send against the signed-in Supabase user, workspace membership, and role. Provider secrets remain server-side in Vercel Environment Variables.</div>
+        <div class="small" style="margin-top:10px;">v4.1.2 verifies every send against the signed-in Supabase user, workspace membership, and role. Provider secrets remain server-side in Vercel Environment Variables.</div>
         <div class="accessGrid">
           <div><label>Operator name</label><input id="operatorName" placeholder="Example: Omar" oninput="saveOperatorProfile()" /></div>
           <div><label>Operator role</label><select id="operatorRole" onchange="saveOperatorProfile()"><option value="CEO / Admin">CEO / Admin</option><option value="Growth Operator">Growth Operator</option><option value="Outreach Assistant">Outreach Assistant</option><option value="Read-only Review">Read-only Review</option></select></div>
@@ -1279,17 +1289,38 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         <div class="brevoTop">
           <div>
             <h3 style="margin-bottom:4px;">Mail provider bridge</h3>
-            <div class="small">This sends the prepared batch through the secure Vercel Function at <code>/api/mail-bridge</code>. Provider API keys stay in Vercel Environment Variables, never inside this HTML page.</div>
+            <div class="small">Each workspace must connect its own sending provider. The API key is encrypted server-side and is never stored in this browser.</div>
           </div>
           <div class="campaignActions">
             <button class="secondary" onclick="saveBrevoSettings()">Save mail settings</button>
             <button class="blue" onclick="testBrevoBridge()">Test bridge</button>
           </div>
         </div>
+        
+        <div class="providerPrivateBox">
+          <h3 style="margin:0 0 6px">Your private provider connection</h3>
+          <div class="small">Customers cannot use the MarginBusiness Brevo account. Each workspace must save its own API key.</div>
+          <div class="brevoGrid" style="margin-top:12px">
+            <div>
+              <label>Provider API key</label>
+              <input id="workspaceProviderApiKey" type="password" autocomplete="new-password" placeholder="Paste your own provider API key" />
+            </div>
+            <div id="mailgunDomainWrap" style="display:none">
+              <label>Mailgun domain</label>
+              <input id="workspaceProviderDomain" placeholder="mg.yourdomain.com" />
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" class="primary" onclick="saveWorkspaceProviderConnection()">Save private connection</button>
+            <button type="button" class="danger" onclick="disconnectWorkspaceProvider()">Disconnect</button>
+          </div>
+          <div class="small" id="workspaceProviderStatus">Checking your workspace connection…</div>
+        </div>
+
         <div class="brevoGrid">
           <div>
             <label>Sending provider</label>
-            <select id="mailProvider" onchange="saveBrevoSettings()">
+            <select id="mailProvider" onchange="saveBrevoSettings();loadWorkspaceProviderStatus()">
               <option value="brevo">Brevo</option>
               <option value="sendgrid">SendGrid</option>
               <option value="mailgun">Mailgun</option>
@@ -1335,19 +1366,6 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         <div class="brevoStatus" id="brevoStatus">Bridge not tested yet. Add the required Environment Variables in Vercel, redeploy, then test the bridge.</div>
       </details>
     </div>
-
-
-    <section class="card adminPanel adminOnly" id="adminConsoleSection" data-shell-section="settings">
-      <div class="sectionHead">
-        <div>
-          <div class="eyebrow">PLATFORM ADMINISTRATION</div>
-          <h2>Customer workspace controls</h2>
-          <div class="small">Manage customer status and Margin Credits. This section is server-authorised and hidden from normal accounts.</div>
-        </div>
-        <div class="actions"><button class="secondary" onclick="loadAdminConsole()">Refresh customers</button></div>
-      </div>
-      <div id="adminConsoleBody"><div class="small">Open Admin Console to load customer workspaces.</div></div>
-    </section>
 
     <div class="card today compactRadar" id="opportunitySection" data-shell-section="opportunities">
       <div class="todayTop">
@@ -1425,7 +1443,7 @@ async function betaResetPassword(){
   if(!mlSupabase){authStatus('Authentication is not configured yet.','error');return}const email=document.getElementById('authEmail').value.trim();if(!email){authStatus('Enter your email address first.','error');return}const {error}=await mlSupabase.auth.resetPasswordForEmail(email,{redirectTo:location.origin});authStatus(error?error.message:'Password reset email sent. Check your inbox.',error?'error':'good');
 }
 async function showPasswordUpdate(){const next=prompt('Enter your new Margin Leads password (minimum 8 characters):');if(!next)return;if(next.length<8){alert('Please use at least 8 characters.');return}const {error}=await mlSupabase.auth.updateUser({password:next});alert(error?error.message:'Password updated successfully.');}
-async function betaSignOut(){window.mlIsPlatformAdmin=false;document.getElementById('adminNavBtn')?.classList.remove('visible');document.getElementById('adminConsoleSection')?.classList.remove('visible','shell-visible');if(mlSupabase)await mlSupabase.auth.signOut();location.reload();}
+async function betaSignOut(){window.mlIsPlatformAdmin=false;document.getElementById('adminNavBtn')?.classList.remove('visible');closeAdminConsole?.();if(mlSupabase)await mlSupabase.auth.signOut();location.reload();}
 
 let mlStateSyncTimer=null;
 let mlStateHydrating=false;
@@ -1497,15 +1515,62 @@ async function openPrivateWorkspace(session){
 function closePrivateWorkspace(){document.getElementById('loginGate').style.display='flex';document.body.classList.remove('authenticated');sessionStorage.removeItem('ml_beta_authenticated');}
 async function mlAccessToken(){if(!mlSupabase)return'';const {data:{session}}=await mlSupabase.auth.getSession();return session?.access_token||'';}
 async function mlAuthorizedFetch(url,options={}){const token=await mlAccessToken();const headers={...(options.headers||{}),...(token?{Authorization:`Bearer ${token}`}:{})};return fetch(url,{...options,headers});}
+
+async function loadWorkspaceProviderStatus(){
+  const provider=document.getElementById('mailProvider')?.value||'brevo';
+  const status=document.getElementById('workspaceProviderStatus');
+  const wrap=document.getElementById('mailgunDomainWrap');
+  if(wrap)wrap.style.display=provider==='mailgun'?'block':'none';
+  if(!status)return;
+  status.textContent='Checking your workspace connection…';
+  try{
+    const r=await mlAuthorizedFetch(`/api/provider-settings?provider=${encodeURIComponent(provider)}`,{cache:'no-store'});
+    const d=await r.json();
+    if(!r.ok)throw new Error(d.error||'Could not check provider');
+    status.className='small '+(d.configured?'statusGood':'statusBad');
+    status.textContent=d.configured?`${provider.toUpperCase()} is privately connected to this workspace.`:`No private ${provider} connection. Sending is disabled until this workspace connects its own account.`;
+    const domain=document.getElementById('workspaceProviderDomain');
+    if(domain&&d.settings?.domain)domain.value=d.settings.domain;
+  }catch(e){
+    status.className='small statusBad';
+    status.textContent=e.message;
+  }
+}
+async function saveWorkspaceProviderConnection(){
+  const provider=document.getElementById('mailProvider')?.value||'brevo';
+  const apiKey=document.getElementById('workspaceProviderApiKey')?.value||'';
+  const domain=document.getElementById('workspaceProviderDomain')?.value||'';
+  if(apiKey.trim().length<12){showToast('Enter your provider API key');return}
+  try{
+    const r=await mlAuthorizedFetch('/api/provider-settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'save',provider,apiKey,domain})});
+    const d=await r.json();
+    if(!r.ok)throw new Error(d.error||'Could not save provider');
+    document.getElementById('workspaceProviderApiKey').value='';
+    showToast(`${provider.toUpperCase()} connected privately`);
+    await loadWorkspaceProviderStatus();
+  }catch(e){showToast(e.message)}
+}
+async function disconnectWorkspaceProvider(){
+  const provider=document.getElementById('mailProvider')?.value||'brevo';
+  try{
+    const r=await mlAuthorizedFetch('/api/provider-settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'delete',provider})});
+    const d=await r.json();
+    if(!r.ok)throw new Error(d.error||'Could not disconnect provider');
+    showToast(`${provider.toUpperCase()} disconnected`);
+    await loadWorkspaceProviderStatus();
+  }catch(e){showToast(e.message)}
+}
+
 async function loadSecureWorkspace(){
   const banner=document.getElementById('connectionBanner');
   window.mlIsPlatformAdmin=false;
   document.getElementById('adminNavBtn')?.classList.remove('visible');
-  document.getElementById('adminConsoleSection')?.classList.remove('visible','shell-visible');
+  closeAdminConsole?.();
   try{
     const r=await mlAuthorizedFetch('/api/workspace',{cache:'no-store'});const d=await r.json();
     if(!r.ok||!d.ok)throw new Error(d.error||'Workspace unavailable');
     window.mlWorkspace=d.workspace;window.mlWorkspaceRole=d.role;window.mlIsPlatformAdmin=!!d.isPlatformAdmin;
+    setTimeout(()=>loadWorkspaceProviderStatus().catch(()=>{}),150);
     const role=document.getElementById('operatorModePill');if(role)role.textContent=`${d.workspace?.name||'Private Workspace'} · ${d.role||'member'} · ${String(d.workspace?.id||'').slice(0,8)}`;
     const credits=Number(d.credits?.balance||0), used=Number(d.credits?.period_used||0), total=Math.max(credits+used,10);
     document.getElementById('creditBalance').textContent=credits;
@@ -1528,7 +1593,20 @@ async function loadSecureWorkspace(){
   }
 }
 
-async function openAdminConsole(){if(!window.mlIsPlatformAdmin){showToast('Admin access required');return}openShellPage('settings');const section=document.getElementById('adminConsoleSection');section?.classList.add('visible');section?.classList.add('shell-visible');setTimeout(()=>section?.scrollIntoView({behavior:'smooth',block:'start'}),80);await loadAdminConsole();}
+async function openAdminConsole(event){
+  event?.preventDefault?.();
+  event?.stopPropagation?.();
+  if(!window.mlIsPlatformAdmin){showToast('Admin access required');return}
+  const modal=document.getElementById('adminConsoleModal');
+  if(!modal){showToast('Admin console could not open');return}
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+  await loadAdminConsole();
+}
+function closeAdminConsole(){
+  document.getElementById('adminConsoleModal')?.classList.remove('open');
+  document.body.style.overflow='';
+}
 async function loadAdminConsole(){const box=document.getElementById('adminConsoleBody');box.innerHTML='<div class="small">Loading customer workspaces…</div>';try{const r=await mlAuthorizedFetch('/api/admin',{cache:'no-store'}),d=await r.json();if(!r.ok)throw new Error(d.error||'Admin access failed');const rows=d.workspaces||[];box.innerHTML=`<table class="adminTable"><thead><tr><th>Customer</th><th>Plan</th><th>Credits</th><th>Status</th><th>Controls</th></tr></thead><tbody>${rows.map(w=>{const sub=Array.isArray(w.workspace_subscriptions)?w.workspace_subscriptions[0]:w.workspace_subscriptions||{};const bal=Array.isArray(w.workspace_credit_balances)?w.workspace_credit_balances[0]:w.workspace_credit_balances||{};return `<tr><td><strong>${escapeHtml(w.name||'Workspace')}</strong><br><span class="small">${escapeHtml(w.slug||'')}</span></td><td>${escapeHtml(sub.plan_code||w.plan||'trial')}</td><td>${Number(bal.balance||0)}</td><td>${escapeHtml(w.account_status||'active')}</td><td><div class="adminActions"><button class="secondary" onclick="adminGrantCredits('${w.id}',25)">+25 credits</button><button class="secondary" onclick="adminSetStatus('${w.id}','${w.account_status==='suspended'?'active':'suspended'}')">${w.account_status==='suspended'?'Activate':'Suspend'}</button></div></td></tr>`}).join('')}</tbody></table>`}catch(e){box.innerHTML=`<div class="hint">${escapeHtml(e.message)}</div>`}}
 async function adminGrantCredits(workspaceId,amount){const r=await mlAuthorizedFetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'grant_credits',workspaceId,amount})}),d=await r.json();if(!r.ok){showToast(d.error||'Could not grant credits');return}showToast(`${amount} credits granted`);loadAdminConsole();}
 async function adminSetStatus(workspaceId,status){const r=await mlAuthorizedFetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'set_status',workspaceId,status})}),d=await r.json();if(!r.ok){showToast(d.error||'Could not update customer');return}showToast(`Workspace ${status}`);loadAdminConsole();}
@@ -2263,7 +2341,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v4.1.1\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v4.1.2\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -2792,7 +2870,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v4.1.1 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v4.1.2 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
@@ -3936,6 +4014,22 @@ function exportConnectedLogsCSV(){
   });
 })();
 </script>
+
+
+<div class="mlModalBackdrop" id="adminConsoleModal" onclick="if(event.target===this)closeAdminConsole()">
+  <div class="mlModal" role="dialog" aria-modal="true" aria-labelledby="adminConsoleTitle">
+    <div class="mlModalHead">
+      <div>
+        <div class="eyebrow">PLATFORM ADMINISTRATION</div>
+        <h2 id="adminConsoleTitle">Customer workspace controls</h2>
+        <div class="small">Manage customer account status and Margin Credits.</div>
+      </div>
+      <button type="button" class="mlModalClose" onclick="closeAdminConsole()">Close</button>
+    </div>
+    <div class="actions" style="margin-bottom:14px"><button type="button" class="secondary" onclick="loadAdminConsole()">Refresh customers</button></div>
+    <div id="adminConsoleBody"><div class="small">Loading customer workspaces…</div></div>
+  </div>
+</div>
 
 </body>
 </html>
