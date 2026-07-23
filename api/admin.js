@@ -5,7 +5,7 @@ module.exports=async function handler(req,res){
   const user=await getUser(req);if(!user)return res.status(401).json({ok:false,error:'Sign in again.'});
   if(!await isPlatformAdmin(user.id))return res.status(403).json({ok:false,error:'Admin access required.'});
   if(req.method==='GET'){
-   const rows=await jsonOrError(await serviceFetch('workspaces?select=id,name,slug,plan,account_status,max_users,max_leads,ai_daily_limit,daily_send_limit,created_at,workspace_subscriptions(plan_code,status,current_period_end,trial_ends_at),workspace_credit_balances(balance,lifetime_used)&order=created_at.desc&limit=250'));
+   const rows=await jsonOrError(await serviceFetch('workspaces?select=id,name,slug,plan,account_status,max_users,max_leads,ai_daily_limit,created_at,workspace_subscriptions(plan_code,status,current_period_end,trial_ends_at),workspace_credit_balances(balance,lifetime_used)&order=created_at.desc&limit=250'));
    return res.status(200).json({ok:true,workspaces:rows||[]});
   }
   if(req.method==='POST'){
