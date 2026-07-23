@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v4.0.0 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v4.1.0 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v4.0.0'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v4.1.0'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -717,6 +717,70 @@
     .importWizard{display:grid;gap:14px}.importStep{border:1px solid rgba(148,163,184,.15);background:rgba(255,255,255,.025);border-radius:16px;padding:16px}.importStepHead{display:flex;align-items:center;gap:10px;margin-bottom:10px}.importStepNo{display:grid;place-items:center;width:28px;height:28px;border-radius:999px;background:rgba(36,199,143,.13);border:1px solid rgba(36,199,143,.28);color:#9af0cf;font-weight:900;font-size:12px}.dropZone{border:1px dashed rgba(82,169,255,.42);background:linear-gradient(180deg,rgba(82,169,255,.07),rgba(36,199,143,.035));border-radius:16px;padding:24px;text-align:center;cursor:pointer;transition:.18s}.dropZone:hover,.dropZone.dragover{transform:translateY(-1px);border-color:#52a9ff;background:rgba(82,169,255,.1)}.dropZone input{display:none}.dropZone strong{display:block;font-size:16px;margin-bottom:5px}.dropZone span{font-size:12px;color:#8fa4b8}.importLimits{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.limitPill{font-size:11px;color:#9fb0c4;background:#0a1624;border:1px solid rgba(148,163,184,.13);border-radius:999px;padding:6px 9px}.importPreviewWrap{display:none}.importPreviewWrap.visible{display:block}.importPreviewTable{width:100%;border-collapse:collapse;font-size:11px;min-width:760px}.importPreviewTable th,.importPreviewTable td{padding:8px;border-bottom:1px solid rgba(148,163,184,.12);text-align:left;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.importStats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}.importStat{padding:10px;border-radius:12px;background:#081522;border:1px solid rgba(148,163,184,.12)}.importStat strong{display:block;font-size:18px}.importStat span{font-size:10px;color:#8fa4b8}.advancedPaste{margin-top:12px}.advancedPaste summary{font-size:12px;color:#9fb0c4;cursor:pointer}.advancedPaste textarea{margin-top:10px}.senderHealthCard{margin-top:12px;padding:14px;border-radius:16px;background:linear-gradient(135deg,rgba(36,199,143,.08),rgba(82,169,255,.05));border:1px solid rgba(36,199,143,.18)}.senderHealthTop{display:flex;justify-content:space-between;gap:12px;align-items:center}.senderHealthScore{font-weight:900;color:#9af0cf}.senderHealthGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.senderHealthGrid div{padding:9px;border-radius:11px;background:rgba(3,11,20,.48);font-size:10px;color:#8fa4b8}.senderHealthGrid strong{display:block;color:#eaf1fb;font-size:14px;margin-top:3px}.legalFooter{margin:24px 0 8px;padding:14px 16px;border-top:1px solid rgba(148,163,184,.12);color:#6f8198;font-size:10px;line-height:1.55;text-align:center}.legalFooter strong{color:#91a5bc}.aiDecisionBrief{margin-top:12px;padding:12px;border-radius:14px;border:1px solid rgba(82,169,255,.17);background:rgba(82,169,255,.045)}
     @media(max-width:800px){.importStats,.senderHealthGrid{grid-template-columns:repeat(2,1fr)}}
 
+
+/* ===== v4.1 Professional Shell ===== */
+:root{--shell-radius:16px;--shell-gap:18px;--shell-muted:#91a0b7;}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden}
+.saasSidebar{width:252px!important;padding:18px 14px!important;background:#07101c!important;border-right:1px solid rgba(148,163,184,.13)!important}
+.wrap{margin-left:252px!important;max-width:none!important;width:calc(100% - 252px)!important;padding:18px 24px 54px!important}
+.sideBrand{padding:4px 8px 18px!important;border-bottom:1px solid rgba(148,163,184,.12);margin-bottom:14px}
+.sideBrandLogo{max-width:176px!important}
+.sideBrand span{font-size:10px!important;color:#7f8da3!important;letter-spacing:.01em!important}
+.professionalMenu{display:flex!important;flex-direction:column;gap:4px!important}
+.sideGroupLabel{font-size:10px;line-height:1;text-transform:uppercase;letter-spacing:.13em;color:#617087;font-weight:800;padding:16px 10px 6px}
+.sideBtn{min-height:42px!important;padding:10px 11px!important;border:1px solid transparent!important;border-radius:10px!important;background:transparent!important;color:#aeb9c9!important;display:flex!important;align-items:center!important;justify-content:space-between!important;text-align:left!important;box-shadow:none!important}
+.sideBtn b{font-size:13px;font-weight:650;color:inherit}
+.sideBtn span{font-size:9px!important;color:#64748b!important;background:transparent!important;padding:0!important}
+.sideBtn:hover{background:rgba(148,163,184,.07)!important;color:#fff!important}
+.sideBtn.active{background:linear-gradient(90deg,rgba(16,185,129,.14),rgba(16,185,129,.05))!important;border-color:rgba(52,211,153,.20)!important;color:#f8fafc!important;box-shadow:inset 3px 0 0 #34d399!important}
+.userDock{margin-top:18px!important}
+.sideFooter{margin-top:auto!important}
+.accountPlanCard{border-radius:13px!important;background:#0a1524!important;border-color:rgba(148,163,184,.13)!important}
+.top{min-height:92px!important;padding:18px 20px!important;border-radius:16px!important;background:#0a1524!important;border:1px solid rgba(148,163,184,.13)!important;display:grid!important;grid-template-columns:140px 1fr auto!important;gap:18px!important;align-items:center!important;margin-bottom:14px!important}
+.brand-logo{max-width:116px!important}
+.titleBlock h1{font-size:22px!important;letter-spacing:-.025em!important;margin:4px 0!important}
+.titleBlock .subtitle{font-size:12px!important;max-width:760px!important;color:#8e9cb1!important}
+.versionTag{display:none!important}
+.badge{font-size:9px!important;padding:5px 8px!important}
+.top .actions button{min-height:36px!important;padding:8px 12px!important;font-size:11px!important}
+.professionalPageBar{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 4px 20px;margin-bottom:2px}
+.pageEyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#45d7a5;font-weight:800;margin-bottom:5px}
+.professionalPageBar h2{font-size:27px;line-height:1.1;letter-spacing:-.03em;margin:0 0 5px}
+.professionalPageBar p{margin:0;color:#8c9aaf;font-size:13px}
+.pageBarActions{display:flex;gap:9px;align-items:center}
+[data-shell-section]{display:none!important}
+[data-shell-section].shell-visible{display:block!important;animation:shellFade .18s ease-out}
+@keyframes shellFade{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card,.workspaceShell{border-radius:var(--shell-radius)!important;border-color:rgba(148,163,184,.14)!important;box-shadow:none!important;margin-bottom:var(--shell-gap)!important;background:#091525!important}
+.v24Hero{padding:18px!important}
+.v24HeroTop h2{font-size:18px!important}.v24Hero .small{font-size:11px!important}.setupChecklist{gap:8px!important}.nextActionCard{min-height:auto!important}
+.missionControl{padding:20px!important}.missionTop{margin-bottom:16px!important}.missionTitle h3{font-size:18px!important}.missionIcon{width:38px!important;height:38px!important}
+.missionGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important}.missionCard{min-height:96px!important;padding:15px!important;border-radius:12px!important;background:#07111f!important}.missionCard strong{font-size:27px!important}.missionCard small{font-size:10px!important}
+#clientGuidePanel{display:none!important}
+.connectedPanel,.performancePanel,.recoveryPanel,.campaignCard,.dataVault,.batchQueue,.today,.workspaceShell{padding:20px!important}
+.connectedStatusGrid{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:8px!important}.connectedStatusCard{min-height:76px!important;padding:12px!important}
+.campaignCard .campaignGrid,.campaignGrid{gap:12px!important}
+.batchQueue .flowBar{margin-top:14px!important}.cockpitHeader{margin-bottom:12px!important}
+.compactRadar .todayList{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important}
+.workspaceShell{min-height:650px}.workspaceHeader{padding-bottom:17px!important;margin-bottom:16px!important;border-bottom:1px solid rgba(148,163,184,.10)}.workspaceHeader h2{font-size:22px!important}
+.leadWorkspaceGrid{grid-template-columns:330px minmax(0,1fr)!important;gap:14px!important}.leadPipeline,.leadDetail{border-radius:14px!important}
+.databaseWrap{max-height:560px;overflow:auto;border-radius:12px}
+#backOfficeSection:not(.shell-visible){display:none!important}
+.advancedToggle{opacity:.72}
+button.primary{box-shadow:none!important}
+button,select,input,textarea{border-radius:9px!important}
+.shellPage-dashboard #v24SetupHub{display:block!important}.shellPage-dashboard #missionSection{display:block!important}
+.shellPage-campaigns #campaignSection,.shellPage-campaigns #sendingSection{display:block!important}
+.shellPage-leads #backOfficeSection,.shellPage-leads #leadsSection{display:block!important}
+.shellPage-opportunities #opportunitySection,.shellPage-opportunities #leadsSection{display:block!important}
+.shellPage-activity #connectedLogsSection{display:block!important}
+.shellPage-results #performanceSection,.shellPage-results #sendRecoverySection{display:block!important}
+.shellPage-settings #settingsSection,.shellPage-settings #connectedLogsSection,.shellPage-settings #backOfficeSection{display:block!important}
+body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
+@media(max-width:1100px){.saasSidebar{width:220px!important}.wrap{margin-left:220px!important;width:calc(100% - 220px)!important;padding:14px!important}.top{grid-template-columns:110px 1fr!important}.top .actions{grid-column:1/-1!important;justify-content:flex-start!important}.missionGrid{grid-template-columns:repeat(2,1fr)!important}.connectedStatusGrid{grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
+
 </style>
 </head>
 <body>
@@ -724,7 +788,7 @@
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v4.0.0</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v4.1.0</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -767,17 +831,22 @@
   <aside class="saasSidebar" aria-label="Margin Leads navigation">
     <div class="sideBrand">
       <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="sideBrandLogo" />
-      <span>AI outreach intelligence · Customer Workspace v4.0.0</span>
+      <span>AI outreach intelligence · Customer Workspace v4.1.0</span>
     </div>
-    <div class="sideMenu">
-      <button class="sideBtn" onclick="scrollToSection('missionSection')">Dashboard <span>Today</span></button>
-      <button class="sideBtn" onclick="scrollToSection('sendingSection')">Outreach <span>Send</span></button>
-      <button class="sideBtn" onclick="scrollToSection('connectedLogsSection'); refreshConnectedLogs();">Activity <span>Live</span></button>
-      <button class="sideBtn" data-advanced="true" onclick="scrollToSection('sendRecoverySection')">Send history <span>Recover</span></button>
-      <button class="sideBtn" data-advanced="true" onclick="scrollToSection('performanceSection')">Reports <span>Results</span></button>
-      <button class="sideBtn" data-advanced="true" onclick="scrollToSection('backOfficeSection')">Lead database <span>Manage</span></button>
-      <button class="sideBtn" onclick="scrollToSection('leadsSection')">Leads <span>Import</span></button>
-      <button class="sideBtn" data-advanced="true" onclick="scrollToSection('settingsSection')">Settings <span>Email</span></button><button class="sideBtn adminOnly" id="adminNavBtn" onclick="openAdminConsole()">Admin console <span>Owner</span></button>
+    <div class="sideMenu professionalMenu">
+      <div class="sideGroupLabel">Overview</div>
+      <button class="sideBtn shellNav active" data-shell-page="dashboard" onclick="openShellPage('dashboard')"><b>Dashboard</b><span>Overview</span></button>
+      <div class="sideGroupLabel">Intelligence</div>
+      <button class="sideBtn shellNav" data-shell-page="leads" onclick="openShellPage('leads')"><b>Lead Database</b><span>Manage</span></button>
+      <button class="sideBtn shellNav" data-shell-page="opportunities" onclick="openShellPage('opportunities')"><b>Opportunity Radar</b><span>AI</span></button>
+      <div class="sideGroupLabel">Outreach</div>
+      <button class="sideBtn shellNav" data-shell-page="campaigns" onclick="openShellPage('campaigns')"><b>Campaigns</b><span>Build</span></button>
+      <button class="sideBtn shellNav" data-shell-page="activity" onclick="openShellPage('activity')"><b>Activity</b><span>Live</span></button>
+      <div class="sideGroupLabel">Results</div>
+      <button class="sideBtn shellNav" data-shell-page="results" onclick="openShellPage('results')"><b>Performance</b><span>Results</span></button>
+      <div class="sideGroupLabel">Workspace</div>
+      <button class="sideBtn shellNav" data-shell-page="settings" onclick="openShellPage('settings')"><b>Integrations & Settings</b><span>Manage</span></button>
+      <button class="sideBtn adminOnly" id="adminNavBtn" onclick="openAdminConsole()"><b>Admin console</b><span>Owner</span></button>
     </div>
     <div class="userDock" id="userDock">
       <div class="userCard"><div class="userAvatar" id="userAvatar">O</div><div class="userMeta"><strong id="userName">Private beta user</strong><span id="userEmail">Loading account…</span></div><button class="logoutBtn" onclick="betaSignOut()">Sign out</button></div>
@@ -793,9 +862,9 @@
         <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="brand-logo" />
       </div>
       <div class="titleBlock">
-        <div class="badge">MarginBusiness Leads · Private Beta v4.0.0</div>
-        <h1>Turn company intelligence into conversations</h1>
-        <div class="versionTag">Version 4.0.0 · Mainstream Readiness</div>
+        <div class="badge">MarginBusiness Leads · Private Beta v4.1.0</div>
+        <h1>Turn ecommerce opportunities into qualified conversations</h1>
+        <div class="versionTag">Version 4.1.0 · Mainstream Readiness</div>
         <div class="subtitle">Create a campaign, import qualified prospects, review your outreach, and send controlled follow-up batches from one clear workspace.</div>
       </div>
       <div class="actions" style="margin-top:0; justify-content:flex-end;">
@@ -805,23 +874,19 @@
       </div>
     </div>
 
-    <div class="appNav">
-      <div class="navLeft">
-        <button class="navBtn" onclick="scrollToSection('missionSection')">Dashboard</button>
-        <button class="navBtn" onclick="scrollToSection('sendingSection')">Sending</button>
-        <button class="navBtn" onclick="scrollToSection('performanceSection')">Performance</button>
-        <button class="navBtn" onclick="scrollToSection('sendRecoverySection')">Send Journal</button>
-        <button class="navBtn" onclick="scrollToSection('backOfficeSection')">Back Office</button>
-        <button class="navBtn" onclick="scrollToSection('leadsSection')">Leads</button>
-        <button class="navBtn" onclick="scrollToSection('settingsSection')">Settings</button>
+    <div class="professionalPageBar">
+      <div>
+        <div class="pageEyebrow" id="shellPageEyebrow">Overview</div>
+        <h2 id="shellPageTitle">Dashboard</h2>
+        <p id="shellPageDescription">Your priorities, campaign readiness and next best action.</p>
       </div>
-      <div class="navRight">
-        <span class="operatorModePill" id="operatorModePill">Operator mode</span>
-        <button class="primary" onclick="startDailyMission()">Start today’s 100</button>
+      <div class="pageBarActions" id="shellPageActions">
+        <button class="secondary" onclick="openLeadImporter()">Import leads</button>
+        <button class="primary" onclick="openCampaignTemplateModal()">Create campaign</button>
       </div>
     </div>
 
-    <section class="card v24Hero" id="v24SetupHub">
+    <section class="card v24Hero" id="v24SetupHub" data-shell-section="dashboard">
       <div class="v24HeroTop">
         <div>
           <div class="v24Eyebrow">Guided workspace</div>
@@ -838,12 +903,12 @@
       <div class="nextActionCard" id="v24NextAction"></div>
     </section>
 
-    <div class="card missionControl" id="missionSection">
+    <div class="card missionControl" id="missionSection" data-shell-section="dashboard">
       <div class="missionTop">
         <div class="missionTitle">
           <div class="missionIcon">MB</div>
           <div>
-            <h3 style="margin-bottom:4px;">Today’s campaign overview</h3>
+            <h3 style="margin-bottom:4px;">Today’s priorities</h3>
             <div class="small" id="missionNarrative">See what is ready, what needs attention, and the clearest next step for your campaign.</div>
             <div class="quickStart">
               <button class="primary" onclick="startDailyMission()">Review ready leads</button>
@@ -875,12 +940,12 @@
     </div>
 
 
-    <div class="card connectedPanel" id="connectedLogsSection">
+    <div class="card connectedPanel" id="connectedLogsSection" data-shell-section="activity settings">
       <div class="connectedTop">
         <div class="connectedTitle">
           <div class="connectedIcon">↗</div>
           <div>
-            <h3 style="margin-bottom:4px;">Connected activity center</h3>
+            <h3 style="margin-bottom:4px;">System activity</h3>
             <div class="small">One view for Vercel API health, bridge authentication, provider readiness, database persistence, and the latest outreach activity.</div>
           </div>
         </div>
@@ -911,7 +976,7 @@
       <div class="premiumNotice" id="connectedPersistenceNote">Persistent logs activate automatically when a Postgres database is connected to this Vercel project. Until then, Margin Leads continues keeping its existing browser-side send history.</div>
     </div>
 
-    <div class="card performancePanel" id="performanceSection">
+    <div class="card performancePanel" id="performanceSection" data-shell-section="results">
       <div class="performanceTop">
         <div>
           <h3 style="margin-bottom:4px;">Email performance window</h3>
@@ -932,7 +997,7 @@
       <div class="performanceTableWrap" id="emailPerformanceTable"><div class="dbEmpty">No send metrics yet. Send a batch, then this window will begin tracking.</div></div>
     </div>
 
-    <div class="card recoveryPanel" id="sendRecoverySection">
+    <div class="card recoveryPanel" id="sendRecoverySection" data-shell-section="results">
       <div class="recoveryTop">
         <div>
           <h3 style="margin-bottom:4px;">Send Journal & Recovery</h3>
@@ -956,7 +1021,7 @@
       <div class="metric"><div class="label">Estimated revenue</div><div class="value" id="mRevenue">£0</div></div>
     </div>
 
-    <div class="card campaignCard" id="campaignSection">
+    <div class="card campaignCard" id="campaignSection" data-shell-section="campaigns">
       <div class="campaignHead">
         <div>
           <h3>Your campaigns</h3>
@@ -1003,7 +1068,7 @@
       <div id="campaignSummary" class="campaignSummary small"></div>
     </div>
 
-    <div class="card dataVault" id="backOfficeSection">
+    <div class="card dataVault" id="backOfficeSection" data-shell-section="leads settings">
       <div class="dataVaultTop">
         <div>
           <h3 style="margin-bottom:4px;">Data vault / local back office</h3>
@@ -1020,7 +1085,7 @@
       <div class="dataVaultSummary" id="dataVaultSummary"></div>
       <details class="softPanel" id="accessPrepPanel">
         <summary><strong>User & access preparation</strong> · future Vercel login model</summary>
-        <div class="small" style="margin-top:10px;">v4.0.0 verifies every send against the signed-in Supabase user, workspace membership, and role. Provider secrets remain server-side in Vercel Environment Variables.</div>
+        <div class="small" style="margin-top:10px;">v4.1.0 verifies every send against the signed-in Supabase user, workspace membership, and role. Provider secrets remain server-side in Vercel Environment Variables.</div>
         <div class="accessGrid">
           <div><label>Operator name</label><input id="operatorName" placeholder="Example: Omar" oninput="saveOperatorProfile()" /></div>
           <div><label>Operator role</label><select id="operatorRole" onchange="saveOperatorProfile()"><option value="CEO / Admin">CEO / Admin</option><option value="Growth Operator">Growth Operator</option><option value="Outreach Assistant">Outreach Assistant</option><option value="Read-only Review">Read-only Review</option></select></div>
@@ -1111,7 +1176,7 @@
 
 
 
-    <div class="card batchQueue" id="sendingSection">
+    <div class="card batchQueue" id="sendingSection" data-shell-section="campaigns">
       <div class="cockpitHeader">
         <div class="cockpitTitle">
           <h3>Outreach workspace</h3>
@@ -1200,7 +1265,7 @@
 
       <div class="batchTableWrap"><div id="batchList"><div class="dbEmpty">Loading sending cockpit...</div></div></div>
 
-      <details class="brevoPanel adminCompact" id="settingsSection">
+      <details class="brevoPanel adminCompact" id="settingsSection" data-shell-section="settings">
         <summary><span>Admin settings · Mail provider bridge</span></summary>
         <div class="adminNotice">Normal use: keep this closed. Open only when changing provider, bridge token, sender email, reply-to, opt-out, or testing the bridge. The normal sending button above will still use the saved settings.</div>
         <div class="providerNote"><strong>CTO rule:</strong> keep one primary sending provider and one backup provider. Brevo remains the default. Use SendGrid/Mailgun/Resend only after the domain is authenticated and tested. Do not split the same campaign across too many providers unless you are actively managing reputation.</div>
@@ -1264,7 +1329,7 @@
       </details>
     </div>
 
-    <div class="card today compactRadar">
+    <div class="card today compactRadar" id="opportunitySection" data-shell-section="opportunities">
       <div class="todayTop">
         <div><h3 style="margin-bottom:4px;">Priority radar</h3><div class="small">The most important untouched leads and follow-ups due now.</div></div>
         <div><button class="secondary" onclick="refreshWorkspace()">Refresh workspace</button><div class="workspaceRefreshState" id="workspaceRefreshState"></div></div>
@@ -1272,9 +1337,9 @@
       <div class="todayList" id="todayList"></div>
     </div>
 
-    <section class="workspaceShell" id="leadsSection">
+    <section class="workspaceShell" id="leadsSection" data-shell-section="leads opportunities">
       <div class="workspaceHeader">
-        <div><div class="v24Eyebrow">Lead workspace</div><h2>Accounts, intelligence and outreach</h2><p>Review prospects, understand the commercial opportunity and move each lead through a controlled outreach process.</p></div>
+        <div><div class="v24Eyebrow">Lead workspace</div><h2>Lead intelligence workspace</h2><p>Review prospects, understand the commercial opportunity and move each lead through a controlled outreach process.</p></div>
         <div class="workspaceActions"><button class="secondary" onclick="document.getElementById('leadImporter').open=true;document.getElementById('leadImporter').scrollIntoView({behavior:'smooth',block:'start'})">Import leads</button><button class="blue" onclick="runAIForActiveLead()">Analyze active lead</button></div>
       </div>
 
@@ -2175,7 +2240,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v4.0.0\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v4.1.0\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -2704,7 +2769,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v4.0.0 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v4.1.0 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
@@ -3793,5 +3858,61 @@ function exportConnectedLogsCSV(){
 
 
 <div style="position:fixed;left:18px;bottom:12px;z-index:9999;font-size:11px;line-height:1.35;color:#8fa0b5;opacity:.9;max-width:240px;pointer-events:none;">© 2026 MarginBusiness FZE LLC · Proprietary beta software · Unauthorized copying, resale, reverse engineering or distribution prohibited.</div>
+
+<script>
+(function(){
+  const pageConfig = {
+    dashboard:{eyebrow:'Overview',title:'Dashboard',description:'Your priorities, campaign readiness and next best action.',actions:'dashboard'},
+    leads:{eyebrow:'Intelligence',title:'Lead Database',description:'Review, filter and manage every prospect in one professional workspace.',actions:'leads'},
+    opportunities:{eyebrow:'Intelligence',title:'Opportunity Radar',description:'Prioritise leads by commercial fit, evidence and outreach readiness.',actions:'opportunities'},
+    campaigns:{eyebrow:'Outreach',title:'Campaigns',description:'Build sequences, prepare batches and launch controlled outreach.',actions:'campaigns'},
+    activity:{eyebrow:'Outreach',title:'Activity',description:'Review system and outreach activity without cluttering your dashboard.',actions:'activity'},
+    results:{eyebrow:'Results',title:'Performance',description:'Track sends, replies, recovery and campaign outcomes.',actions:'results'},
+    settings:{eyebrow:'Workspace',title:'Integrations & Settings',description:'Manage providers, system health, database controls and advanced settings.',actions:'settings'}
+  };
+  const sectionMap = {
+    missionSection:'dashboard',v24SetupHub:'dashboard',campaignSection:'campaigns',sendingSection:'campaigns',
+    backOfficeSection:'leads',leadsSection:'leads',opportunitySection:'opportunities',connectedLogsSection:'activity',
+    performanceSection:'results',sendRecoverySection:'results',settingsSection:'settings'
+  };
+  function actionHtml(page){
+    if(page==='dashboard') return '<button class="secondary" onclick="openLeadImporter()">Import leads</button><button class="primary" onclick="openCampaignTemplateModal()">Create campaign</button>';
+    if(page==='leads') return '<button class="secondary" onclick="openLeadImporter()">Import leads</button><button class="blue" onclick="runAIForActiveLead()">Analyze active lead</button>';
+    if(page==='opportunities') return '<button class="secondary" onclick="refreshWorkspace()">Refresh radar</button><button class="primary" onclick="runAIForActiveLead()">Analyze active lead</button>';
+    if(page==='campaigns') return '<button class="secondary" onclick="openCampaignTemplateModal()">New campaign</button><button class="primary" onclick="prepareLockedBatch(true)">Prepare batch</button>';
+    if(page==='activity') return '<button class="secondary" onclick="refreshConnectedLogs()">Refresh activity</button><button class="primary" onclick="runSystemDiagnostics()">Run diagnostics</button>';
+    if(page==='results') return '<button class="secondary" onclick="refreshPerformancePanel()">Refresh results</button><button class="primary" onclick="exportPerformanceCSV()">Export</button>';
+    return '<button class="secondary" onclick="forceSaveAll()">Save workspace</button><button class="primary" onclick="runSystemDiagnostics()">System check</button>';
+  }
+  window.openShellPage = function(page, scrollTarget){
+    if(!pageConfig[page]) page='dashboard';
+    document.body.className = document.body.className.replace(/\bshellPage-\S+/g,'').trim();
+    document.body.classList.add('shellPage-'+page);
+    document.querySelectorAll('[data-shell-section]').forEach(el=>el.classList.remove('shell-visible'));
+    document.querySelectorAll('[data-shell-section]').forEach(el=>{
+      const pages=(el.getAttribute('data-shell-section')||'').split(/\s+/);
+      if(pages.includes(page)) el.classList.add('shell-visible');
+    });
+    document.querySelectorAll('.shellNav').forEach(b=>b.classList.toggle('active',b.dataset.shellPage===page));
+    const c=pageConfig[page];
+    const e=document.getElementById('shellPageEyebrow'),t=document.getElementById('shellPageTitle'),d=document.getElementById('shellPageDescription'),a=document.getElementById('shellPageActions');
+    if(e)e.textContent=c.eyebrow;if(t)t.textContent=c.title;if(d)d.textContent=c.description;if(a)a.innerHTML=actionHtml(page);
+    try{localStorage.setItem('marginLeadsShellPage',page)}catch(_){ }
+    window.scrollTo({top:0,behavior:'smooth'});
+    setTimeout(()=>{if(scrollTarget){const el=document.getElementById(scrollTarget);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}},80);
+    if(page==='activity' || page==='settings'){try{refreshConnectedLogs()}catch(_){}}
+  };
+  const previousScroll = window.scrollToSection;
+  window.scrollToSection = function(id){
+    const page=sectionMap[id] || 'dashboard';
+    openShellPage(page,id);
+  };
+  document.addEventListener('DOMContentLoaded',()=>{
+    let page='dashboard';try{page=localStorage.getItem('marginLeadsShellPage')||'dashboard'}catch(_){ }
+    openShellPage(page);
+  });
+})();
+</script>
+
 </body>
 </html>
