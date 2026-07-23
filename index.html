@@ -1336,6 +1336,19 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
       </details>
     </div>
 
+
+    <section class="card adminPanel adminOnly" id="adminConsoleSection" data-shell-section="settings">
+      <div class="sectionHead">
+        <div>
+          <div class="eyebrow">PLATFORM ADMINISTRATION</div>
+          <h2>Customer workspace controls</h2>
+          <div class="small">Manage customer status and Margin Credits. This section is server-authorised and hidden from normal accounts.</div>
+        </div>
+        <div class="actions"><button class="secondary" onclick="loadAdminConsole()">Refresh customers</button></div>
+      </div>
+      <div id="adminConsoleBody"><div class="small">Open Admin Console to load customer workspaces.</div></div>
+    </section>
+
     <div class="card today compactRadar" id="opportunitySection" data-shell-section="opportunities">
       <div class="todayTop">
         <div><h3 style="margin-bottom:4px;">Priority radar</h3><div class="small">The most important untouched leads and follow-ups due now.</div></div>
@@ -1412,7 +1425,7 @@ async function betaResetPassword(){
   if(!mlSupabase){authStatus('Authentication is not configured yet.','error');return}const email=document.getElementById('authEmail').value.trim();if(!email){authStatus('Enter your email address first.','error');return}const {error}=await mlSupabase.auth.resetPasswordForEmail(email,{redirectTo:location.origin});authStatus(error?error.message:'Password reset email sent. Check your inbox.',error?'error':'good');
 }
 async function showPasswordUpdate(){const next=prompt('Enter your new Margin Leads password (minimum 8 characters):');if(!next)return;if(next.length<8){alert('Please use at least 8 characters.');return}const {error}=await mlSupabase.auth.updateUser({password:next});alert(error?error.message:'Password updated successfully.');}
-async function betaSignOut(){if(mlSupabase)await mlSupabase.auth.signOut();location.reload();}
+async function betaSignOut(){window.mlIsPlatformAdmin=false;document.getElementById('adminNavBtn')?.classList.remove('visible');document.getElementById('adminConsoleSection')?.classList.remove('visible','shell-visible');if(mlSupabase)await mlSupabase.auth.signOut();location.reload();}
 
 let mlStateSyncTimer=null;
 let mlStateHydrating=false;
@@ -1486,6 +1499,9 @@ async function mlAccessToken(){if(!mlSupabase)return'';const {data:{session}}=aw
 async function mlAuthorizedFetch(url,options={}){const token=await mlAccessToken();const headers={...(options.headers||{}),...(token?{Authorization:`Bearer ${token}`}:{})};return fetch(url,{...options,headers});}
 async function loadSecureWorkspace(){
   const banner=document.getElementById('connectionBanner');
+  window.mlIsPlatformAdmin=false;
+  document.getElementById('adminNavBtn')?.classList.remove('visible');
+  document.getElementById('adminConsoleSection')?.classList.remove('visible','shell-visible');
   try{
     const r=await mlAuthorizedFetch('/api/workspace',{cache:'no-store'});const d=await r.json();
     if(!r.ok||!d.ok)throw new Error(d.error||'Workspace unavailable');
@@ -1512,7 +1528,7 @@ async function loadSecureWorkspace(){
   }
 }
 
-async function openAdminConsole(){if(!window.mlIsPlatformAdmin){showToast('Admin access required');return}document.getElementById('adminConsoleSection')?.classList.add('visible');document.getElementById('adminConsoleSection')?.scrollIntoView({behavior:'smooth'});await loadAdminConsole();}
+async function openAdminConsole(){if(!window.mlIsPlatformAdmin){showToast('Admin access required');return}openShellPage('settings');const section=document.getElementById('adminConsoleSection');section?.classList.add('visible');section?.classList.add('shell-visible');setTimeout(()=>section?.scrollIntoView({behavior:'smooth',block:'start'}),80);await loadAdminConsole();}
 async function loadAdminConsole(){const box=document.getElementById('adminConsoleBody');box.innerHTML='<div class="small">Loading customer workspaces…</div>';try{const r=await mlAuthorizedFetch('/api/admin',{cache:'no-store'}),d=await r.json();if(!r.ok)throw new Error(d.error||'Admin access failed');const rows=d.workspaces||[];box.innerHTML=`<table class="adminTable"><thead><tr><th>Customer</th><th>Plan</th><th>Credits</th><th>Status</th><th>Controls</th></tr></thead><tbody>${rows.map(w=>{const sub=Array.isArray(w.workspace_subscriptions)?w.workspace_subscriptions[0]:w.workspace_subscriptions||{};const bal=Array.isArray(w.workspace_credit_balances)?w.workspace_credit_balances[0]:w.workspace_credit_balances||{};return `<tr><td><strong>${escapeHtml(w.name||'Workspace')}</strong><br><span class="small">${escapeHtml(w.slug||'')}</span></td><td>${escapeHtml(sub.plan_code||w.plan||'trial')}</td><td>${Number(bal.balance||0)}</td><td>${escapeHtml(w.account_status||'active')}</td><td><div class="adminActions"><button class="secondary" onclick="adminGrantCredits('${w.id}',25)">+25 credits</button><button class="secondary" onclick="adminSetStatus('${w.id}','${w.account_status==='suspended'?'active':'suspended'}')">${w.account_status==='suspended'?'Activate':'Suspend'}</button></div></td></tr>`}).join('')}</tbody></table>`}catch(e){box.innerHTML=`<div class="hint">${escapeHtml(e.message)}</div>`}}
 async function adminGrantCredits(workspaceId,amount){const r=await mlAuthorizedFetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'grant_credits',workspaceId,amount})}),d=await r.json();if(!r.ok){showToast(d.error||'Could not grant credits');return}showToast(`${amount} credits granted`);loadAdminConsole();}
 async function adminSetStatus(workspaceId,status){const r=await mlAuthorizedFetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'set_status',workspaceId,status})}),d=await r.json();if(!r.ok){showToast(d.error||'Could not update customer');return}showToast(`Workspace ${status}`);loadAdminConsole();}
