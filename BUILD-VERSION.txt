@@ -1,2 +1,1 @@
-MarginBusiness Leads v4.0.0
-Professional customer interface built on the stable multitenant backend.
+MarginBusiness Leads v4.0.0 SAFE — original interface preserved
