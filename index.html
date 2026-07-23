@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v4.1.2 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v4.1.3 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v4.1.2'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v4.1.3'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -782,14 +782,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
 
 
-/* v4.1.2 security/UI fix:
+/* v4.1.3 security/UI fix:
    the generic .sideBtn rule uses display:flex!important, so adminOnly needs
    a stronger selector to remain hidden until the server confirms platform admin. */
 .sideBtn.adminOnly:not(.visible){display:none!important}
 .sideBtn.adminOnly.visible{display:flex!important}
 
 
-/* v4.1.2 admin modal and private provider connection */
+/* v4.1.3 admin modal and private provider connection */
 .mlModalBackdrop{position:fixed;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
 .mlModalBackdrop.open{display:flex}
 .mlModal{width:min(1180px,96vw);max-height:88vh;overflow:auto;background:#0a1725;border:1px solid #27425b;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:22px}
@@ -805,12 +805,12 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v4.1.2</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v4.1.3</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
         <h2>Welcome back</h2><p>Sign in to your private Margin Leads workspace.</p>
-        <div class="authSetup" id="authSetupNotice">Authentication is not configured yet. Add the Supabase environment variables in Vercel, then redeploy.</div>
+        <div class="authSetup" id="authSetupNotice">Authentication is not configured yet. Contact the platform administrator.</div>
         <div class="authField"><label>Email address</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@company.com" onkeydown="if(event.key==='Enter')betaSignIn()"></div>
         <div class="authField"><label>Password</label><input id="authPassword" type="password" autocomplete="current-password" placeholder="Your password" onkeydown="if(event.key==='Enter')betaSignIn()"></div>
         <div class="authRow"><span class="small">Invite-only beta access</span><button class="authLink" onclick="betaResetPassword()">Forgot password?</button></div>
@@ -848,7 +848,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
   <aside class="saasSidebar" aria-label="Margin Leads navigation">
     <div class="sideBrand">
       <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="sideBrandLogo" />
-      <span>AI outreach intelligence · Customer Workspace v4.1.2</span>
+      <span>AI outreach intelligence · Customer Workspace v4.1.3</span>
     </div>
     <div class="sideMenu professionalMenu">
       <div class="sideGroupLabel">Overview</div>
@@ -879,9 +879,9 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="brand-logo" />
       </div>
       <div class="titleBlock">
-        <div class="badge">MarginBusiness Leads · Private Beta v4.1.2</div>
+        <div class="badge">MarginBusiness Leads · Private Beta v4.1.3</div>
         <h1>Turn ecommerce opportunities into qualified conversations</h1>
-        <div class="versionTag">Version 4.1.2 · Mainstream Readiness</div>
+        <div class="versionTag">Version 4.1.3 · Mainstream Readiness</div>
         <div class="subtitle">Create a campaign, import qualified prospects, review your outreach, and send controlled follow-up batches from one clear workspace.</div>
       </div>
       <div class="actions" style="margin-top:0; justify-content:flex-end;">
@@ -963,7 +963,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
           <div class="connectedIcon">↗</div>
           <div>
             <h3 style="margin-bottom:4px;">System activity</h3>
-            <div class="small">One view for Vercel API health, bridge authentication, provider readiness, database persistence, and the latest outreach activity.</div>
+            <div class="small">One view for platform health, workspace authentication, provider readiness, database persistence, and recent outreach activity.</div>
           </div>
         </div>
         <div class="connectedActions">
@@ -974,7 +974,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
       </div>
       <div class="healthStrip" id="connectedHealthStrip">
         <div class="healthNode"><span>Frontend</span><strong>Ready</strong><small>Margin Leads loaded in this browser.</small></div>
-        <div class="healthNode"><span>Vercel API</span><strong>Not tested</strong><small>Run diagnostics to check the function.</small></div>
+        <div class="healthNode"><span>Platform API</span><strong>Not tested</strong><small>Run diagnostics to check the function.</small></div>
         <div class="healthNode"><span>Bridge token</span><strong>Not tested</strong><small>Authentication has not been checked.</small></div>
         <div class="healthNode"><span>Brevo</span><strong>Not tested</strong><small>Provider configuration has not been checked.</small></div>
         <div class="healthNode"><span>Database</span><strong>Not tested</strong><small>Persistent server logs have not been checked.</small></div>
@@ -990,7 +990,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         </div>
       </div>
       <div class="activityTableWrap"><div id="connectedActivityTable" class="activityEmpty">No server activity loaded yet.</div></div>
-      <div class="premiumNotice" id="connectedPersistenceNote">Persistent logs activate automatically when a Postgres database is connected to this Vercel project. Until then, Margin Leads continues keeping its existing browser-side send history.</div>
+      <div class="premiumNotice" id="connectedPersistenceNote">Persistent logs activate automatically when the workspace database is connected. Until then, Margin Leads continues keeping its existing browser-side send history.</div>
     </div>
 
     <div class="card performancePanel" id="performanceSection" data-shell-section="results">
@@ -1100,16 +1100,6 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         </div>
       </div>
       <div class="dataVaultSummary" id="dataVaultSummary"></div>
-      <details class="softPanel" id="accessPrepPanel">
-        <summary><strong>User & access preparation</strong> · future Vercel login model</summary>
-        <div class="small" style="margin-top:10px;">v4.1.2 verifies every send against the signed-in Supabase user, workspace membership, and role. Provider secrets remain server-side in Vercel Environment Variables.</div>
-        <div class="accessGrid">
-          <div><label>Operator name</label><input id="operatorName" placeholder="Example: Omar" oninput="saveOperatorProfile()" /></div>
-          <div><label>Operator role</label><select id="operatorRole" onchange="saveOperatorProfile()"><option value="CEO / Admin">CEO / Admin</option><option value="Growth Operator">Growth Operator</option><option value="Outreach Assistant">Outreach Assistant</option><option value="Read-only Review">Read-only Review</option></select></div>
-          <div><label>Future access level</label><select id="operatorAccess" onchange="saveOperatorProfile()"><option value="Owner">Owner</option><option value="Manager">Manager</option><option value="Sender">Sender</option><option value="Reviewer">Reviewer</option></select></div>
-        </div>
-        <div class="accessWarning">Important: this section is a product-planning layer, not real security. Do not add real team passwords here. Real access belongs in the Vercel rebuild with database-backed users.</div>
-      </details>
       <div class="backOfficePanel" id="backOfficePanel">
         <div class="backOfficeHead">
           <div>
@@ -1297,73 +1287,79 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
           </div>
         </div>
         
-        <div class="providerPrivateBox">
-          <h3 style="margin:0 0 6px">Your private provider connection</h3>
-          <div class="small">Customers cannot use the MarginBusiness Brevo account. Each workspace must save its own API key.</div>
-          <div class="brevoGrid" style="margin-top:12px">
+        <div class="providerPrivateBox" id="emailProviderConnection">
+          <div class="sectionHead" style="margin-bottom:14px">
+            <div>
+              <div class="eyebrow">EMAIL SENDING</div>
+              <h3 style="margin:2px 0 6px">Connect your email provider</h3>
+              <div class="small">This connection belongs only to your workspace. No other customer can use or view it.</div>
+            </div>
+            <div class="chip" id="providerConnectionChip">Checking…</div>
+          </div>
+
+          <div class="brevoGrid">
+            <div>
+              <label>Sending provider</label>
+              <select id="mailProvider" onchange="saveBrevoSettings();loadWorkspaceProviderStatus()">
+                <option value="brevo">Brevo</option>
+                <option value="sendgrid">SendGrid</option>
+                <option value="resend">Resend</option>
+                <option value="mailgun">Mailgun</option>
+              </select>
+            </div>
             <div>
               <label>Provider API key</label>
-              <input id="workspaceProviderApiKey" type="password" autocomplete="new-password" placeholder="Paste your own provider API key" />
+              <input id="workspaceProviderApiKey" type="password" autocomplete="new-password" placeholder="Paste the API key from your provider account" />
             </div>
             <div id="mailgunDomainWrap" style="display:none">
-              <label>Mailgun domain</label>
+              <label>Mailgun sending domain</label>
               <input id="workspaceProviderDomain" placeholder="mg.yourdomain.com" />
+            </div>
+            <div>
+              <label>From name</label>
+              <input id="brevoFromName" value="Omar from MarginBusiness" />
+            </div>
+            <div>
+              <label>From email</label>
+              <input id="brevoFromEmail" placeholder="you@yourdomain.com" />
+            </div>
+            <div>
+              <label>Reply-to email</label>
+              <input id="brevoReplyTo" placeholder="Optional reply-to address" />
+            </div>
+            <div>
+              <label>Unsubscribe email</label>
+              <input id="brevoOptOut" placeholder="Optional unsubscribe address" />
+            </div>
+          </div>
+
+          <div class="actions" style="margin-top:14px">
+            <button type="button" class="primary" onclick="saveProviderAndSenderSettings()">Save connection</button>
+            <button type="button" class="secondary" onclick="testBrevoBridge()">Test connection</button>
+            <button type="button" class="danger" onclick="disconnectWorkspaceProvider()">Disconnect</button>
+          </div>
+          <div class="small" id="workspaceProviderStatus" style="margin-top:10px">Checking your workspace connection…</div>
+        </div>
+
+        <details class="softPanel adminOnly" id="providerAdvancedPanel">
+          <summary><strong>Platform mail diagnostics</strong> · administrator only</summary>
+          <div class="small" style="margin-top:10px">Technical routing fields are hidden from customer accounts.</div>
+          <div class="brevoGrid" style="margin-top:12px">
+            <div>
+              <label>Mail route</label>
+              <input id="brevoBridgeUrl" value="/api/mail-bridge" placeholder="/api/mail-bridge" />
+            </div>
+            <div>
+              <label>Legacy route token</label>
+              <input id="brevoBridgeToken" type="password" placeholder="Optional migration fallback" />
             </div>
           </div>
           <div class="actions">
-            <button type="button" class="primary" onclick="saveWorkspaceProviderConnection()">Save private connection</button>
-            <button type="button" class="danger" onclick="disconnectWorkspaceProvider()">Disconnect</button>
+            <button class="secondary" onclick="saveBrevoSettings()">Save technical settings</button>
           </div>
-          <div class="small" id="workspaceProviderStatus">Checking your workspace connection…</div>
-        </div>
+        </details>
 
-        <div class="brevoGrid">
-          <div>
-            <label>Sending provider</label>
-            <select id="mailProvider" onchange="saveBrevoSettings();loadWorkspaceProviderStatus()">
-              <option value="brevo">Brevo</option>
-              <option value="sendgrid">SendGrid</option>
-              <option value="mailgun">Mailgun</option>
-              <option value="resend">Resend</option>
-            </select>
-          </div>
-          <div>
-            <label>Bridge URL</label>
-            <input id="brevoBridgeUrl" value="/api/mail-bridge" placeholder="/api/mail-bridge" />
-          </div>
-          <div>
-            <label>Legacy bridge token (optional)</label>
-            <input id="brevoBridgeToken" type="password" placeholder="Optional fallback during migration" />
-          </div>
-          <div>
-            <label>From name</label>
-            <input id="brevoFromName" value="Omar from MarginBusiness" />
-          </div>
-          <div>
-            <label>From email</label>
-            <input id="brevoFromEmail" placeholder="omar@yourdomain.com" />
-          </div>
-        </div>
-        <div class="brevoGrid" style="grid-template-columns:1fr 1fr 1fr;">
-          <div>
-            <label>Reply-to email</label>
-            <input id="brevoReplyTo" placeholder="reply@yourdomain.com" />
-          </div>
-          <div>
-            <label>Opt-out email</label>
-            <input id="brevoOptOutEmail" placeholder="reply@yourdomain.com" />
-          </div>
-          <div>
-            <label>Compliance line</label>
-            <select id="brevoComplianceLine">
-              <option value="soft">Soft: If this is not relevant, reply “not interested” and I will not follow up.</option>
-              <option value="direct">Direct: To opt out, reply “unsubscribe” and I will not contact you again.</option>
-              <option value="none">None</option>
-            </select>
-          </div>
-        </div>
-        <label class="tinyCheck"><input id="brevoLiveConfirm" type="checkbox" /> I understand this will send real emails through the selected provider when I click send.</label>
-        <div class="brevoStatus" id="brevoStatus">Bridge not tested yet. Add the required Environment Variables in Vercel, redeploy, then test the bridge.</div>
+        <div class="brevoStatus" id="brevoStatus">Connection not tested yet. Connect your provider above, then test the connection.</div>
       </details>
     </div>
 
@@ -1516,6 +1512,7 @@ function closePrivateWorkspace(){document.getElementById('loginGate').style.disp
 async function mlAccessToken(){if(!mlSupabase)return'';const {data:{session}}=await mlSupabase.auth.getSession();return session?.access_token||'';}
 async function mlAuthorizedFetch(url,options={}){const token=await mlAccessToken();const headers={...(options.headers||{}),...(token?{Authorization:`Bearer ${token}`}:{})};return fetch(url,{...options,headers});}
 
+async function saveProviderAndSenderSettings(){saveBrevoSettings();await saveWorkspaceProviderConnection();}
 async function loadWorkspaceProviderStatus(){
   const provider=document.getElementById('mailProvider')?.value||'brevo';
   const status=document.getElementById('workspaceProviderStatus');
@@ -1528,12 +1525,16 @@ async function loadWorkspaceProviderStatus(){
     const d=await r.json();
     if(!r.ok)throw new Error(d.error||'Could not check provider');
     status.className='small '+(d.configured?'statusGood':'statusBad');
+    const chip=document.getElementById('providerConnectionChip');
+    if(chip){chip.textContent=d.configured?'Connected':'Not connected';chip.className='chip '+(d.configured?'good':'warn')}
     status.textContent=d.configured?`${provider.toUpperCase()} is privately connected to this workspace.`:`No private ${provider} connection. Sending is disabled until this workspace connects its own account.`;
     const domain=document.getElementById('workspaceProviderDomain');
     if(domain&&d.settings?.domain)domain.value=d.settings.domain;
   }catch(e){
     status.className='small statusBad';
     status.textContent=e.message;
+    const chip=document.getElementById('providerConnectionChip');
+    if(chip){chip.textContent='Connection error';chip.className='chip warn'}
   }
 }
 async function saveWorkspaceProviderConnection(){
@@ -2341,7 +2342,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v4.1.2\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v4.1.3\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -2870,7 +2871,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v4.1.2 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v4.1.3 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
@@ -3112,7 +3113,7 @@ function saveBrevoSettings(){
     complianceLine:(document.getElementById("brevoComplianceLine")?.value || "soft")
   };
   localStorage.setItem(STORAGE_BREVO, JSON.stringify(settings)); scheduleWorkspaceStateSync();
-  setBrevoStatus("Mail bridge settings saved locally in this browser. API keys stay only in Vercel Environment Variables.", false);
+  setBrevoStatus("Mail sender settings saved. Provider API keys remain encrypted and server-side.", false);
   showToast("Mail settings saved");
   return settings;
 }
@@ -3168,7 +3169,7 @@ async function testBrevoBridge(){
   } catch(err){
     console.error(err);
     setBrevoStatus(`Secure bridge test failed: ${err.message}
-Sign in again and confirm the provider API key is configured in Vercel.`, true);
+Sign in again and confirm your workspace provider connection is configured.`, true);
   }
 }
 async function sendBatchViaBrevo(){
@@ -3888,7 +3889,7 @@ async function bridgeAction(payload){
 async function runSystemDiagnostics(){
   setConnectedHealth([
     healthNode('Frontend','Ready','Margin Leads loaded in this browser.','good'),
-    healthNode('Vercel API','Checking…','Contacting /api/mail-bridge.'),
+    healthNode('Platform API','Checking…','Contacting /api/mail-bridge.'),
     healthNode('Workspace access','Checking…','Validating your signed-in session and role.'),
     healthNode('Provider','Checking…','Reading provider readiness.'),
     healthNode('Database','Checking…','Reading persistence status.')
@@ -3897,13 +3898,13 @@ async function runSystemDiagnostics(){
     const d=await bridgeAction({action:'ping'});
     setConnectedHealth([
       healthNode('Frontend','Ready','Margin Leads loaded in this browser.','good'),
-      healthNode('Vercel API','Connected',`${d.runtime||'Vercel Node'} · ${d.serverDate?formatLogTime(d.serverDate):'online'}`,'good'),
+      healthNode('Platform API','Connected',`${${d.serverDate?formatLogTime(d.serverDate):'online'}`,'good'),
       healthNode('Workspace access','Authenticated',`${d.workspace?.name||'Private Workspace'} · ${d.role||'member'}`,'good'),
-      healthNode((d.selectedProvider||'Provider').toUpperCase(),d.providerConfigured?'Configured':'Missing API key',d.providerConfigured?'Provider is ready for sending.':'Add the provider API key in Vercel.',d.providerConfigured?'good':'bad'),
+      healthNode((d.selectedProvider||'Provider').toUpperCase(),d.providerConfigured?'Configured':'Missing API key',d.providerConfigured?'Provider is ready for sending.':'Connect your own provider in Integrations & Settings.',d.providerConfigured?'good':'bad'),
       healthNode('Database',d.databaseConfigured?'Persistent':'Local fallback',d.databaseConfigured?'Server activity is stored in Postgres.':'Connect Postgres for cross-device logs.',d.databaseConfigured?'good':'warn')
     ]);
     const note=document.getElementById('connectedPersistenceNote');
-    if(note)note.textContent=d.databaseConfigured?'Persistent server logs are active. Sends, failures, provider events, campaigns, recipients and timestamps are stored in the connected database.':'The Vercel API is online, but no database is connected yet. Browser-side history still works; connect Postgres to activate durable cross-device logs.';
+    if(note)note.textContent=d.databaseConfigured?'Persistent server logs are active. Sends, failures, provider events, campaigns, recipients and timestamps are stored in the connected database.':'The platform API is online, but no database is connected yet. Browser-side history still works; connect Postgres to activate durable cross-device logs.';
     await refreshConnectedLogs();
     showToast('System diagnostics complete');
   }catch(err){
@@ -3911,7 +3912,7 @@ async function runSystemDiagnostics(){
     const tokenIssue=/token|403|auth/i.test(msg);
     setConnectedHealth([
       healthNode('Frontend','Ready','Margin Leads loaded in this browser.','good'),
-      healthNode('Vercel API',tokenIssue?'Responding':'Check deployment',tokenIssue?'The API replied, so the route is live.':msg,tokenIssue?'good':'bad'),
+      healthNode('Platform API',tokenIssue?'Responding':'Check deployment',tokenIssue?'The API replied, so the route is live.':msg,tokenIssue?'good':'bad'),
       healthNode('Workspace access','Failed',msg,'bad'),
       healthNode('Provider','Not checked','Authentication must pass first.','warn'),
       healthNode('Database','Not checked','Authentication must pass first.','warn')
