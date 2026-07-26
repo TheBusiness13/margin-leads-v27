@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v4.1.8 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v5.0 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v4.1.8'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v5.0'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -782,14 +782,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
 
 
-/* v4.1.8 security/UI fix:
+/* v5.0 security/UI fix:
    the generic .sideBtn rule uses display:flex!important, so adminOnly needs
    a stronger selector to remain hidden until the server confirms platform admin. */
 .sideBtn.adminOnly:not(.visible){display:none!important}
 .sideBtn.adminOnly.visible{display:flex!important}
 
 
-/* v4.1.8 admin modal and private provider connection */
+/* v5.0 admin modal and private provider connection */
 .mlModalBackdrop{position:fixed;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
 .mlModalBackdrop.open{display:flex}
 .mlModal{width:min(1180px,96vw);max-height:88vh;overflow:auto;background:#0a1725;border:1px solid #27425b;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:22px}
@@ -799,7 +799,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 .providerPrivateBox .statusGood{color:#8bf0c7}.providerPrivateBox .statusBad{color:#f7c87a}
 
 
-/* v4.1.8 premium application header */
+/* v5.0 premium application header */
 .premiumAppHeader{
   display:flex!important;
   align-items:center!important;
@@ -898,6 +898,39 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
   .premiumHeaderActions{grid-template-columns:1fr!important}
 }
 
+
+/* v5.0 Revenue Command Center */
+:root{--v5-panel:#0a1625;--v5-panel2:#0d1b2d;--v5-line:rgba(148,163,184,.14);--v5-muted:#8494aa}
+.sideBrand span{font-size:10px!important;letter-spacing:.04em!important;text-transform:uppercase!important}
+.sideBtn b{display:flex!important;align-items:center!important;gap:11px!important}
+.sideBtn b i{width:19px!important;font-style:normal!important;color:#708198!important;text-align:center!important;font-size:15px!important}
+.sideBtn.active b i{color:#52d9aa!important}
+.sideGroupLabel{font-size:9px!important;letter-spacing:.15em!important;margin:15px 10px 5px!important}
+.v5AppHeader{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:24px!important;min-height:auto!important;padding:5px 2px 18px!important;margin:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.v5HeaderCopy h1{font-size:28px!important;line-height:1.1!important;margin:3px 0 7px!important;letter-spacing:-.035em!important}
+.v5HeaderCopy p{margin:0!important;color:#8494aa!important;font-size:13px!important}
+.v5HeaderActions{display:flex!important;gap:9px!important}
+.professionalPageBar{padding:16px 0 17px!important;border-top:1px solid rgba(148,163,184,.08)!important}
+.v5CommandCenter{margin-bottom:16px}
+.v5MetricGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.v5Metric,.v5Panel{background:linear-gradient(145deg,#0b1828,#091522);border:1px solid var(--v5-line);border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.13)}
+.v5Metric{padding:18px 19px}.v5Metric span{display:block;color:#8c9bb0;font-size:11px;font-weight:700}.v5Metric strong{display:block;font-size:30px;letter-spacing:-.04em;margin:7px 0 3px}.v5Metric small{color:#64748b;font-size:10px}
+.v5DashboardGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:12px}
+.v5Panel{padding:21px}.v5Wide{grid-column:1/-1}.v5PanelHead{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}.v5Panel h3{font-size:17px;margin:4px 0 0}.v5Kicker{font-size:9px;letter-spacing:.14em;color:#59d7aa;font-weight:800}.v5StatusDot{width:9px;height:9px;border-radius:50%;background:#34d399;box-shadow:0 0 0 6px rgba(52,211,153,.08)}
+.v5NextAction p{color:#96a6ba;font-size:13px;line-height:1.65;max-width:620px}.v5ActionRow{display:flex;gap:8px;margin-top:19px}
+.v5TextButton{padding:0!important;background:transparent!important;color:#8da5c8!important;font-size:11px!important}
+.v5PipelineBars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.v5PipelineBars div{padding:13px;border-radius:11px;background:rgba(148,163,184,.045);border:1px solid rgba(148,163,184,.08)}.v5PipelineBars span{display:block;color:#78899f;font-size:10px}.v5PipelineBars b{display:block;font-size:20px;margin-top:4px}
+.v5PriorityList{display:grid;gap:7px}.v5PriorityItem{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;padding:12px 14px!important;background:rgba(148,163,184,.035)!important;border:1px solid rgba(148,163,184,.08)!important;color:#fff!important;border-radius:11px!important}.v5PriorityItem:hover{background:rgba(59,130,246,.07)!important;border-color:rgba(96,165,250,.2)!important}.v5PriorityItem span{display:flex;flex-direction:column;gap:2px}.v5PriorityItem small{color:#718298;font-size:10px}.v5PriorityItem b{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:rgba(52,211,153,.09);color:#77e4bd}
+.v5Empty{padding:18px;color:#718298;text-align:center;border:1px dashed rgba(148,163,184,.14);border-radius:11px}
+.v5LeadStages{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:12px}.v5LeadStages div{padding:13px 15px;background:#0a1625;border:1px solid var(--v5-line);border-radius:12px}.v5LeadStages span{display:block;color:#7e8da1;font-size:10px}.v5LeadStages strong{display:block;font-size:20px;margin-top:3px}
+.v5SetupHidden{display:none!important}
+.workspaceHeader{padding-bottom:15px!important;border-bottom:1px solid rgba(148,163,184,.1)!important;margin-bottom:15px!important}
+.workspaceHeader h2{font-size:21px!important}.workspaceHeader p{font-size:12px!important;color:#8392a6!important}
+.professionalLeads{gap:12px!important}.leadQueuePanel,.details{border-radius:15px!important}
+.versionTag{display:none!important}
+@media(max-width:1100px){.v5MetricGrid{grid-template-columns:repeat(2,1fr)}.v5DashboardGrid{grid-template-columns:1fr}.v5Wide{grid-column:auto}.v5PipelineBars{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.v5AppHeader{align-items:flex-start!important;flex-direction:column!important}.v5HeaderActions{width:100%}.v5HeaderActions button{flex:1}.v5MetricGrid,.v5LeadStages{grid-template-columns:1fr 1fr}.v5PipelineBars{grid-template-columns:1fr 1fr}}
+
 </style>
 </head>
 <body>
@@ -905,7 +938,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v4.1.8</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v5.0</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -948,22 +981,19 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
   <aside class="saasSidebar" aria-label="Margin Leads navigation">
     <div class="sideBrand">
       <img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="sideBrandLogo" />
-      <span>AI outreach intelligence · Customer Workspace v4.1.8</span>
+      <span>Revenue intelligence workspace</span>
     </div>
     <div class="sideMenu professionalMenu">
-      <div class="sideGroupLabel">Overview</div>
-      <button class="sideBtn shellNav active" data-shell-page="dashboard" onclick="openShellPage('dashboard')"><b>Dashboard</b><span>Overview</span></button>
-      <div class="sideGroupLabel">Intelligence</div>
-      <button class="sideBtn shellNav" data-shell-page="leads" onclick="openShellPage('leads')"><b>Lead Database</b><span>Manage</span></button>
-      <button class="sideBtn shellNav" data-shell-page="opportunities" onclick="openShellPage('opportunities')"><b>Opportunity Radar</b><span>AI</span></button>
-      <div class="sideGroupLabel">Outreach</div>
-      <button class="sideBtn shellNav" data-shell-page="campaigns" onclick="openShellPage('campaigns')"><b>Campaigns</b><span>Build</span></button>
-      <button class="sideBtn shellNav" data-shell-page="activity" onclick="openShellPage('activity')"><b>Activity</b><span>Live</span></button>
-      <div class="sideGroupLabel">Results</div>
-      <button class="sideBtn shellNav" data-shell-page="results" onclick="openShellPage('results')"><b>Performance</b><span>Results</span></button>
-      <div class="sideGroupLabel">Workspace</div>
-      <button class="sideBtn shellNav" data-shell-page="settings" onclick="openShellPage('settings')"><b>Integrations & Settings</b><span>Manage</span></button>
-      <button type="button" class="sideBtn adminOnly" id="adminNavBtn" onclick="openAdminConsole(event)"><b>Admin console</b><span>Owner</span></button>
+      <div class="sideGroupLabel">WORKSPACE</div>
+      <button class="sideBtn shellNav active" data-shell-page="dashboard" onclick="openShellPage('dashboard')"><b><i>◫</i> Overview</b></button>
+      <button class="sideBtn shellNav" data-shell-page="leads" onclick="openShellPage('leads')"><b><i>◎</i> Leads</b></button>
+      <button class="sideBtn shellNav" data-shell-page="opportunities" onclick="openShellPage('opportunities')"><b><i>✦</i> Opportunities</b></button>
+      <button class="sideBtn shellNav" data-shell-page="campaigns" onclick="openShellPage('campaigns')"><b><i>↗</i> Campaigns</b></button>
+      <button class="sideBtn shellNav" data-shell-page="activity" onclick="openShellPage('activity')"><b><i>✉</i> Inbox & Activity</b></button>
+      <button class="sideBtn shellNav" data-shell-page="results" onclick="openShellPage('results')"><b><i>▥</i> Analytics</b></button>
+      <div class="sideGroupLabel">ACCOUNT</div>
+      <button class="sideBtn shellNav" data-shell-page="settings" onclick="openShellPage('settings')"><b><i>⚙</i> Settings</b></button>
+      <button type="button" class="sideBtn adminOnly" id="adminNavBtn" onclick="openAdminConsole(event)"><b><i>◇</i> Admin Console</b></button>
     </div>
     <div class="userDock" id="userDock">
       <div class="userCard"><div class="userAvatar" id="userAvatar">O</div><div class="userMeta"><strong id="userName">Private beta user</strong><span id="userEmail">Loading account…</span></div><button class="logoutBtn" onclick="betaSignOut()">Sign out</button></div>
@@ -974,17 +1004,15 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
   </aside>
 
   <div class="wrap">
-    <div class="top premiumAppHeader">
-      <div class="titleBlock">
-        <div class="badge">PRIVATE BETA · v4.1.8</div>
-        <h1>Turn ecommerce opportunities into qualified conversations.</h1>
-        <div class="subtitle">Identify the right prospects, uncover the strongest commercial angle, and launch controlled outreach from one focused workspace.</div>
+    <div class="top v5AppHeader">
+      <div class="v5HeaderCopy">
+        <div class="pageEyebrow">MARGINBUSINESS LEADS</div>
+        <h1 id="v5Greeting">Your revenue workspace</h1>
+        <p id="v5HeaderNote">Focus on the leads, campaigns and follow-ups that need attention today.</p>
       </div>
-      <div class="actions premiumHeaderActions">
-        <button class="primary" onclick="openCampaignTemplateModal()">+ New campaign</button>
+      <div class="v5HeaderActions">
         <button class="secondary" onclick="openLeadImporter()">Import leads</button>
-        <button class="blue" onclick="runAIForActiveLead()">Analyze lead</button>
-        <button class="advancedToggle" id="advancedToggle" onclick="toggleAdvancedMode()">Advanced tools</button>
+        <button class="primary" onclick="openCampaignTemplateModal()">+ New campaign</button>
       </div>
     </div>
 
@@ -999,6 +1027,35 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         <button class="primary" onclick="openCampaignTemplateModal()">Create campaign</button>
       </div>
     </div>
+
+    <section class="v5CommandCenter shell-visible" id="v5CommandCenter" data-shell-section="dashboard">
+      <div class="v5MetricGrid">
+        <article class="v5Metric"><span>Total leads</span><strong id="v5TotalLeads">0</strong><small>Across this campaign</small></article>
+        <article class="v5Metric"><span>Qualified leads</span><strong id="v5QualifiedLeads">0</strong><small>Fit score 75+</small></article>
+        <article class="v5Metric"><span>Follow-ups due</span><strong id="v5FollowupsDue">0</strong><small>Need attention now</small></article>
+        <article class="v5Metric"><span>Emails sent</span><strong id="v5EmailsSent">0</strong><small>Tracked activity</small></article>
+      </div>
+      <div class="v5DashboardGrid">
+        <article class="v5Panel v5NextAction">
+          <div class="v5PanelHead"><div><span class="v5Kicker">NEXT BEST ACTION</span><h3 id="v5NextActionTitle">Import your first lead list</h3></div><span class="v5StatusDot"></span></div>
+          <p id="v5NextActionText">Start with a focused prospect list. Margin Leads will score and organise the strongest opportunities.</p>
+          <div class="v5ActionRow" id="v5NextActionButtons"><button class="primary" onclick="openLeadImporter()">Import leads</button></div>
+        </article>
+        <article class="v5Panel">
+          <div class="v5PanelHead"><div><span class="v5Kicker">PIPELINE HEALTH</span><h3>Lead progression</h3></div><button class="v5TextButton" onclick="openShellPage('leads')">View leads →</button></div>
+          <div class="v5PipelineBars">
+            <div><span>Imported</span><b id="v5PipeImported">0</b></div>
+            <div><span>Qualified</span><b id="v5PipeQualified">0</b></div>
+            <div><span>Contacted</span><b id="v5PipeContacted">0</b></div>
+            <div><span>Follow-up</span><b id="v5PipeFollowup">0</b></div>
+          </div>
+        </article>
+        <article class="v5Panel v5Wide">
+          <div class="v5PanelHead"><div><span class="v5Kicker">TODAY</span><h3>Priority queue</h3></div><button class="v5TextButton" onclick="openShellPage('opportunities')">Open opportunity radar →</button></div>
+          <div class="v5PriorityList" id="v5PriorityList"><div class="v5Empty">Import leads to activate your priority queue.</div></div>
+        </article>
+      </div>
+    </section>
 
     <section class="card v24Hero" id="v24SetupHub" data-shell-section="dashboard">
       <div class="v24HeroTop">
@@ -1504,6 +1561,12 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         </div>
       </details>
 
+      <div class="v5LeadStages">
+        <div><span>All leads</span><strong id="v5StageAll">0</strong></div>
+        <div><span>Qualified</span><strong id="v5StageQualified">0</strong></div>
+        <div><span>Contacted</span><strong id="v5StageContacted">0</strong></div>
+        <div><span>Follow-up due</span><strong id="v5StageDue">0</strong></div>
+      </div>
       <div class="professionalLeads">
         <div class="card leadQueuePanel">
           <div class="leadQueueHead"><h3>Lead pipeline</h3><span class="queueCount" id="queueCount">0 leads</span></div>
@@ -1818,6 +1881,7 @@ function saveOperatorProfile(){
   localStorage.setItem(STORAGE_OPERATOR_PROFILE, JSON.stringify(profile));
   scheduleWorkspaceStateSync();
   renderOperatorProfile();
+  renderV5CommandCenter();
 }
 function renderOperatorProfile(){
   const p=getOperatorProfile();
@@ -2446,7 +2510,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v4.1.8\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.0\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -2503,6 +2567,57 @@ async function refreshWorkspace(){
     if(state) state.textContent="Refresh failed — reload page";
   }
 }
+
+function v5StatusText(lead){
+  try{return String(getLeadState(lead)?.status||"").toLowerCase()}catch(_){return ""}
+}
+function renderV5CommandCenter(){
+  const all=Array.isArray(leads)?leads:[];
+  const qualified=all.filter(l=>fitScore(l)>=75);
+  const due=typeof getFollowups==="function"?getFollowups():[];
+  const rows=typeof metricRows==="function"?metricRows():[];
+  const sent=rows.filter(r=>r && (r.sentAt||r.success===true)).length;
+  const contacted=all.filter(l=>{
+    const s=v5StatusText(l);
+    return /sent|contact|follow|reply|meeting|proposal|won/.test(s) || Boolean(l.sentAt||l.email1Sent||l.lastSent);
+  });
+  const follow=all.filter(l=>/follow/.test(v5StatusText(l)));
+  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=String(val)};
+  set("v5TotalLeads",all.length);set("v5QualifiedLeads",qualified.length);set("v5FollowupsDue",due.length);set("v5EmailsSent",sent);
+  set("v5PipeImported",all.length);set("v5PipeQualified",qualified.length);set("v5PipeContacted",contacted.length);set("v5PipeFollowup",follow.length||due.length);
+  set("v5StageAll",all.length);set("v5StageQualified",qualified.length);set("v5StageContacted",contacted.length);set("v5StageDue",due.length);
+  const title=document.getElementById("v5NextActionTitle"),text=document.getElementById("v5NextActionText"),buttons=document.getElementById("v5NextActionButtons");
+  if(title&&text&&buttons){
+    if(!all.length){
+      title.textContent="Import your first lead list";
+      text.textContent="Start with a focused prospect list. Margin Leads will score and organise the strongest opportunities.";
+      buttons.innerHTML='<button class="primary" onclick="openLeadImporter()">Import leads</button>';
+    }else if(due.length){
+      title.textContent=`Review ${due.length} follow-up${due.length===1?"":"s"} due now`;
+      text.textContent="Your highest-priority follow-ups are ready. Review the lead context before preparing the next batch.";
+      buttons.innerHTML=`<button class="primary" onclick="openShellPage('opportunities')">Review priorities</button><button class="secondary" onclick="openShellPage('campaigns')">Open campaign</button>`;
+    }else if(qualified.length){
+      title.textContent=`Prepare outreach for ${qualified.length} qualified lead${qualified.length===1?"":"s"}`;
+      text.textContent="These prospects meet your current qualification threshold and are ready for commercial review.";
+      buttons.innerHTML=`<button class="primary" onclick="openShellPage('leads')">Review qualified leads</button>`;
+    }else{
+      title.textContent="Analyse and qualify your lead list";
+      text.textContent="Use Margin AI to identify the strongest commercial opportunities before outreach begins.";
+      buttons.innerHTML=`<button class="primary" onclick="openShellPage('leads')">Open lead workspace</button>`;
+    }
+  }
+  const list=document.getElementById("v5PriorityList");
+  if(list){
+    const priority=[...all].sort((a,b)=>fitScore(b)-fitScore(a)).slice(0,5);
+    list.innerHTML=priority.length?priority.map(l=>`<button class="v5PriorityItem" onclick="selectLead('${l.id}');openShellPage('leads')"><span><strong>${escapeHtml(l.company||"Unnamed company")}</strong><small>${escapeHtml(l.contact||l.category||"Needs review")}</small></span><b>${fitScore(l)}</b></button>`).join(""):'<div class="v5Empty">Import leads to activate your priority queue.</div>';
+  }
+  const setup=document.getElementById("v24SetupHub");
+  if(setup) setup.classList.toggle("v5SetupHidden",all.length>0);
+  const greeting=document.getElementById("v5Greeting");
+  const name=(document.getElementById("userName")?.textContent||"").trim().split(" ")[0];
+  if(greeting) greeting.textContent=name && !/private|loading/i.test(name)?`Good to see you, ${name}`:"Your revenue workspace";
+}
+
 function render(){
   const filtered=getFiltered();
   const qc=document.getElementById("queueCount"); if(qc) qc.textContent=`${filtered.length} ${filtered.length===1?"lead":"leads"}`;
@@ -2975,7 +3090,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v4.1.8 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.0 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
@@ -4068,13 +4183,13 @@ function exportConnectedLogsCSV(){
 <script>
 (function(){
   const pageConfig = {
-    dashboard:{eyebrow:'Overview',title:'Dashboard',description:'Your priorities, campaign readiness and next best action.',actions:'dashboard'},
-    leads:{eyebrow:'Intelligence',title:'Lead Database',description:'Review, filter and manage every prospect in one professional workspace.',actions:'leads'},
+    dashboard:{eyebrow:'Workspace',title:'Overview',description:'Your pipeline, priorities and next best action.',actions:'dashboard'},
+    leads:{eyebrow:'Pipeline',title:'Leads',description:'Qualify, analyse and progress every prospect from one workspace.',actions:'leads'},
     opportunities:{eyebrow:'Intelligence',title:'Opportunity Radar',description:'Prioritise leads by commercial fit, evidence and outreach readiness.',actions:'opportunities'},
     campaigns:{eyebrow:'Outreach',title:'Campaigns',description:'Build sequences, prepare batches and launch controlled outreach.',actions:'campaigns'},
-    activity:{eyebrow:'Outreach',title:'Activity',description:'Review system and outreach activity without cluttering your dashboard.',actions:'activity'},
-    results:{eyebrow:'Results',title:'Performance',description:'Track sends, replies, recovery and campaign outcomes.',actions:'results'},
-    settings:{eyebrow:'Workspace',title:'Integrations & Settings',description:'Manage providers, system health, database controls and advanced settings.',actions:'settings'}
+    activity:{eyebrow:'Communication',title:'Inbox & Activity',description:'Review replies, sending activity and events requiring attention.',actions:'activity'},
+    results:{eyebrow:'Results',title:'Analytics',description:'Understand campaign performance, replies and commercial outcomes.',actions:'results'},
+    settings:{eyebrow:'Account',title:'Settings',description:'Manage your email provider, sender identity, workspace and security.',actions:'settings'}
   };
   const sectionMap = {
     missionSection:'dashboard',v24SetupHub:'dashboard',campaignSection:'campaigns',sendingSection:'campaigns',
