@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v5.2.4 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v5.2.6 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v5.2.4'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v5.2.6'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -782,14 +782,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
 
 
-/* v5.2.4 security/UI fix:
+/* v5.2.6 security/UI fix:
    the generic .sideBtn rule uses display:flex!important, so adminOnly needs
    a stronger selector to remain hidden until the server confirms platform admin. */
 .sideBtn.adminOnly:not(.visible){display:none!important}
 .sideBtn.adminOnly.visible{display:flex!important}
 
 
-/* v5.2.4 admin modal and private provider connection */
+/* v5.2.6 admin modal and private provider connection */
 .mlModalBackdrop{position:fixed;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
 .mlModalBackdrop.open{display:flex}
 .mlModal{width:min(1180px,96vw);max-height:88vh;overflow:auto;background:#0a1725;border:1px solid #27425b;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:22px}
@@ -799,7 +799,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 .providerPrivateBox .statusGood{color:#8bf0c7}.providerPrivateBox .statusBad{color:#f7c87a}
 
 
-/* v5.2.4 premium application header */
+/* v5.2.6 premium application header */
 .premiumAppHeader{
   display:flex!important;
   align-items:center!important;
@@ -899,7 +899,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 }
 
 
-/* v5.2.4 Revenue Command Center */
+/* v5.2.6 Revenue Command Center */
 :root{--v5-panel:#0a1625;--v5-panel2:#0d1b2d;--v5-line:rgba(148,163,184,.14);--v5-muted:#8494aa}
 .sideBrand span{font-size:10px!important;letter-spacing:.04em!important;text-transform:uppercase!important}
 .sideBtn b{display:flex!important;align-items:center!important;gap:11px!important}
@@ -932,7 +932,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:700px){.v5AppHeader{align-items:flex-start!important;flex-direction:column!important}.v5HeaderActions{width:100%}.v5HeaderActions button{flex:1}.v5MetricGrid,.v5LeadStages{grid-template-columns:1fr 1fr}.v5PipelineBars{grid-template-columns:1fr 1fr}}
 
 
-/* v5.2.4 professional shell spacing refinement */
+/* v5.2.6 professional shell spacing refinement */
 .saasSidebar{
   width:248px!important;
   left:20px!important;
@@ -986,7 +986,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 }
 
 
-/* v5.2.4 smart import column mapper */
+/* v5.2.6 smart import column mapper */
 .columnMapper{margin-top:14px;padding:16px;border:1px solid rgba(148,163,184,.13);border-radius:14px;background:rgba(8,20,34,.72)}
 .columnMapperHead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
 .columnMapperHead strong{font-size:14px}.columnMapperHead .small{margin-top:3px}
@@ -1001,7 +1001,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:680px){.columnMapperHead{flex-direction:column}.columnMapperGrid{grid-template-columns:1fr}}
 
 
-/* v5.2.4 reliable sending flow */
+/* v5.2.6 reliable sending flow */
 .sendReadiness{margin:14px 0;padding:18px;border:1px solid rgba(96,165,250,.18);border-radius:16px;background:linear-gradient(145deg,rgba(12,27,46,.96),rgba(8,20,34,.96))}
 .sendReadinessHead{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:13px}.sendReadinessHead strong{display:block;margin-top:4px;font-size:15px}
 .sendReadinessGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
@@ -1053,7 +1053,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v5.2.4</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v5.2.6</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -1894,8 +1894,8 @@ async function openPrivateWorkspace(session){
     const banner=document.getElementById('connectionBanner');
     if(banner){
       const msg=String(e.message||'Workspace load failed');
-      banner.textContent=/ml_send_job_items|ml_send_jobs/i.test(msg)
-        ?'Send audit tables are not installed yet. Sending can continue, but permanent send-job history is unavailable until the v5.2.4 SQL patch is run.'
+      banner.textContent=/ml_sender_profiles|ml_provider_profiles|ml_send_job_items|ml_send_jobs/i.test(msg)
+        ?'Optional workspace persistence tables are not installed yet. Core sending can continue, but permanent provider profiles and send history require the v5.2.6 schema repair.'
         :`Workspace connection error: ${msg}`;
       banner.classList.add('visible');
     }
@@ -3041,7 +3041,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.2.4\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.2.6\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -3638,7 +3638,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.2.4 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.2.6 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);

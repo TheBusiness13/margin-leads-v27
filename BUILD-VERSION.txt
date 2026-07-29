@@ -1,1 +1,1 @@
-MarginBusiness Leads v5.2.4 — Audit Table Fallback
+MarginBusiness Leads v5.2.6 — Complete Schema Repair
