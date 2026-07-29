@@ -1,1 +1,1 @@
-MarginBusiness Leads v5.2.2 — Detailed Provider Send Errors
+MarginBusiness Leads v5.2.3 — Atomic Provider Save
