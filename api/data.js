@@ -12,7 +12,7 @@ async function readAll(workspaceId){
     sf(`ml_campaign_sequences?workspace_id=eq.${wid}&select=*`),
     sf(`ml_send_jobs?workspace_id=eq.${wid}&select=*&order=created_at.desc&limit=100`).catch(()=>[]),
     sf(`ml_send_job_items?workspace_id=eq.${wid}&select=*&order=id.asc&limit=5000`).catch(()=>[]),
-    sf(`ml_sender_profiles?workspace_id=eq.${wid}&select=*&limit=1`),
+    sf(`ml_sender_profiles?workspace_id=eq.${wid}&select=*&limit=1`).catch(()=>[]),
     sf(`ml_provider_profiles?workspace_id=eq.${wid}&select=*`).catch(()=>[])
   ]);
   const leadsByCampaign=new Map();
