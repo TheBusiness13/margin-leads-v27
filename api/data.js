@@ -6,13 +6,14 @@ async function sf(path,options){return jsonOrError(await serviceFetch(path,optio
 
 async function readAll(workspaceId){
   const wid=encodeURIComponent(workspaceId);
-  const [campaignRows,leadRows,sequenceRows,jobRows,itemRows,senderRows]=await Promise.all([
+  const [campaignRows,leadRows,sequenceRows,jobRows,itemRows,senderRows,providerProfileRows]=await Promise.all([
     sf(`ml_campaigns?workspace_id=eq.${wid}&select=*&order=created_at.asc`),
     sf(`ml_leads?workspace_id=eq.${wid}&select=*&order=created_at.asc`),
     sf(`ml_campaign_sequences?workspace_id=eq.${wid}&select=*`),
     sf(`ml_send_jobs?workspace_id=eq.${wid}&select=*&order=created_at.desc&limit=100`),
     sf(`ml_send_job_items?workspace_id=eq.${wid}&select=*&order=id.asc&limit=5000`),
-    sf(`ml_sender_profiles?workspace_id=eq.${wid}&select=*&limit=1`)
+    sf(`ml_sender_profiles?workspace_id=eq.${wid}&select=*&limit=1`),
+    sf(`ml_provider_profiles?workspace_id=eq.${wid}&select=*`).catch(()=>[])
   ]);
   const leadsByCampaign=new Map();
   for(const row of leadRows||[]){
@@ -40,7 +41,8 @@ async function readAll(workspaceId){
       sequence:sequenceByCampaign.get(c.id)||null,leads:leadsByCampaign.get(c.id)||[]
     })),
     sendJobs:(jobRows||[]).map(j=>({...j,items:itemsByJob.get(j.id)||[]})),
-    senderProfile:(senderRows||[])[0]||null
+    senderProfile:(senderRows||[])[0]||null,
+    providerProfiles:providerProfileRows||[]
   };
 }
 
@@ -105,6 +107,12 @@ module.exports=async function handler(req,res){
       const p=body.profile||{};
       const row={workspace_id:workspaceId,provider:clean(p.provider||'brevo',30),from_name:clean(p.fromName,300),from_email:clean(p.fromEmail,500),reply_to:clean(p.replyTo,500),opt_out_email:clean(p.optOutEmail,500),compliance_line:clean(p.complianceLine||'soft',30),updated_by:user.id,updated_at:new Date().toISOString()};
       await sf('ml_sender_profiles?on_conflict=workspace_id',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row)});
+      return res.status(200).json({ok:true,profile:row});
+    }
+    if(action==='saveProviderProfile'){
+      const p=body.profile||{},provider=clean(p.provider||'brevo',30);
+      const row={workspace_id:workspaceId,provider,from_name:clean(p.fromName,300),from_email:clean(p.fromEmail,500),reply_to:clean(p.replyTo,500),opt_out_email:clean(p.optOutEmail,500),compliance_line:clean(p.complianceLine||'soft',30),domain:clean(p.domain,500),updated_by:user.id,updated_at:new Date().toISOString()};
+      await sf('ml_provider_profiles?on_conflict=workspace_id,provider',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row)});
       return res.status(200).json({ok:true,profile:row});
     }
     if(action==='createSendJob'){

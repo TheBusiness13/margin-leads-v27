@@ -12,9 +12,17 @@ module.exports=async function handler(req,res){
     if(!workspaceId)return res.status(409).json({ok:false,error:'Workspace unavailable.'});
 
     if(req.method==='GET'){
-      const provider=clean(req.query?.provider||'brevo',30).toLowerCase();
-      const row=await getWorkspaceProvider(workspaceId,provider).catch(()=>null);
-      return res.status(200).json({ok:true,provider,configured:!!row,settings:row?.settings||{},updatedAt:row?.updatedAt||null});
+      const requested=clean(req.query?.provider||'brevo',30).toLowerCase();
+      if(requested==='all'){
+        const providers=['brevo','sendgrid','resend','mailgun'];
+        const rows=await Promise.all(providers.map(async p=>{
+          const row=await getWorkspaceProvider(workspaceId,p).catch(()=>null);
+          return {provider:p,configured:!!row,settings:row?.settings||{},updatedAt:row?.updatedAt||null};
+        }));
+        return res.status(200).json({ok:true,providers:rows});
+      }
+      const row=await getWorkspaceProvider(workspaceId,requested).catch(()=>null);
+      return res.status(200).json({ok:true,provider:requested,configured:!!row,settings:row?.settings||{},updatedAt:row?.updatedAt||null});
     }
 
     if(req.method==='POST'){
