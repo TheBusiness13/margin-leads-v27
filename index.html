@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v5.1.1 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v5.2.0 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v5.1.1'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v5.2.0'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -782,14 +782,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
 
 
-/* v5.1.1 security/UI fix:
+/* v5.2.0 security/UI fix:
    the generic .sideBtn rule uses display:flex!important, so adminOnly needs
    a stronger selector to remain hidden until the server confirms platform admin. */
 .sideBtn.adminOnly:not(.visible){display:none!important}
 .sideBtn.adminOnly.visible{display:flex!important}
 
 
-/* v5.1.1 admin modal and private provider connection */
+/* v5.2.0 admin modal and private provider connection */
 .mlModalBackdrop{position:fixed;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
 .mlModalBackdrop.open{display:flex}
 .mlModal{width:min(1180px,96vw);max-height:88vh;overflow:auto;background:#0a1725;border:1px solid #27425b;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:22px}
@@ -799,7 +799,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 .providerPrivateBox .statusGood{color:#8bf0c7}.providerPrivateBox .statusBad{color:#f7c87a}
 
 
-/* v5.1.1 premium application header */
+/* v5.2.0 premium application header */
 .premiumAppHeader{
   display:flex!important;
   align-items:center!important;
@@ -899,7 +899,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 }
 
 
-/* v5.1.1 Revenue Command Center */
+/* v5.2.0 Revenue Command Center */
 :root{--v5-panel:#0a1625;--v5-panel2:#0d1b2d;--v5-line:rgba(148,163,184,.14);--v5-muted:#8494aa}
 .sideBrand span{font-size:10px!important;letter-spacing:.04em!important;text-transform:uppercase!important}
 .sideBtn b{display:flex!important;align-items:center!important;gap:11px!important}
@@ -932,7 +932,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:700px){.v5AppHeader{align-items:flex-start!important;flex-direction:column!important}.v5HeaderActions{width:100%}.v5HeaderActions button{flex:1}.v5MetricGrid,.v5LeadStages{grid-template-columns:1fr 1fr}.v5PipelineBars{grid-template-columns:1fr 1fr}}
 
 
-/* v5.1.1 professional shell spacing refinement */
+/* v5.2.0 professional shell spacing refinement */
 .saasSidebar{
   width:248px!important;
   left:20px!important;
@@ -986,7 +986,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 }
 
 
-/* v5.1.1 smart import column mapper */
+/* v5.2.0 smart import column mapper */
 .columnMapper{margin-top:14px;padding:16px;border:1px solid rgba(148,163,184,.13);border-radius:14px;background:rgba(8,20,34,.72)}
 .columnMapperHead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
 .columnMapperHead strong{font-size:14px}.columnMapperHead .small{margin-top:3px}
@@ -1001,7 +1001,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:680px){.columnMapperHead{flex-direction:column}.columnMapperGrid{grid-template-columns:1fr}}
 
 
-/* v5.1.1 reliable sending flow */
+/* v5.2.0 reliable sending flow */
 .sendReadiness{margin:14px 0;padding:18px;border:1px solid rgba(96,165,250,.18);border-radius:16px;background:linear-gradient(145deg,rgba(12,27,46,.96),rgba(8,20,34,.96))}
 .sendReadinessHead{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:13px}.sendReadinessHead strong{display:block;margin-top:4px;font-size:15px}
 .sendReadinessGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
@@ -1030,6 +1030,18 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 .providerKeyHelp{margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(59,130,246,.06);border:1px solid rgba(96,165,250,.14);font-size:10px;line-height:1.55;color:#8fa2b9}
 .providerKeyHelp strong{color:#cbd8e8}.providerKeyHelp code{font-size:9px;color:#9ec5ff}
 
+
+.jobHeadActions{display:flex;gap:7px}.sendReceiptPanel{margin:10px 0 15px;padding:14px;border:1px solid rgba(148,163,184,.12);border-radius:13px;background:rgba(8,20,34,.66)}
+.sendReceiptState{font-weight:750;font-size:12px;margin-bottom:6px}.sendReceiptState.verified{color:#78e0ba}.sendReceiptState.partial{color:#f4c77b}.sendReceiptState.unknown{color:#9dafc4}
+.sendReceiptDetails{font-size:10px;line-height:1.55;color:#7f90a6;word-break:break-word}
+
+
+.providerVaultGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:15px}
+.providerVaultCard{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:12px!important;text-align:left!important;border:1px solid rgba(148,163,184,.1)!important;background:rgba(148,163,184,.035)!important;border-radius:12px!important;color:#dce6f3!important}
+.providerVaultCard.active{border-color:rgba(59,130,246,.35)!important;background:rgba(59,130,246,.08)!important}.providerVaultCard span{display:flex;flex-direction:column;gap:3px;min-width:0}.providerVaultCard strong{font-size:12px}.providerVaultCard small{font-size:8px;color:#78899f;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px}.providerVaultCard em{font-size:8px;font-style:normal;padding:4px 6px;border-radius:999px;white-space:nowrap}.providerVaultCard em.connected{color:#70dfb8;background:rgba(16,185,129,.1)}.providerVaultCard em.disconnected{color:#8a99ac;background:rgba(148,163,184,.08)}
+.providerEditorHead{display:flex;justify-content:space-between;align-items:end;gap:12px;padding:12px 0 10px;border-top:1px solid rgba(148,163,184,.1)}.providerEditorHead strong{display:block;margin-top:3px;font-size:14px}.providerSavedHint{font-size:9px;color:#78899f}
+@media(max-width:900px){.providerVaultGrid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.providerVaultGrid{grid-template-columns:1fr}.providerEditorHead{align-items:flex-start;flex-direction:column}}
+
 </style>
 </head>
 <body>
@@ -1037,7 +1049,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v5.1.1</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v5.2.0</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -1524,8 +1536,12 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 
       <div class="cockpitStats" id="batchCockpitStats"></div>
       <div class="persistentJobHistory" id="persistentJobHistory">
-        <div class="persistentJobHead"><div><span class="v5Kicker">SEND JOB HISTORY</span><strong>Permanent sending records</strong></div><button class="secondary" onclick="refreshPersistentJobHistory()">Refresh</button></div>
+        <div class="persistentJobHead"><div><span class="v5Kicker">SEND RECEIPTS</span><strong>Permanent provider results and reconciliation</strong></div><div class="jobHeadActions"><button class="secondary" onclick="verifyLastSendWithProvider()">Verify last send</button><button class="secondary" onclick="refreshPersistentJobHistory()">Refresh</button></div></div>
         <div id="persistentJobList"><div class="v5Empty">No permanent send jobs yet.</div></div>
+      </div>
+      <div class="sendReceiptPanel" id="sendReceiptPanel">
+        <div class="sendReceiptState unknown" id="sendReceiptState">No verified send receipt loaded.</div>
+        <div class="sendReceiptDetails" id="sendReceiptDetails">A successful provider response will show the recipient count, provider message IDs and exact timestamp here.</div>
       </div>
       <div class="batchSummary" id="batchSummary">Choose a sequence step. The cockpit will show due leads and default-select the strongest leads up to your protected daily allowance.</div>
       <div class="operatorHint">Operator flow: choose any Email 1–4 in Flexible mode, or switch to Strict mode for timed 1→2→3→4 sequencing → review → prepare → send. If anything looks wrong, clear the prepared batch and prepare again.</div>
@@ -1578,10 +1594,15 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
             <div class="chip" id="providerConnectionChip">Checking…</div>
           </div>
 
+          <div class="providerVaultGrid" id="providerVaultGrid"></div>
+          <div class="providerEditorHead">
+            <div><span class="v5Kicker">ACTIVE CONNECTION</span><strong id="activeProviderTitle">Brevo settings</strong></div>
+            <span class="providerSavedHint" id="providerSavedHint">Credentials are encrypted and never displayed again.</span>
+          </div>
           <div class="brevoGrid">
             <div>
               <label>Sending provider</label>
-              <select id="mailProvider" onchange="saveBrevoSettings();loadWorkspaceProviderStatus()">
+              <select id="mailProvider" onchange="switchMailProvider(this.value)">
                 <option value="brevo">Brevo</option>
                 <option value="sendgrid">SendGrid</option>
                 <option value="resend">Resend</option>
@@ -1590,7 +1611,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
             </div>
             <div>
               <label>Provider API key</label>
-              <input id="workspaceProviderApiKey" type="password" autocomplete="new-password" placeholder="Paste the API key from your provider account" />
+              <input id="workspaceProviderApiKey" type="password" autocomplete="new-password" placeholder="Leave blank to keep the saved key, or paste a new key to replace it" />
             </div>
             <div id="mailgunDomainWrap" style="display:none">
               <label>Mailgun sending domain</label>
@@ -1610,12 +1631,12 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
             </div>
             <div>
               <label>Unsubscribe email</label>
-              <input id="brevoOptOut" placeholder="Optional unsubscribe address" />
+              <input id="brevoOptOutEmail" placeholder="Optional unsubscribe address" />
             </div>
           </div>
 
           <div class="actions" style="margin-top:14px">
-            <button type="button" class="primary" onclick="saveProviderAndSenderSettings()">Save connection</button>
+            <button type="button" class="primary" onclick="saveProviderAndSenderSettings()">Save provider settings</button>
             <button type="button" class="secondary" onclick="testBrevoBridge()">Test connection</button>
             <button type="button" class="danger" onclick="disconnectWorkspaceProvider()">Disconnect</button>
           </div>
@@ -1773,6 +1794,8 @@ let mlStructuredSyncTimer=null;
 let mlStructuredHydrating=false;
 let mlSendJobs=[];
 let mlSenderProfile=null;
+let mlProviderProfiles={};
+let mlProviderConnections={};
 
 async function fetchStructuredWorkspaceData(){
   const r=await mlAuthorizedFetch('/api/data',{cache:'no-store'});
@@ -1786,6 +1809,7 @@ function applyStructuredWorkspaceData(d){
   if(campaigns.length)localStorage.setItem(STORAGE_CAMPAIGNS,JSON.stringify(campaigns));
   mlSendJobs=Array.isArray(d?.sendJobs)?d.sendJobs:[];
   mlSenderProfile=d?.senderProfile||null;
+  mlProviderProfiles=Object.fromEntries((d?.providerProfiles||[]).map(p=>[p.provider,p]));
   mlStructuredHydrating=false;
 }
 async function syncStructuredCampaignsNow(){
@@ -1869,87 +1893,137 @@ function closePrivateWorkspace(){document.getElementById('loginGate').style.disp
 async function mlAccessToken(){if(!mlSupabase)return'';const {data:{session}}=await mlSupabase.auth.getSession();return session?.access_token||'';}
 async function mlAuthorizedFetch(url,options={}){const token=await mlAccessToken();const headers={...(options.headers||{}),...(token?{Authorization:`Bearer ${token}`}:{})};return fetch(url,{...options,headers});}
 
-async function hydratePersistentSenderAndProvider(){
-  const preferred=mlSenderProfile?.provider||document.getElementById('mailProvider')?.value||'brevo';
-  const select=document.getElementById('mailProvider');if(select)select.value=preferred;
-  if(mlSenderProfile){
-    const set=(id,v)=>{const el=document.getElementById(id);if(el&&v!=null)el.value=v};
-    set('brevoFromName',mlSenderProfile.from_name||mlSenderProfile.fromName||'');
-    set('brevoFromEmail',mlSenderProfile.from_email||mlSenderProfile.fromEmail||'');
-    set('brevoReplyTo',mlSenderProfile.reply_to||mlSenderProfile.replyTo||'');
-    set('brevoOptOutEmail',mlSenderProfile.opt_out_email||mlSenderProfile.optOutEmail||'');
-    set('brevoComplianceLine',mlSenderProfile.compliance_line||mlSenderProfile.complianceLine||'soft');
-  }
+const ML_PROVIDER_LABELS={brevo:'Brevo',sendgrid:'SendGrid',resend:'Resend',mailgun:'Mailgun'};
+function providerProfileFor(provider){
+  const p=mlProviderProfiles[provider]||{};
+  return {
+    provider,
+    fromName:p.from_name||p.fromName||'',
+    fromEmail:p.from_email||p.fromEmail||'',
+    replyTo:p.reply_to||p.replyTo||'',
+    optOutEmail:p.opt_out_email||p.optOutEmail||'',
+    complianceLine:p.compliance_line||p.complianceLine||'soft',
+    domain:p.domain||''
+  };
+}
+function fillProviderEditor(provider){
+  const p=providerProfileFor(provider);
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||''};
+  set('brevoFromName',p.fromName);
+  set('brevoFromEmail',p.fromEmail);
+  set('brevoReplyTo',p.replyTo);
+  set('brevoOptOutEmail',p.optOutEmail);
+  set('brevoComplianceLine',p.complianceLine||'soft');
+  set('workspaceProviderDomain',p.domain);
+  const key=document.getElementById('workspaceProviderApiKey');if(key)key.value='';
+  const title=document.getElementById('activeProviderTitle');if(title)title.textContent=`${ML_PROVIDER_LABELS[provider]||provider} settings`;
+  const wrap=document.getElementById('mailgunDomainWrap');if(wrap)wrap.style.display=provider==='mailgun'?'block':'none';
+}
+function renderProviderVault(){
+  const box=document.getElementById('providerVaultGrid');if(!box)return;
+  const active=document.getElementById('mailProvider')?.value||'brevo';
+  box.innerHTML=Object.keys(ML_PROVIDER_LABELS).map(provider=>{
+    const c=mlProviderConnections[provider]||{};
+    const p=providerProfileFor(provider);
+    return `<button type="button" class="providerVaultCard ${active===provider?'active':''}" onclick="switchMailProvider('${provider}')">
+      <span><strong>${ML_PROVIDER_LABELS[provider]}</strong><small>${p.fromEmail?escapeHtml(p.fromEmail):'No sender saved'}</small></span>
+      <em class="${c.configured?'connected':'disconnected'}">${c.configured?'Connected':'Not connected'}</em>
+    </button>`;
+  }).join('');
+}
+async function loadAllProviderConnections(){
+  const r=await mlAuthorizedFetch('/api/provider-settings?provider=all',{cache:'no-store'});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(d.error||'Could not load provider connections');
+  mlProviderConnections=Object.fromEntries((d.providers||[]).map(p=>[p.provider,p]));
+  renderProviderVault();
+  return d.providers||[];
+}
+async function switchMailProvider(provider){
+  const select=document.getElementById('mailProvider');if(select)select.value=provider;
+  fillProviderEditor(provider);
+  renderProviderVault();
+  saveBrevoSettings();
   await loadWorkspaceProviderStatus();
 }
+async function hydratePersistentSenderAndProvider(){
+  await loadAllProviderConnections().catch(e=>console.warn(e));
+  const preferred=mlSenderProfile?.provider||Object.keys(mlProviderConnections).find(p=>mlProviderConnections[p]?.configured)||'brevo';
+  const select=document.getElementById('mailProvider');if(select)select.value=preferred;
+  fillProviderEditor(preferred);
+  renderProviderVault();
+  await loadWorkspaceProviderStatus();
+}
+async function saveProviderProfile(profile){
+  const r=await mlAuthorizedFetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'saveProviderProfile',profile})});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(d.error||'Could not save provider sender settings');
+  mlProviderProfiles[profile.provider]=d.profile||profile;
+}
 async function saveProviderAndSenderSettings(){
-  const settings=saveBrevoSettings();
-  await saveWorkspaceProviderConnection();
-  await saveStructuredSenderProfile(settings);
-}
-async function loadWorkspaceProviderStatus(){
   const provider=document.getElementById('mailProvider')?.value||'brevo';
-  const status=document.getElementById('workspaceProviderStatus');
-  const wrap=document.getElementById('mailgunDomainWrap');
-  if(wrap)wrap.style.display=provider==='mailgun'?'block':'none';
-  if(!status)return;
-  status.textContent='Checking your workspace connection…';
+  const apiKey=(document.getElementById('workspaceProviderApiKey')?.value||'').trim();
+  const profile={
+    provider,
+    fromName:(document.getElementById('brevoFromName')?.value||'').trim(),
+    fromEmail:(document.getElementById('brevoFromEmail')?.value||'').trim(),
+    replyTo:(document.getElementById('brevoReplyTo')?.value||'').trim(),
+    optOutEmail:(document.getElementById('brevoOptOutEmail')?.value||'').trim(),
+    complianceLine:document.getElementById('brevoComplianceLine')?.value||'soft',
+    domain:(document.getElementById('workspaceProviderDomain')?.value||'').trim()
+  };
+  if(!profile.fromEmail||!/^\S+@\S+\.\S+$/.test(profile.fromEmail)){showToast('Enter a valid sender email');return}
   try{
-    const r=await mlAuthorizedFetch(`/api/provider-settings?provider=${encodeURIComponent(provider)}`,{cache:'no-store'});
-    const d=await r.json();
-    if(!r.ok)throw new Error(d.error||'Could not check provider');
-    status.className='small '+(d.configured?'statusGood':'statusBad');
-    const chip=document.getElementById('providerConnectionChip');
-    if(chip){chip.textContent=d.configured?'Workspace connected':'No workspace connection';chip.className='chip '+(d.configured?'good':'warn')}
-    status.textContent=d.configured
-      ?`${provider.toUpperCase()} is saved privately for this workspace and will remain connected after login.`
-      :`No workspace-specific ${provider.toUpperCase()} key is saved. Platform administrators may still see a working bridge through the server-level fallback, but customer workspaces cannot use that fallback.`;
-    const domain=document.getElementById('workspaceProviderDomain');
-    if(domain&&d.settings?.domain)domain.value=d.settings.domain;
-    const set=(id,v)=>{const el=document.getElementById(id);if(el&&v)el.value=v};
-    set('brevoFromName',d.settings?.fromName);
-    set('brevoFromEmail',d.settings?.fromEmail);
-    set('brevoReplyTo',d.settings?.replyTo);
-    set('brevoOptOutEmail',d.settings?.optOutEmail);
-    set('brevoComplianceLine',d.settings?.complianceLine);
-  }catch(e){
-    status.className='small statusBad';
-    status.textContent=e.message;
-    const chip=document.getElementById('providerConnectionChip');
-    if(chip){chip.textContent='Connection error';chip.className='chip warn'}
-  }
-}
-async function saveWorkspaceProviderConnection(){
-  const provider=document.getElementById('mailProvider')?.value||'brevo';
-  const apiKey=document.getElementById('workspaceProviderApiKey')?.value||'';
-  const domain=document.getElementById('workspaceProviderDomain')?.value||'';
-  if(apiKey.trim().length<12){showToast('Enter your provider API key');return}
-  try{
-    const r=await mlAuthorizedFetch('/api/provider-settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'save',provider,apiKey,domain,fromName:document.getElementById('brevoFromName')?.value||'',fromEmail:document.getElementById('brevoFromEmail')?.value||'',replyTo:document.getElementById('brevoReplyTo')?.value||'',optOutEmail:document.getElementById('brevoOptOutEmail')?.value||'',complianceLine:document.getElementById('brevoComplianceLine')?.value||'soft'})});
-    const d=await r.json();
-    if(!r.ok)throw new Error(d.error||'Could not save provider');
-    document.getElementById('workspaceProviderApiKey').value='';
-    showToast(`${provider.toUpperCase()} connected privately`);
+    await saveProviderProfile(profile);
+    if(apiKey){
+      await saveWorkspaceProviderConnection();
+    }else if(!mlProviderConnections[provider]?.configured){
+      showToast(`Paste the ${ML_PROVIDER_LABELS[provider]} API key to connect this provider`);
+      return;
+    }
+    saveBrevoSettings();
+    await loadAllProviderConnections();
     await loadWorkspaceProviderStatus();
-   }catch(e){
+    fillProviderEditor(provider);
+    document.getElementById('providerSavedHint').textContent=`${ML_PROVIDER_LABELS[provider]} settings saved permanently for this workspace.`;
+    showToast(`${ML_PROVIDER_LABELS[provider]} settings saved`);
+  }catch(e){
     const msg=String(e.message||'Could not save provider');
     if(/PROVIDER_ENCRYPTION_KEY/i.test(msg)){
-      showToast('Vercel setup issue: PROVIDER_ENCRYPTION_KEY must be at least 32 characters. This is not your Brevo API key.');
-      const status=document.getElementById('workspaceProviderStatus');
-      if(status){status.className='small statusBad';status.textContent='Server encryption key missing or too short. Add PROVIDER_ENCRYPTION_KEY (32+ characters) in Vercel, then redeploy. Your Brevo API key can be longer.'}
+      showToast('Vercel PROVIDER_ENCRYPTION_KEY is missing or too short.');
       return;
     }
     showToast(msg);
   }
 }
+async function saveWorkspaceProviderConnection(){
+  const provider=document.getElementById('mailProvider')?.value||'brevo';
+  const apiKey=(document.getElementById('workspaceProviderApiKey')?.value||'').trim();
+  const domain=(document.getElementById('workspaceProviderDomain')?.value||'').trim();
+  if(apiKey.length<12)throw new Error(`Enter the ${ML_PROVIDER_LABELS[provider]} API key`);
+  const body={
+    action:'save',provider,apiKey,domain,
+    fromName:document.getElementById('brevoFromName')?.value||'',
+    fromEmail:document.getElementById('brevoFromEmail')?.value||'',
+    replyTo:document.getElementById('brevoReplyTo')?.value||'',
+    optOutEmail:document.getElementById('brevoOptOutEmail')?.value||'',
+    complianceLine:document.getElementById('brevoComplianceLine')?.value||'soft'
+  };
+  const r=await mlAuthorizedFetch('/api/provider-settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(d.error||'Could not save provider');
+  document.getElementById('workspaceProviderApiKey').value='';
+  mlProviderConnections[provider]={provider,configured:true,settings:body,updatedAt:new Date().toISOString()};
+}
 async function disconnectWorkspaceProvider(){
   const provider=document.getElementById('mailProvider')?.value||'brevo';
+  if(!confirm(`Disconnect ${ML_PROVIDER_LABELS[provider]}? Saved sender details will remain, but sending through this provider will stop.`))return;
   try{
     const r=await mlAuthorizedFetch('/api/provider-settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'delete',provider})});
-    const d=await r.json();
-    if(!r.ok)throw new Error(d.error||'Could not disconnect provider');
-    showToast(`${provider.toUpperCase()} disconnected`);
+    const d=await r.json();if(!r.ok)throw new Error(d.error||'Could not disconnect provider');
+    await loadAllProviderConnections();
     await loadWorkspaceProviderStatus();
+    showToast(`${ML_PROVIDER_LABELS[provider]} disconnected`);
   }catch(e){showToast(e.message)}
 }
 
@@ -2107,6 +2181,7 @@ function saveOperatorProfile(){
   renderOperatorProfile();
   renderV5CommandCenter();
   renderPersistentJobHistory();
+  renderSendReceipt(latestLocalSendReceipt());
 }
 function renderOperatorProfile(){
   const p=getOperatorProfile();
@@ -2931,7 +3006,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.1.1\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.2.0\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -3528,7 +3603,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.1.1 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.2.0 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
@@ -3759,32 +3834,35 @@ function setBrevoStatus(message, isError){
   box.innerHTML = escapeHtml(message).replace(/\n/g,"<br>");
 }
 function saveBrevoSettings(){
+  const provider=(document.getElementById("mailProvider")?.value||"brevo").trim();
+  const all=getBrevoSettings();
   const settings={
-    provider:(document.getElementById("mailProvider")?.value || "brevo").trim(),
-    bridgeUrl:(document.getElementById("brevoBridgeUrl")?.value || "/api/mail-bridge").trim(),
-    bridgeToken:(document.getElementById("brevoBridgeToken")?.value || "").trim(),
-    fromName:(document.getElementById("brevoFromName")?.value || "").trim(),
-    fromEmail:(document.getElementById("brevoFromEmail")?.value || "").trim(),
-    replyTo:(document.getElementById("brevoReplyTo")?.value || "").trim(),
-    optOutEmail:(document.getElementById("brevoOptOutEmail")?.value || "").trim(),
-    complianceLine:(document.getElementById("brevoComplianceLine")?.value || "soft")
+    provider,
+    bridgeUrl:(document.getElementById("brevoBridgeUrl")?.value||"/api/mail-bridge").trim(),
+    bridgeToken:(document.getElementById("brevoBridgeToken")?.value||"").trim(),
+    fromName:(document.getElementById("brevoFromName")?.value||"").trim(),
+    fromEmail:(document.getElementById("brevoFromEmail")?.value||"").trim(),
+    replyTo:(document.getElementById("brevoReplyTo")?.value||"").trim(),
+    optOutEmail:(document.getElementById("brevoOptOutEmail")?.value||"").trim(),
+    complianceLine:(document.getElementById("brevoComplianceLine")?.value||"soft")
   };
-  localStorage.setItem(STORAGE_BREVO, JSON.stringify(settings)); scheduleWorkspaceStateSync();
-  setBrevoStatus("Mail sender settings saved. Provider API keys remain encrypted and server-side.", false);
-  showToast("Mail settings saved");
+  const store={...all,activeProvider:provider,providers:{...(all.providers||{}),[provider]:settings},bridgeUrl:settings.bridgeUrl,bridgeToken:settings.bridgeToken,provider};
+  localStorage.setItem(STORAGE_BREVO,JSON.stringify(store));
   return settings;
 }
 function loadBrevoSettings(){
-  const s=getBrevoSettings();
-  const set=(id,val)=>{ const el=document.getElementById(id); if(el && val !== undefined && val !== null) el.value=val; };
-  set("mailProvider", s.provider || "brevo");
-  set("brevoBridgeUrl", s.bridgeUrl || "/api/mail-bridge");
-  set("brevoBridgeToken", s.bridgeToken || "");
-  set("brevoFromName", s.fromName || "Omar from MarginBusiness");
-  set("brevoFromEmail", s.fromEmail || "");
-  set("brevoReplyTo", s.replyTo || s.fromEmail || "");
-  set("brevoOptOutEmail", s.optOutEmail || s.replyTo || s.fromEmail || "");
-  set("brevoComplianceLine", s.complianceLine || "soft");
+  const store=getBrevoSettings();
+  const provider=store.activeProvider||store.provider||'brevo';
+  const s=store.providers?.[provider]||store;
+  const set=(id,val)=>{const el=document.getElementById(id);if(el&&val!==undefined&&val!==null)el.value=val};
+  set('mailProvider',provider);
+  set('brevoBridgeUrl',store.bridgeUrl||s.bridgeUrl||'/api/mail-bridge');
+  set('brevoBridgeToken',store.bridgeToken||s.bridgeToken||'');
+  set('brevoFromName',s.fromName||'');
+  set('brevoFromEmail',s.fromEmail||'');
+  set('brevoReplyTo',s.replyTo||'');
+  set('brevoOptOutEmail',s.optOutEmail||'');
+  set('brevoComplianceLine',s.complianceLine||'soft');
 }
 function complianceText(settings){
   if(settings.complianceLine === "none") return "";
@@ -3856,45 +3934,143 @@ async function refreshSendReadiness(){
   }
 }
 
+
+function latestLocalSendReceipt(){
+  const rows=getSendJournalStore();
+  return rows.find(r=>r?.result?.results?.length)||rows[0]||null;
+}
+function renderSendReceipt(entry){
+  const state=document.getElementById('sendReceiptState');
+  const details=document.getElementById('sendReceiptDetails');
+  if(!state||!details)return;
+  if(!entry){
+    state.className='sendReceiptState unknown';
+    state.textContent='No verified send receipt loaded.';
+    details.textContent='A successful provider response will show the recipient count, provider message IDs and exact timestamp here.';
+    return;
+  }
+  const results=entry.result?.results||[];
+  const sent=results.filter(r=>r.ok).length||Number(entry.result?.sent||0);
+  const failed=results.filter(r=>!r.ok).length||Number(entry.result?.failed||0);
+  const uncertain=!entry.result||!Array.isArray(entry.result.results);
+  state.className=`sendReceiptState ${uncertain?'unknown':(failed?'partial':'verified')}`;
+  state.textContent=uncertain?'Send attempt recorded, provider result not confirmed':`${sent} provider-accepted · ${failed} failed`;
+  const ids=results.filter(r=>r.ok&&r.messageId).slice(0,6).map(r=>`${r.to||r.leadId}: ${r.messageId}`).join('<br>');
+  details.innerHTML=`Time: ${escapeHtml(entry.time||entry.result?.serverDate||'unknown')} · Provider: ${escapeHtml(entry.payload?.provider||entry.result?.provider||'unknown')} · Attempted: ${(entry.payload?.emails||[]).length||entry.result?.attempted||0}.<br>${ids||'No provider message IDs were returned.'}`;
+}
+async function preflightSend(payload){
+  const bridgeUrl=(document.getElementById('brevoBridgeUrl')?.value||'/api/mail-bridge').trim();
+  const r=await mlAuthorizedFetch(bridgeUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'ping',provider:payload.provider||'brevo'})});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok||!d.ok)throw new Error(d.error||`Preflight failed with HTTP ${r.status}`);
+  if(!d.providerConfigured)throw new Error(`No usable ${String(payload.provider||'provider').toUpperCase()} credential was found for this workspace`);
+  return d;
+}
+async function verifyLastSendWithProvider(){
+  const bridgeUrl=(document.getElementById('brevoBridgeUrl')?.value||'/api/mail-bridge').trim();
+  const provider=document.getElementById('mailProvider')?.value||'brevo';
+  try{
+    const r=await mlAuthorizedFetch(bridgeUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'logs',provider,limit:100})});
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok||!d.ok)throw new Error(d.error||`Verification failed with HTTP ${r.status}`);
+    const latest=(d.events||[]).filter(e=>e.event_type==='email_sent'||e.event_type==='email_failed').slice(0,20);
+    if(!latest.length){
+      setBrevoStatus('No provider send events were found in the workspace log. This means the send is not confirmed inside MarginLeads.',true);
+      renderSendReceipt(null);
+      return;
+    }
+    const result={provider,attempted:latest.length,sent:latest.filter(e=>e.event_type==='email_sent').length,failed:latest.filter(e=>e.event_type==='email_failed').length,results:latest.map(e=>({ok:e.event_type==='email_sent',leadId:e.lead_id,to:e.recipient,messageId:e.message_id,error:e.error}))};
+    const entry={time:latest[0]?.created_at||new Date().toISOString(),status:'Verified from workspace log',payload:{provider,emails:latest.map(e=>({leadId:e.lead_id,to:e.recipient}))},result};
+    renderSendReceipt(entry);
+    setBrevoStatus(`Verification complete. Workspace log shows ${result.sent} accepted and ${result.failed} failed send events in the latest results.`,result.failed>0);
+    await refreshPersistentJobHistory().catch(()=>{});
+  }catch(e){
+    setBrevoStatus(`Could not verify the last send: ${e.message}`,true);
+  }
+}
+
 async function sendBatchViaBrevo(){
   const activeBatch=ensureLockedBatchBeforeAction("send");
   if(!activeBatch.length){
-    setBrevoStatus("No selected leads found. In Sending Cockpit, choose the sequence and select at least one due lead.", true);
-    showToast("No selected leads");
+    setBrevoStatus("No selected leads found. Choose a sequence, select due leads and prepare the batch.",true);
     return;
   }
   const live=document.getElementById("brevoLiveConfirm");
-  if(!live || !live.checked){ setBrevoStatus("Complete step 3: confirm that you reviewed the live recipients and email content.", true); live?.scrollIntoView({behavior:"smooth",block:"center"}); return; }
+  if(!live?.checked){
+    setBrevoStatus("Confirm that you reviewed the live recipients and email content before sending.",true);
+    live?.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
   const brevo=saveBrevoSettings();
   const payload=buildBrevoPayload();
-  const validation=validateBrevoBeforeSend(brevo, payload);
-  if(validation){ setBrevoStatus(validation, true); return; }
-  if(!confirm(`Send ${payload.emails.length} real ${payload.sequenceLabel} emails through the mail bridge now? This will contact live leads.`)) return;
+  const validation=validateBrevoBeforeSend(brevo,payload);
+  if(validation){setBrevoStatus(validation,true);return}
+  try{
+    const ping=await preflightSend(payload);
+    setBrevoStatus(`Preflight passed. ${String(payload.provider).toUpperCase()} credential source: ${ping.providerSource||'workspace'}. Ready to send ${payload.emails.length}.`,false);
+  }catch(e){
+    setBrevoStatus(`Send blocked before delivery: ${e.message}`,true);
+    return;
+  }
+  if(!confirm(`Send ${payload.emails.length} real ${payload.sequenceLabel} emails now?`))return;
+
   const journalId=makeId("sendAttempt");
   let persistentJobId=null;
-  try{persistentJobId=await createPersistentSendJob(payload);await updatePersistentSendJob(persistentJobId,{status:'sending',startedAt:new Date().toISOString()})}
-  catch(e){setBrevoStatus(`Could not create a permanent send job: ${e.message}`,true);return}
-  addSendJournalEntry({id:journalId, persistentJobId, status:"Sending", payload});
-  setBrevoStatus(`Sending ${payload.emails.length} emails through ${String(payload.provider||'provider').toUpperCase()}...`, false);
   try{
-    const res=await mlAuthorizedFetch(brevo.bridgeUrl, { method:"POST", headers:{"Content-Type":"application/json", ...(brevo.bridgeToken?{"X-LeadRadar-Token":brevo.bridgeToken}:{})}, body:JSON.stringify(payload) });
+    persistentJobId=await createPersistentSendJob(payload);
+    await updatePersistentSendJob(persistentJobId,{status:'sending',startedAt:new Date().toISOString()});
+  }catch(e){
+    console.warn('Permanent job record unavailable; continuing with provider send and local receipt',e);
+  }
+
+  addSendJournalEntry({id:journalId,persistentJobId,status:"Sending",payload});
+  renderSendJournal();
+  renderSendReceipt(latestLocalSendReceipt());
+  setBrevoStatus(`Submitting ${payload.emails.length} emails to ${String(payload.provider).toUpperCase()}...`,false);
+
+  try{
+    const res=await mlAuthorizedFetch(brevo.bridgeUrl,{method:"POST",headers:{"Content-Type":"application/json",...(brevo.bridgeToken?{"X-LeadRadar-Token":brevo.bridgeToken}:{})},body:JSON.stringify(payload)});
     const rawText=await res.text();
-    let data={}; try{ data=JSON.parse(rawText); } catch(parseErr){ throw new Error(`Bridge returned non-JSON response: ${rawText.slice(0,140)}`); }
-    if(!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
-    updateSendJournalEntry(journalId, {status:"Completed", result:data});
-    recordMailSendResults(data, payload);
-    const successes=(data.results || []).filter(r=>r.ok).map(r=>r.leadId).filter(Boolean);
-    const failures=(data.results || []).filter(r=>!r.ok);
-    await updatePersistentSendJob(persistentJobId,{status:'completed',sentCount:successes.length,failedCount:failures.length,completedAt:new Date().toISOString(),result:data,items:(data.results||[]).map(r=>({leadId:r.leadId,status:r.ok?'sent':'failed',messageId:r.messageId,error:r.error}))});
-    if(successes.length){ createLeadSnapshot("before send status update"); markLeadIdsSent(successes, payload.sequenceStep); markPreparedBatchCompleted(successes,failures,persistentJobId); saveCurrentCampaignLeads("successful send"); }
-    const failureText=failures.length ? `\nFailures:\n` + failures.slice(0,8).map(f=>`${f.to}: ${f.error || "unknown error"}`).join("\n") : "";
-    setBrevoStatus(`Mail bridge send finished. Sent: ${data.sent || successes.length}. Failed: ${data.failed || failures.length}. Remaining today: ${data.remainingToday ?? "unknown"}.${failureText}`, failures.length>0);
-    showToast(`Mail bridge sent ${data.sent || successes.length}`);
-  } catch(err){
+    let data={};
+    try{data=JSON.parse(rawText)}catch(_){throw new Error(`Bridge returned non-JSON: ${rawText.slice(0,180)}`)}
+    if(!res.ok||!data.ok)throw new Error(data.error||`HTTP ${res.status}`);
+
+    const results=Array.isArray(data.results)?data.results:[];
+    const successes=results.filter(r=>r.ok);
+    const failures=results.filter(r=>!r.ok);
+    const receipt={...data,receiptVerified:true,receivedAt:new Date().toISOString()};
+    updateSendJournalEntry(journalId,{status:failures.length?'Completed with failures':'Completed',result:receipt});
+    recordMailSendResults(receipt,payload);
+
+    if(persistentJobId){
+      await updatePersistentSendJob(persistentJobId,{
+        status:failures.length&&successes.length===0?'failed':'completed',
+        sentCount:successes.length,failedCount:failures.length,
+        completedAt:new Date().toISOString(),result:receipt,
+        items:results.map(r=>({leadId:r.leadId,status:r.ok?'sent':'failed',messageId:r.messageId,error:r.error}))
+      }).catch(e=>console.warn('Could not update permanent job',e));
+    }
+
+    const successIds=successes.map(r=>r.leadId).filter(Boolean);
+    if(successIds.length){
+      createLeadSnapshot("before send status update");
+      markLeadIdsSent(successIds,payload.sequenceStep);
+      markPreparedBatchCompleted(successIds,failures,persistentJobId);
+      saveCurrentCampaignLeads("successful provider receipt");
+    }
+    renderSendJournal();
+    renderSendReceipt(latestLocalSendReceipt());
+    await refreshPersistentJobHistory().catch(()=>{});
+    const ids=successes.filter(r=>r.messageId).length;
+    setBrevoStatus(`Provider receipt confirmed. Accepted: ${successes.length}. Failed: ${failures.length}. Message IDs returned: ${ids}. Remaining today: ${data.remainingToday??'unknown'}.`,failures.length>0);
+    live.checked=false;
+  }catch(err){
     console.error(err);
-    if(typeof journalId !== "undefined") updateSendJournalEntry(journalId, {status:"Failed", error:err.message});
-    if(typeof persistentJobId!=='undefined'&&persistentJobId)await updatePersistentSendJob(persistentJobId,{status:'failed',failedCount:payload?.emails?.length||0,completedAt:new Date().toISOString(),result:{error:err.message}}).catch(()=>{});
-    setBrevoStatus(`Send job failed: ${err.message}`, true);
+    updateSendJournalEntry(journalId,{status:"Not confirmed",error:err.message});
+    if(persistentJobId)await updatePersistentSendJob(persistentJobId,{status:'failed',failedCount:payload.emails.length,completedAt:new Date().toISOString(),result:{error:err.message}}).catch(()=>{});
+    renderSendJournal();
+    renderSendReceipt(latestLocalSendReceipt());
+    setBrevoStatus(`Send not confirmed: ${err.message}. Do not mark the leads as sent until Verify last send finds provider events.`,true);
   }
 }
 function markPreparedBatchCompleted(sentLeadIds,failures=[],jobId=null){
