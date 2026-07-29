@@ -32,7 +32,12 @@ module.exports=async function handler(req,res){
       if(apiKey.length<12)return res.status(400).json({ok:false,error:'Enter a valid provider API key.'});
       const settings={
         domain:clean(body.domain,255),
-        baseUrl:clean(body.baseUrl,500)
+        baseUrl:clean(body.baseUrl,500),
+        fromName:clean(body.fromName,300),
+        fromEmail:clean(body.fromEmail,500),
+        replyTo:clean(body.replyTo,500),
+        optOutEmail:clean(body.optOutEmail,500),
+        complianceLine:clean(body.complianceLine||'soft',30)
       };
       await saveWorkspaceProvider(workspaceId,provider,apiKey,settings);
       return res.status(200).json({ok:true,provider,configured:true});
