@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v5.0.1 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v5.0.2 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v5.0.1'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v5.0.2'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -782,14 +782,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
 
 
-/* v5.0.1 security/UI fix:
+/* v5.0.2 security/UI fix:
    the generic .sideBtn rule uses display:flex!important, so adminOnly needs
    a stronger selector to remain hidden until the server confirms platform admin. */
 .sideBtn.adminOnly:not(.visible){display:none!important}
 .sideBtn.adminOnly.visible{display:flex!important}
 
 
-/* v5.0.1 admin modal and private provider connection */
+/* v5.0.2 admin modal and private provider connection */
 .mlModalBackdrop{position:fixed;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
 .mlModalBackdrop.open{display:flex}
 .mlModal{width:min(1180px,96vw);max-height:88vh;overflow:auto;background:#0a1725;border:1px solid #27425b;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:22px}
@@ -799,7 +799,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 .providerPrivateBox .statusGood{color:#8bf0c7}.providerPrivateBox .statusBad{color:#f7c87a}
 
 
-/* v5.0.1 premium application header */
+/* v5.0.2 premium application header */
 .premiumAppHeader{
   display:flex!important;
   align-items:center!important;
@@ -899,7 +899,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 }
 
 
-/* v5.0.1 Revenue Command Center */
+/* v5.0.2 Revenue Command Center */
 :root{--v5-panel:#0a1625;--v5-panel2:#0d1b2d;--v5-line:rgba(148,163,184,.14);--v5-muted:#8494aa}
 .sideBrand span{font-size:10px!important;letter-spacing:.04em!important;text-transform:uppercase!important}
 .sideBtn b{display:flex!important;align-items:center!important;gap:11px!important}
@@ -932,7 +932,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:700px){.v5AppHeader{align-items:flex-start!important;flex-direction:column!important}.v5HeaderActions{width:100%}.v5HeaderActions button{flex:1}.v5MetricGrid,.v5LeadStages{grid-template-columns:1fr 1fr}.v5PipelineBars{grid-template-columns:1fr 1fr}}
 
 
-/* v5.0.1 professional shell spacing refinement */
+/* v5.0.2 professional shell spacing refinement */
 .saasSidebar{
   width:248px!important;
   left:20px!important;
@@ -985,6 +985,21 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
   .wrap::before{display:none!important}
 }
 
+
+/* v5.0.2 smart import column mapper */
+.columnMapper{margin-top:14px;padding:16px;border:1px solid rgba(148,163,184,.13);border-radius:14px;background:rgba(8,20,34,.72)}
+.columnMapperHead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
+.columnMapperHead strong{font-size:14px}.columnMapperHead .small{margin-top:3px}
+.columnMapperGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.columnMapItem{display:block;padding:10px;border-radius:11px;background:rgba(148,163,184,.035);border:1px solid rgba(148,163,184,.08)}
+.columnMapItem span{display:block;color:#8d9caf;font-size:10px;font-weight:700;margin-bottom:6px}
+.columnMapItem select{width:100%;min-width:0;background:#0b1727}
+.mappingWarning{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:11px;color:#8b9aaf;background:rgba(148,163,184,.05)}
+.mappingWarningGood{color:#79e4bd;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.16)}
+.mappingWarningBad{color:#f2c98d;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.16)}
+@media(max-width:1050px){.columnMapperGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.columnMapperHead{flex-direction:column}.columnMapperGrid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -992,7 +1007,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v5.0.1</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v5.0.2</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -1605,6 +1620,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
             <div class="importStep importPreviewWrap" id="importPreviewWrap">
               <div class="importStepHead"><span class="importStepNo">2</span><div><strong>Review the import</strong><div class="small">Check the first five rows before anything is added.</div></div></div>
               <div class="uploadGrid"><div><label>Sheet / tab</label><select id="sheetSelect" onchange="prepareSelectedSheetPreview()"><option value="">No file uploaded</option></select></div><div><label>Import action</label><select id="importMode"><option value="append">Add to current campaign</option><option value="replace">Replace current campaign leads</option><option value="new">Create a new campaign</option></select></div></div>
+              <div class="columnMapper" id="columnMapper">
+                <div class="columnMapperHead">
+                  <div><strong>Match your columns</strong><div class="small">We detected the fields automatically. Correct anything that looks wrong before importing.</div></div>
+                  <button class="secondary" type="button" onclick="autoMapImportColumns()">Auto-detect again</button>
+                </div>
+                <div class="columnMapperGrid" id="columnMapperGrid"></div>
+                <div class="mappingWarning" id="mappingWarning">Upload a file to review column matching.</div>
+              </div>
               <div class="importStats"><div class="importStat"><strong id="previewValid">0</strong><span>valid leads</span></div><div class="importStat"><strong id="previewMissing">0</strong><span>missing email</span></div><div class="importStat"><strong id="previewDuplicates">0</strong><span>possible duplicates</span></div><div class="importStat"><strong id="previewSkipped">0</strong><span>rows skipped</span></div></div>
               <div style="overflow:auto"><table class="importPreviewTable"><thead><tr><th>Company</th><th>Contact</th><th>Role</th><th>Email</th><th>Website</th><th>Category</th></tr></thead><tbody id="importPreviewBody"></tbody></table></div>
               <div class="importReport" id="importReport">No import prepared yet.</div>
@@ -2334,6 +2357,155 @@ function handleLeadFile(event){
   reader.onerror=()=>showToast('The file could not be read.');
   reader.readAsArrayBuffer(file);
 }
+
+const ML_IMPORT_FIELDS=[
+  {key:"company",label:"Company / brand",aliases:["company","company name","brand","brand name","organization","organisation","account","account name","business","business name","store","store name","seller","seller name"]},
+  {key:"contact",label:"Contact name",aliases:["contact","contact name","person","person name","name","lead name","full name","owner","owner name","founder","founder name","ceo","ceo name","decision maker"]},
+  {key:"firstName",label:"First name",aliases:["first name","firstname","given name"]},
+  {key:"lastName",label:"Last name",aliases:["last name","lastname","surname","family name"]},
+  {key:"role",label:"Role / title",aliases:["role","title","job title","position","seniority","designation"]},
+  {key:"email",label:"Email",aliases:["email","e mail","email address","work email","business email","mail"]},
+  {key:"website",label:"Website / domain",aliases:["website","website url","url","domain","site","company website","web"]},
+  {key:"linkedin",label:"LinkedIn",aliases:["linkedin","linked in","linkedin url","profile","linkedin profile","person linkedin"]},
+  {key:"category",label:"Category / industry",aliases:["category","industry","market","niche","department","vertical","sector"]},
+  {key:"product",label:"Product / keyword",aliases:["product","keyword","main keyword","asin","main product","offer","product name","item"]},
+  {key:"revenueRaw",label:"Revenue / sales",aliases:["revenue","estimated revenue","est revenue","monthly revenue","sales","amazon revenue","category revenue","turnover","gmv"]},
+  {key:"status",label:"Status / stage",aliases:["status","stage","lead status","pipeline"]},
+  {key:"source",label:"Lead source",aliases:["source","lead source"]},
+  {key:"sent",label:"Last contacted",aliases:["sent","sent date","date sent","last contacted","contacted"]}
+];
+let currentImportRows=[];
+let currentImportHeaders=[];
+let currentImportMapping={};
+
+function detectHeaderRow(rows){
+  const max=Math.min(rows.length,8);
+  let best={index:0,score:-1};
+  for(let i=0;i<max;i++){
+    const row=(rows[i]||[]).map(v=>String(v||"").trim());
+    let score=0;
+    row.forEach(cell=>{
+      const n=normalizeHeader(cell);
+      if(!n)return;
+      if(ML_IMPORT_FIELDS.some(f=>f.aliases.some(a=>headerMatchScore(n,a)>=65)))score+=3;
+      if(/@/.test(cell))score-=2;
+      if(/^https?:\/\//i.test(cell))score-=1;
+    });
+    if(score>best.score)best={index:i,score};
+  }
+  return best.score>=3?best.index:0;
+}
+function autoDetectImportMapping(headers){
+  const used=new Set(), map={};
+  ML_IMPORT_FIELDS.forEach(field=>{
+    let best={idx:-1,score:-1};
+    headers.forEach((header,idx)=>{
+      if(used.has(idx))return;
+      field.aliases.forEach(alias=>{
+        let score=headerMatchScore(header,alias);
+        if(field.key==="contact" && /company|brand|business|store|seller|organization|organisation/.test(normalizeHeader(header)))score=-1;
+        if(score>best.score)best={idx,score};
+      });
+    });
+    if(best.score>=65){map[field.key]=best.idx;used.add(best.idx)}else map[field.key]=-1;
+  });
+  return map;
+}
+function columnOptionHtml(headers,selected){
+  return `<option value="-1">Do not import</option>`+headers.map((h,i)=>`<option value="${i}" ${Number(selected)===i?"selected":""}>${escapeHtml(h||`Column ${i+1}`)}</option>`).join("");
+}
+function buildColumnMapper(rows){
+  const headerRow=detectHeaderRow(rows);
+  currentImportHeaders=(rows[headerRow]||[]).map((v,i)=>String(v||"").trim()||`Column ${i+1}`);
+  currentImportMapping=autoDetectImportMapping(currentImportHeaders);
+  currentImportMapping.__headerRow=headerRow;
+  renderColumnMapper();
+}
+function renderColumnMapper(){
+  const grid=document.getElementById("columnMapperGrid");
+  if(!grid)return;
+  grid.innerHTML=ML_IMPORT_FIELDS.map(field=>`<label class="columnMapItem"><span>${escapeHtml(field.label)}</span><select data-map-field="${field.key}" onchange="updateImportMapping('${field.key}',this.value)">${columnOptionHtml(currentImportHeaders,currentImportMapping[field.key])}</select></label>`).join("");
+  updateMappingWarning();
+}
+function updateImportMapping(field,value){
+  currentImportMapping[field]=Number(value);
+  updateMappingWarning();
+  prepareMappedPreview();
+}
+function autoMapImportColumns(){
+  currentImportMapping=autoDetectImportMapping(currentImportHeaders);
+  currentImportMapping.__headerRow=currentImportMapping.__headerRow??detectHeaderRow(currentImportRows);
+  renderColumnMapper();
+  prepareMappedPreview();
+}
+function updateMappingWarning(){
+  const warning=document.getElementById("mappingWarning");
+  if(!warning)return;
+  const required=[];
+  if((currentImportMapping.company??-1)<0)required.push("company");
+  if((currentImportMapping.email??-1)<0 && (currentImportMapping.website??-1)<0 && (currentImportMapping.linkedin??-1)<0)required.push("email, website or LinkedIn");
+  if(required.length){
+    warning.className="mappingWarning mappingWarningBad";
+    warning.textContent=`Please map ${required.join(" and ")} before importing.`;
+  }else{
+    warning.className="mappingWarning mappingWarningGood";
+    warning.textContent="Column matching looks ready. Review the sample rows below.";
+  }
+}
+function mappedValue(row,key){
+  const idx=Number(currentImportMapping[key]);
+  return idx>=0?String(row[idx]||"").trim():"";
+}
+function parseMappedRows(rows){
+  const report={totalRows:0,imported:0,skipped:[],duplicates:[]};
+  if(!rows.length)return {leads:[],report};
+  const headerRow=Number(currentImportMapping.__headerRow||0);
+  const dataRows=rows.slice(headerRow+1);
+  const defaultSource=document.getElementById("leadSource")?.value||"Manual";
+  const defaultProfile=document.getElementById("importProfile")?.value||"Standard";
+  const seen=new Map(), parsed=[];
+  dataRows.forEach((row,index)=>{
+    const originalRow=headerRow+index+2;
+    report.totalRows++;
+    if(!row || !row.some(v=>String(v||"").trim())){report.skipped.push({row:originalRow,reason:"empty row"});return}
+    const firstName=mappedValue(row,"firstName"),lastName=mappedValue(row,"lastName");
+    let contact=mappedValue(row,"contact");
+    if(!contact && (firstName||lastName))contact=`${firstName} ${lastName}`.trim();
+    let company=mappedValue(row,"company");
+    const email=mappedValue(row,"email");
+    const website=mappedValue(row,"website");
+    const linkedin=mappedValue(row,"linkedin");
+    company=company||companyFromEmail(email)||"Unknown";
+    contact=cleanContactName(contact,company);
+    const item={
+      company,contact,
+      role:mappedValue(row,"role"),
+      email,website,linkedin,
+      category:mappedValue(row,"category"),
+      product:mappedValue(row,"product"),
+      revenueRaw:mappedValue(row,"revenueRaw"),
+      sent:mappedValue(row,"sent"),
+      status:mappedValue(row,"status")||"New",
+      source:mappedValue(row,"source")||defaultSource,
+      importProfile:defaultProfile
+    };
+    const useful=item.company!=="Unknown"||item.email||item.website||item.linkedin||item.product||item.category;
+    if(!useful){report.skipped.push({row:originalRow,reason:"no usable lead data"});return}
+    const dupeKey=[item.company,item.email,item.website].map(v=>normalizeHeader(v)).join("|");
+    if(seen.has(dupeKey)&&dupeKey.replace(/\|/g,"").trim())report.duplicates.push({row:originalRow,match:seen.get(dupeKey)});
+    else seen.set(dupeKey,originalRow);
+    parsed.push({id:makeId("lead")+"-"+index,rowNumber:originalRow,...item,revenue:cleanMoney(item.revenueRaw)});
+  });
+  report.imported=parsed.length;
+  return {leads:parsed,report};
+}
+function prepareMappedPreview(){
+  if(!currentImportRows.length)return;
+  const result=parseMappedRows(currentImportRows);
+  preparedImport={leads:result.leads,report:result.report,source:document.getElementById('sheetSelect')?.value||'uploaded file'};
+  showPreparedImport();
+}
+
 function prepareSelectedSheetPreview(){
   if(!uploadedWorkbook)return;
   const sheetName=document.getElementById('sheetSelect').value||uploadedWorkbook.SheetNames[0];
@@ -2341,9 +2513,9 @@ function prepareSelectedSheetPreview(){
   const rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:false});
   const dataRows=Math.max(rows.length-1,0);
   if(dataRows>ML_MAX_IMPORT_ROWS){preparedImport=null;document.getElementById('importPreviewWrap')?.classList.remove('visible');showToast(`This sheet contains ${dataRows.toLocaleString()} rows. The maximum is ${ML_MAX_IMPORT_ROWS.toLocaleString()}.`);return;}
-  const result=parseRowsDetailed(rowsArrayToRaw(rows));
-  preparedImport={leads:result.leads,report:result.report,source:sheetName};
-  showPreparedImport();
+  currentImportRows=rows;
+  buildColumnMapper(rows);
+  prepareMappedPreview();
 }
 function showPreparedImport(){
   if(!preparedImport)return;
@@ -2375,11 +2547,11 @@ function confirmPreparedImport(){
   lastImportReport=preparedImport.report;selectedId=leads[0]?.id||null;activeTab='overview';saveCurrentCampaignLeads();updateCurrentCampaignMeta();updateCategories();render();showToast(`${preparedImport.leads.length.toLocaleString()} leads imported safely`);resetLeadImporter(false);
 }
 function resetLeadImporter(clearReport=true){
-  preparedImport=null;uploadedWorkbook=null;
+  preparedImport=null;uploadedWorkbook=null;currentImportRows=[];currentImportHeaders=[];currentImportMapping={};
   const file=document.getElementById('leadFile');if(file)file.value='';
   const sel=document.getElementById('sheetSelect');if(sel)sel.innerHTML='<option value="">No file uploaded</option>';
   document.getElementById('importPreviewWrap')?.classList.remove('visible');
-  const fn=document.getElementById('fileName');if(fn)fn.textContent='No file selected.';
+  const fn=document.getElementById('fileName');if(fn)fn.textContent='No file selected.';const mg=document.getElementById('columnMapperGrid');if(mg)mg.innerHTML='';const mw=document.getElementById('mappingWarning');if(mw){mw.className='mappingWarning';mw.textContent='Upload a file to review column matching.';}
   if(clearReport){lastImportReport=null;renderImportReport();}
 }
 function loadSelectedSheet(){prepareSelectedSheetPreview();}
@@ -2564,7 +2736,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.0.1\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.0.2\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -3144,7 +3316,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.0.1 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.0.2 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
