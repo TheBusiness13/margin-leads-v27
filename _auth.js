@@ -93,5 +93,9 @@ async function sentTodayForWorkspace(workspaceId){
   if(Number.isFinite(total))return total;
   const rows=await r.json();return Array.isArray(rows)?rows.length:0;
 }
-async function isPlatformAdmin(userId){const r=await serviceFetch(`platform_admins?user_id=eq.${encodeURIComponent(userId)}&select=user_id&limit=1`);const d=await jsonOrError(r);return !!(Array.isArray(d)&&d[0]);}
+async function isPlatformAdmin(userId){
+  const r=await serviceFetch(`platform_admins?user_id=eq.${encodeURIComponent(userId)}&select=user_id&limit=1`);
+  const d=await jsonOrError(r);
+  return !!(Array.isArray(d)&&d[0]);
+}
 module.exports={getUser,ensureWorkspace,canSend,logActivity,recentActivity,sentTodayForWorkspace,serviceFetch,jsonOrError,isPlatformAdmin};
