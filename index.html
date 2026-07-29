@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v5.0.2 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v5.0.3 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v5.0.2'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v5.0.3'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -782,14 +782,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
 
 
-/* v5.0.2 security/UI fix:
+/* v5.0.3 security/UI fix:
    the generic .sideBtn rule uses display:flex!important, so adminOnly needs
    a stronger selector to remain hidden until the server confirms platform admin. */
 .sideBtn.adminOnly:not(.visible){display:none!important}
 .sideBtn.adminOnly.visible{display:flex!important}
 
 
-/* v5.0.2 admin modal and private provider connection */
+/* v5.0.3 admin modal and private provider connection */
 .mlModalBackdrop{position:fixed;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
 .mlModalBackdrop.open{display:flex}
 .mlModal{width:min(1180px,96vw);max-height:88vh;overflow:auto;background:#0a1725;border:1px solid #27425b;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:22px}
@@ -799,7 +799,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 .providerPrivateBox .statusGood{color:#8bf0c7}.providerPrivateBox .statusBad{color:#f7c87a}
 
 
-/* v5.0.2 premium application header */
+/* v5.0.3 premium application header */
 .premiumAppHeader{
   display:flex!important;
   align-items:center!important;
@@ -899,7 +899,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 }
 
 
-/* v5.0.2 Revenue Command Center */
+/* v5.0.3 Revenue Command Center */
 :root{--v5-panel:#0a1625;--v5-panel2:#0d1b2d;--v5-line:rgba(148,163,184,.14);--v5-muted:#8494aa}
 .sideBrand span{font-size:10px!important;letter-spacing:.04em!important;text-transform:uppercase!important}
 .sideBtn b{display:flex!important;align-items:center!important;gap:11px!important}
@@ -932,7 +932,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:700px){.v5AppHeader{align-items:flex-start!important;flex-direction:column!important}.v5HeaderActions{width:100%}.v5HeaderActions button{flex:1}.v5MetricGrid,.v5LeadStages{grid-template-columns:1fr 1fr}.v5PipelineBars{grid-template-columns:1fr 1fr}}
 
 
-/* v5.0.2 professional shell spacing refinement */
+/* v5.0.3 professional shell spacing refinement */
 .saasSidebar{
   width:248px!important;
   left:20px!important;
@@ -986,7 +986,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 }
 
 
-/* v5.0.2 smart import column mapper */
+/* v5.0.3 smart import column mapper */
 .columnMapper{margin-top:14px;padding:16px;border:1px solid rgba(148,163,184,.13);border-radius:14px;background:rgba(8,20,34,.72)}
 .columnMapperHead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
 .columnMapperHead strong{font-size:14px}.columnMapperHead .small{margin-top:3px}
@@ -1000,6 +1000,24 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:1050px){.columnMapperGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.columnMapperHead{flex-direction:column}.columnMapperGrid{grid-template-columns:1fr}}
 
+
+/* v5.0.3 reliable sending flow */
+.sendReadiness{margin:14px 0;padding:18px;border:1px solid rgba(96,165,250,.18);border-radius:16px;background:linear-gradient(145deg,rgba(12,27,46,.96),rgba(8,20,34,.96))}
+.sendReadinessHead{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:13px}.sendReadinessHead strong{display:block;margin-top:4px;font-size:15px}
+.sendReadinessGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.sendReadyStep{display:flex!important;align-items:center!important;gap:10px!important;min-height:76px!important;padding:12px!important;text-align:left!important;border:1px solid rgba(148,163,184,.11)!important;background:rgba(148,163,184,.035)!important;color:#e7edf6!important;border-radius:12px!important}
+.sendReadyStep>b{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:9px;background:rgba(96,165,250,.12);color:#9ec5ff}
+.sendReadyStep span{display:flex;flex-direction:column;gap:3px}.sendReadyStep strong{font-size:12px}.sendReadyStep small{font-size:9px;line-height:1.4;color:#7f90a6}
+.sendReadyStep:hover{border-color:rgba(96,165,250,.28)!important;background:rgba(59,130,246,.065)!important}
+.sendConfirm{cursor:pointer;position:relative}.sendConfirm input{margin-left:auto;width:20px;height:20px;accent-color:#31d6a0}
+.sendFinal{background:rgba(16,185,129,.08)!important;border-color:rgba(16,185,129,.2)!important}
+.leadSafetyNote{display:flex;align-items:center;gap:6px;margin-top:12px;padding:10px 12px;border-radius:10px;background:rgba(16,185,129,.055);border:1px solid rgba(16,185,129,.12);font-size:10px;color:#8ea2b8}
+.leadSafetyNote button{padding:0!important;background:transparent!important;color:#76dfba!important;font-size:10px!important;text-decoration:underline}
+.leadSafetyNote.pulse{animation:safetyPulse .9s ease}
+@keyframes safetyPulse{50%{border-color:rgba(16,185,129,.45);background:rgba(16,185,129,.12)}}
+@media(max-width:1100px){.sendReadinessGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.sendReadinessGrid{grid-template-columns:1fr}.sendReadinessHead{align-items:flex-start;flex-direction:column}}
+
 </style>
 </head>
 <body>
@@ -1007,7 +1025,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v5.0.2</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v5.0.3</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -1415,7 +1433,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         <div class="cockpitActions">
           <button class="secondary" onclick="resetBatchSelection(true)">Reset selection</button>
           <button class="primary" onclick="prepareLockedBatch(true)">Prepare selected batch</button>
-          <button class="primary" onclick="sendBatchViaBrevo()">Send via Mail Bridge</button>
+          <button class="primary" onclick="document.getElementById('brevoLiveConfirm')?.scrollIntoView({behavior:'smooth',block:'center'})">Review & send</button>
         </div>
       </div>
 
@@ -1473,6 +1491,23 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
           <label>Batch mode</label>
           <select id="batchMode" onchange="renderBatchQueue()"><option value="bridge">Mail bridge live send</option><option value="paste">Paste-ready emails</option><option value="manual">Manual review</option></select>
         </div>
+      </div>
+
+      <div class="sendReadiness">
+        <div class="sendReadinessHead">
+          <div>
+            <span class="v5Kicker">LIVE SENDING READINESS</span>
+            <strong>Complete these checks before sending</strong>
+          </div>
+          <span class="chip warn" id="sendProviderChip">Provider check required</span>
+        </div>
+        <div class="sendReadinessGrid">
+          <button type="button" class="sendReadyStep" onclick="openShellPage('settings','emailProviderConnection')"><b>1</b><span><strong>Connect provider</strong><small>Use your private Brevo, SendGrid, Resend or Mailgun API.</small></span></button>
+          <button type="button" class="sendReadyStep" onclick="prepareLockedBatch(true)"><b>2</b><span><strong>Prepare batch</strong><small>Lock only the checked leads for this sequence.</small></span></button>
+          <label class="sendReadyStep sendConfirm"><b>3</b><span><strong>Confirm live sending</strong><small>I reviewed the recipients and email content.</small></span><input id="brevoLiveConfirm" type="checkbox"></label>
+          <button type="button" class="sendReadyStep sendFinal" onclick="sendBatchViaBrevo()"><b>4</b><span><strong>Send prepared batch</strong><small>Send through the connected workspace provider.</small></span></button>
+        </div>
+        <div class="leadSafetyNote"><strong>Lead safety:</strong> changing Email 1–4 only changes which leads are due. It does not remove them from the Leads database. <button type="button" onclick="restoreLatestLeadSnapshot()">Restore latest lead snapshot</button></div>
       </div>
 
       <div class="cockpitStats" id="batchCockpitStats"></div>
@@ -2127,7 +2162,44 @@ function deleteCampaign(){
   setCurrentCampaignId(campaigns[0].id);
   switchCampaign(campaigns[0].id);
 }
-function saveCurrentCampaignLeads(){ const campaign = getCurrentCampaign(); updateCampaign(campaign.id, { leads: leads }); }
+const STORAGE_LEAD_SNAPSHOTS_BASE="mbLeadRadarLite.leadSnapshots";
+function leadSnapshotKey(){return workspaceStorageKey(STORAGE_LEAD_SNAPSHOTS_BASE,window.mlWorkspace?.id||"unknown")}
+function getLeadSnapshots(){
+  try{const rows=JSON.parse(localStorage.getItem(leadSnapshotKey())||"[]");return Array.isArray(rows)?rows:[]}catch(_){return[]}
+}
+function createLeadSnapshot(reason){
+  if(!mlWorkspaceStorageReady)return;
+  const campaign=getCurrentCampaign();
+  const rows=Array.isArray(leads)?leads:[];
+  if(!rows.length)return;
+  const snapshots=getLeadSnapshots();
+  snapshots.unshift({id:makeId("snapshot"),campaignId:campaign.id,campaignName:campaign.name,reason:reason||"automatic",createdAt:new Date().toISOString(),leads:JSON.parse(JSON.stringify(rows))});
+  localStorage.setItem(leadSnapshotKey(),JSON.stringify(snapshots.slice(0,12)));
+}
+function restoreLatestLeadSnapshot(){
+  const campaign=getCurrentCampaign();
+  const snapshot=getLeadSnapshots().find(s=>s.campaignId===campaign.id&&Array.isArray(s.leads)&&s.leads.length);
+  if(!snapshot){showToast("No lead snapshot is available for this campaign");return}
+  if(!confirm(`Restore ${snapshot.leads.length} leads from ${new Date(snapshot.createdAt).toLocaleString()}?`))return;
+  leads=JSON.parse(JSON.stringify(snapshot.leads));
+  updateCampaign(campaign.id,{leads});
+  selectedId=leads[0]?.id||null;
+  updateCategories();render();showToast(`${leads.length} leads restored`);
+}
+function saveCurrentCampaignLeads(reason="automatic save"){
+  const campaign=getCurrentCampaign();
+  const existing=Array.isArray(campaign.leads)?campaign.leads:[];
+  const next=Array.isArray(leads)?leads:[];
+  if(existing.length>0 && next.length===0){
+    console.warn("Prevented accidental empty lead overwrite",reason);
+    leads=JSON.parse(JSON.stringify(existing));
+    showToast("Lead safety restored the campaign list");
+    return;
+  }
+  if(existing.length && next.length<existing.length) createLeadSnapshot(`Before lead count changed: ${reason}`);
+  else if(next.length) createLeadSnapshot(reason);
+  updateCampaign(campaign.id,{leads:next});
+}
 function updateImportHelp(){
   const help = document.getElementById("importHelp");
   const profileEl = document.getElementById("importProfile");
@@ -2325,8 +2397,17 @@ const ML_MAX_FILE_BYTES=10*1024*1024;
 const ML_MAX_IMPORT_ROWS=10000;
 let preparedImport=null;
 function openLeadImporter(){
-  const drawer=document.getElementById('leadImporter');
-  if(drawer){drawer.open=true;drawer.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>document.getElementById('leadDropZone')?.focus(),350);}
+  if(typeof window.openShellPage==='function') window.openShellPage('leads','leadImporter');
+  const openDrawer=()=>{
+    const drawer=document.getElementById('leadImporter');
+    if(drawer){
+      drawer.open=true;
+      drawer.classList.add('shell-visible');
+      drawer.scrollIntoView({behavior:'smooth',block:'start'});
+      setTimeout(()=>document.getElementById('leadDropZone')?.focus(),250);
+    }
+  };
+  setTimeout(openDrawer,120);
 }
 function validateImportFile(file){
   const ext=(file.name.split('.').pop()||'').toLowerCase();
@@ -2544,7 +2625,7 @@ function confirmPreparedImport(){
     const cleanIncoming=incoming.filter(x=>{const k=[x.email,x.linkedin,x.website,x.company].map(v=>normalizeHeader(v)).join('|');if(existingKeys.has(k))return false;existingKeys.add(k);return true;});
     leads=[...leads,...cleanIncoming];
   }
-  lastImportReport=preparedImport.report;selectedId=leads[0]?.id||null;activeTab='overview';saveCurrentCampaignLeads();updateCurrentCampaignMeta();updateCategories();render();showToast(`${preparedImport.leads.length.toLocaleString()} leads imported safely`);resetLeadImporter(false);
+  lastImportReport=preparedImport.report;selectedId=leads[0]?.id||null;activeTab='overview';saveCurrentCampaignLeads("lead import");updateCurrentCampaignMeta();updateCategories();render();showToast(`${preparedImport.leads.length.toLocaleString()} leads imported safely`);resetLeadImporter(false);
 }
 function resetLeadImporter(clearReport=true){
   preparedImport=null;uploadedWorkbook=null;currentImportRows=[];currentImportHeaders=[];currentImportMapping={};
@@ -2736,7 +2817,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.0.2\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.0.3\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -3113,7 +3194,8 @@ function saveBatchSelection(settings){
   store[batchSelectionKey(c.id, settings.step)] = Array.from(batchSelection);
   saveSelectionStore(store);
 }
-function onBatchSettingsChanged(){updateSenderProtection();
+function onBatchSettingsChanged(){
+  createLeadSnapshot("before sequence change");updateSenderProtection();
   const settings=getBatchSettings();
   const key=`${getCurrentCampaign().id}|${settings.step}|${settings.cap}|${settings.minScore}|${settings.emailOnly}|${settings.gap2}|${settings.gap3}|${settings.gap4}|${settings.sequencePolicy}`;
   if(key !== batchCandidateKey){
@@ -3121,6 +3203,7 @@ function onBatchSettingsChanged(){updateSenderProtection();
     batchSelection = new Set();
   }
   renderBatchQueue(false, {settingsChanged:true});
+  showSequencePersistenceNotice();
 }
 function ensureDefaultBatchSelection(due, settings, force){
   const candidateIds=due.map(item=>item.lead.id);
@@ -3316,7 +3399,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.0.2 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.0.3 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
@@ -3617,6 +3700,30 @@ async function testBrevoBridge(){
 Sign in again and confirm your workspace provider connection is configured.`, true);
   }
 }
+
+function showSequencePersistenceNotice(){
+  const note=document.querySelector(".leadSafetyNote");
+  if(!note)return;
+  note.classList.add("pulse");
+  clearTimeout(note._pulseTimer);
+  note._pulseTimer=setTimeout(()=>note.classList.remove("pulse"),900);
+}
+async function refreshSendReadiness(){
+  const chip=document.getElementById("sendProviderChip");
+  if(!chip)return;
+  const provider=document.getElementById("mailProvider")?.value||"brevo";
+  try{
+    const r=await mlAuthorizedFetch(`/api/provider-settings?provider=${encodeURIComponent(provider)}`,{cache:"no-store"});
+    const d=await r.json();
+    const ok=r.ok&&d.configured;
+    chip.textContent=ok?`${provider.toUpperCase()} connected`:`${provider.toUpperCase()} not connected`;
+    chip.className=`chip ${ok?"good":"warn"}`;
+  }catch(_){
+    chip.textContent="Provider check failed";
+    chip.className="chip warn";
+  }
+}
+
 async function sendBatchViaBrevo(){
   const activeBatch=ensureLockedBatchBeforeAction("send");
   if(!activeBatch.length){
@@ -3625,7 +3732,7 @@ async function sendBatchViaBrevo(){
     return;
   }
   const live=document.getElementById("brevoLiveConfirm");
-  if(!live || !live.checked){ setBrevoStatus("Tick the live-send confirmation box inside Admin settings before sending real emails.", true); return; }
+  if(!live || !live.checked){ setBrevoStatus("Complete step 3: confirm that you reviewed the live recipients and email content.", true); live?.scrollIntoView({behavior:"smooth",block:"center"}); return; }
   const brevo=saveBrevoSettings();
   const payload=buildBrevoPayload();
   const validation=validateBrevoBeforeSend(brevo, payload);
@@ -3642,7 +3749,7 @@ async function sendBatchViaBrevo(){
     updateSendJournalEntry(journalId, {status:"Bridge completed", result:data});
     recordMailSendResults(data, payload);
     const successes=(data.results || []).filter(r=>r.ok).map(r=>r.leadId).filter(Boolean);
-    if(successes.length){ markLeadIdsSent(successes, payload.sequenceStep); removeSentFromPreparedBatch(successes); }
+    if(successes.length){ createLeadSnapshot("before send status update"); markLeadIdsSent(successes, payload.sequenceStep); removeSentFromPreparedBatch(successes); saveCurrentCampaignLeads("successful send"); }
     const failures=(data.results || []).filter(r=>!r.ok);
     const failureText=failures.length ? `\nFailures:\n` + failures.slice(0,8).map(f=>`${f.to}: ${f.error || "unknown error"}`).join("\n") : "";
     setBrevoStatus(`Mail bridge send finished. Sent: ${data.sent || successes.length}. Failed: ${data.failed || failures.length}. Remaining today: ${data.remainingToday ?? "unknown"}.${failureText}`, failures.length>0);
@@ -4418,7 +4525,7 @@ function exportConnectedLogsCSV(){
     settings:{eyebrow:'Account',title:'Settings',description:'Manage your email provider, sender identity, workspace and security.',actions:'settings'}
   };
   const sectionMap = {
-    missionSection:'dashboard',v24SetupHub:'dashboard',campaignSection:'campaigns',sendingSection:'campaigns',
+    v5CommandCenter:'dashboard',missionSection:'dashboard',v24SetupHub:'dashboard',campaignSection:'campaigns',sendingSection:'campaigns',
     backOfficeSection:'leads',leadsSection:'leads',opportunitySection:'opportunities',connectedLogsSection:'activity',
     performanceSection:'results',sendRecoverySection:'results',settingsSection:'settings'
   };
@@ -4447,7 +4554,7 @@ function exportConnectedLogsCSV(){
     try{localStorage.setItem('marginLeadsShellPage',page)}catch(_){ }
     window.scrollTo({top:0,behavior:'smooth'});
     setTimeout(()=>{if(scrollTarget){const el=document.getElementById(scrollTarget);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}},80);
-    if(page==='activity' || page==='settings'){try{refreshConnectedLogs()}catch(_){}}if(page==='settings'){setTimeout(()=>document.getElementById('emailProviderConnection')?.scrollIntoView({behavior:'smooth',block:'start'}),100)}
+    if(page==='activity' || page==='settings'){try{refreshConnectedLogs()}catch(_){}}if(page==='campaigns'){setTimeout(()=>refreshSendReadiness().catch(()=>{}),100)}if(page==='settings'){setTimeout(()=>document.getElementById('emailProviderConnection')?.scrollIntoView({behavior:'smooth',block:'start'}),100)}
   };
   const previousScroll = window.scrollToSection;
   window.scrollToSection = function(id){
