@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarginBusiness Leads v5.0.3 — Secure Beta Gateway</title>
+  <title>MarginBusiness Leads v5.1.0 — Secure Beta Gateway</title>
   <link rel="icon" type="image/png" href="assets/marginbusiness-leads-logo.png" />
   <meta name="robots" content="noindex,nofollow" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -240,7 +240,7 @@
     .authorityPanel .authorityTop { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px; }
     .operatorModePill { display:inline-flex; align-items:center; background:rgba(139,92,246,.15); color:#ddd6fe; border:1px solid rgba(139,92,246,.28); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900; }
     .quickStart { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .batchQueue h3::after { content:' · v5.0.3'; color:#8fa0b5; font-size:13px; font-weight:700; }
+    .batchQueue h3::after { content:' · v5.1.0'; color:#8fa0b5; font-size:13px; font-weight:700; }
 
 
     /* v2.2 Email performance window */
@@ -782,14 +782,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:760px){.saasSidebar{position:relative!important;width:100%!important;min-height:auto!important}.wrap{margin-left:0!important;width:100%!important}.sideFooter{display:none!important}.professionalMenu{display:grid!important;grid-template-columns:repeat(2,1fr)!important}.sideGroupLabel{grid-column:1/-1}.top{grid-template-columns:1fr!important}.brandBlock{display:none}.professionalPageBar{align-items:flex-start;flex-direction:column}.missionGrid,.compactRadar .todayList{grid-template-columns:1fr!important}.leadWorkspaceGrid{grid-template-columns:1fr!important}}
 
 
-/* v5.0.3 security/UI fix:
+/* v5.1.0 security/UI fix:
    the generic .sideBtn rule uses display:flex!important, so adminOnly needs
    a stronger selector to remain hidden until the server confirms platform admin. */
 .sideBtn.adminOnly:not(.visible){display:none!important}
 .sideBtn.adminOnly.visible{display:flex!important}
 
 
-/* v5.0.3 admin modal and private provider connection */
+/* v5.1.0 admin modal and private provider connection */
 .mlModalBackdrop{position:fixed;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px);z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
 .mlModalBackdrop.open{display:flex}
 .mlModal{width:min(1180px,96vw);max-height:88vh;overflow:auto;background:#0a1725;border:1px solid #27425b;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:22px}
@@ -799,7 +799,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 .providerPrivateBox .statusGood{color:#8bf0c7}.providerPrivateBox .statusBad{color:#f7c87a}
 
 
-/* v5.0.3 premium application header */
+/* v5.1.0 premium application header */
 .premiumAppHeader{
   display:flex!important;
   align-items:center!important;
@@ -899,7 +899,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 }
 
 
-/* v5.0.3 Revenue Command Center */
+/* v5.1.0 Revenue Command Center */
 :root{--v5-panel:#0a1625;--v5-panel2:#0d1b2d;--v5-line:rgba(148,163,184,.14);--v5-muted:#8494aa}
 .sideBrand span{font-size:10px!important;letter-spacing:.04em!important;text-transform:uppercase!important}
 .sideBtn b{display:flex!important;align-items:center!important;gap:11px!important}
@@ -932,7 +932,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:700px){.v5AppHeader{align-items:flex-start!important;flex-direction:column!important}.v5HeaderActions{width:100%}.v5HeaderActions button{flex:1}.v5MetricGrid,.v5LeadStages{grid-template-columns:1fr 1fr}.v5PipelineBars{grid-template-columns:1fr 1fr}}
 
 
-/* v5.0.3 professional shell spacing refinement */
+/* v5.1.0 professional shell spacing refinement */
 .saasSidebar{
   width:248px!important;
   left:20px!important;
@@ -986,7 +986,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 }
 
 
-/* v5.0.3 smart import column mapper */
+/* v5.1.0 smart import column mapper */
 .columnMapper{margin-top:14px;padding:16px;border:1px solid rgba(148,163,184,.13);border-radius:14px;background:rgba(8,20,34,.72)}
 .columnMapperHead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
 .columnMapperHead strong{font-size:14px}.columnMapperHead .small{margin-top:3px}
@@ -1001,7 +1001,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:680px){.columnMapperHead{flex-direction:column}.columnMapperGrid{grid-template-columns:1fr}}
 
 
-/* v5.0.3 reliable sending flow */
+/* v5.1.0 reliable sending flow */
 .sendReadiness{margin:14px 0;padding:18px;border:1px solid rgba(96,165,250,.18);border-radius:16px;background:linear-gradient(145deg,rgba(12,27,46,.96),rgba(8,20,34,.96))}
 .sendReadinessHead{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:13px}.sendReadinessHead strong{display:block;margin-top:4px;font-size:15px}
 .sendReadinessGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
@@ -1018,6 +1018,14 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 @media(max-width:1100px){.sendReadinessGrid{grid-template-columns:1fr 1fr}}
 @media(max-width:650px){.sendReadinessGrid{grid-template-columns:1fr}.sendReadinessHead{align-items:flex-start;flex-direction:column}}
 
+
+/* v5.1 persistent sending engine */
+.persistentJobHistory{margin:14px 0;padding:16px;border:1px solid rgba(148,163,184,.12);border-radius:15px;background:rgba(8,20,34,.72)}
+.persistentJobHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}.persistentJobHead strong{display:block;margin-top:3px;font-size:14px}
+#persistentJobList{display:grid;gap:7px}.persistentJobRow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 13px;border-radius:11px;background:rgba(148,163,184,.035);border:1px solid rgba(148,163,184,.08)}
+.persistentJobRow>span:first-child{display:flex;flex-direction:column;gap:3px}.persistentJobRow small{font-size:9px;color:#718198}.jobCounts{display:flex;align-items:center;gap:8px}.jobCounts b{font-size:10px;color:#9dafc4}.jobStatus{font-style:normal;text-transform:capitalize;font-size:9px;padding:5px 8px;border-radius:999px;background:rgba(148,163,184,.08);color:#9dafc4}.jobStatus.completed{background:rgba(16,185,129,.1);color:#78e0ba}.jobStatus.failed{background:rgba(239,68,68,.1);color:#f0a0a0}.jobStatus.sending{background:rgba(59,130,246,.1);color:#9ec5ff}
+@media(max-width:720px){.persistentJobRow{align-items:flex-start;flex-direction:column}.jobCounts{flex-wrap:wrap}}
+
 </style>
 </head>
 <body>
@@ -1025,7 +1033,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
     <div class="betaLoginShell">
       <section class="betaLoginStory">
         <div class="betaMark"><img src="assets/marginbusiness-leads-logo.png" alt="MarginBusiness Leads" class="betaBrandLogo"><div><strong>MarginBusiness Leads</strong><span>AI outreach intelligence</span></div></div>
-        <div><div class="betaPill">PRIVATE BETA · v5.0.3</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
+        <div><div class="betaPill">PRIVATE BETA · v5.1.0</div><h1>Turn better company data into better conversations.</h1><p>Analyze commercial opportunity, build psychologically relevant outreach, manage controlled follow-up, and learn from every campaign in one private workspace.</p></div>
         <div class="betaTrust"><div><strong>Private workspace</strong>Your campaigns and leads stay separated.</div><div><strong>OpenAI connected</strong>Structured intelligence generated securely on the server.</div><div><strong>Built by MarginBusiness</strong>Created from real outreach operations.</div></div>
       </section>
       <section class="betaAuthPanel"><div class="betaAuthInner">
@@ -1511,6 +1519,10 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
       </div>
 
       <div class="cockpitStats" id="batchCockpitStats"></div>
+      <div class="persistentJobHistory" id="persistentJobHistory">
+        <div class="persistentJobHead"><div><span class="v5Kicker">SEND JOB HISTORY</span><strong>Permanent sending records</strong></div><button class="secondary" onclick="refreshPersistentJobHistory()">Refresh</button></div>
+        <div id="persistentJobList"><div class="v5Empty">No permanent send jobs yet.</div></div>
+      </div>
       <div class="batchSummary" id="batchSummary">Choose a sequence step. The cockpit will show due leads and default-select the strongest leads up to your protected daily allowance.</div>
       <div class="operatorHint">Operator flow: choose any Email 1–4 in Flexible mode, or switch to Strict mode for timed 1→2→3→4 sequencing → review → prepare → send. If anything looks wrong, clear the prepared batch and prepare again.</div>
 
@@ -1722,16 +1734,16 @@ async function betaSignOut(){window.mlIsPlatformAdmin=false;document.getElementB
 
 let mlStateSyncTimer=null;
 let mlStateHydrating=false;
-const ML_SERVER_STATE_KEYS=['campaigns','currentCampaign','state','brevo','preparedBatch','batchSelection','operatorProfile','emailMetrics','sendJournal','onboarding','advanced'];
+const ML_SERVER_STATE_KEYS=['currentCampaign','operatorProfile','emailMetrics','onboarding','advanced'];
 function collectWorkspaceState(){
   if(!mlWorkspaceStorageReady) return {};
-  const map={campaigns:STORAGE_CAMPAIGNS,currentCampaign:STORAGE_CURRENT_CAMPAIGN,state:STORAGE_STATE,brevo:STORAGE_BREVO,preparedBatch:STORAGE_PREPARED_BATCH,batchSelection:STORAGE_BATCH_SELECTION,operatorProfile:STORAGE_OPERATOR_PROFILE,emailMetrics:STORAGE_EMAIL_METRICS,sendJournal:STORAGE_SEND_JOURNAL,onboarding:STORAGE_V24_ONBOARDING,advanced:STORAGE_V24_ADVANCED};
+  const map={currentCampaign:STORAGE_CURRENT_CAMPAIGN,operatorProfile:STORAGE_OPERATOR_PROFILE,emailMetrics:STORAGE_EMAIL_METRICS,onboarding:STORAGE_V24_ONBOARDING,advanced:STORAGE_V24_ADVANCED};
   const state={}; for(const [k,key] of Object.entries(map)){const v=localStorage.getItem(key); if(v!==null) state[k]=v;} return state;
 }
 function applyWorkspaceState(state){
   if(!mlWorkspaceStorageReady) throw new Error('Workspace storage is not ready');
   mlStateHydrating=true;
-  const map={campaigns:STORAGE_CAMPAIGNS,currentCampaign:STORAGE_CURRENT_CAMPAIGN,state:STORAGE_STATE,brevo:STORAGE_BREVO,preparedBatch:STORAGE_PREPARED_BATCH,batchSelection:STORAGE_BATCH_SELECTION,operatorProfile:STORAGE_OPERATOR_PROFILE,emailMetrics:STORAGE_EMAIL_METRICS,sendJournal:STORAGE_SEND_JOURNAL,onboarding:STORAGE_V24_ONBOARDING,advanced:STORAGE_V24_ADVANCED};
+  const map={currentCampaign:STORAGE_CURRENT_CAMPAIGN,operatorProfile:STORAGE_OPERATOR_PROFILE,emailMetrics:STORAGE_EMAIL_METRICS,onboarding:STORAGE_V24_ONBOARDING,advanced:STORAGE_V24_ADVANCED};
   for(const key of Object.values(map)) localStorage.removeItem(key);
   if(state&&typeof state==='object') for(const [k,v] of Object.entries(state)){if(map[k]&&v!==null&&v!==undefined)localStorage.setItem(map[k],String(v));}
   mlStateHydrating=false;
@@ -1750,6 +1762,58 @@ async function pushWorkspaceServerState(){
 function scheduleWorkspaceStateSync(){
   if(!mlWorkspaceStorageReady||mlStateHydrating) return;
   clearTimeout(mlStateSyncTimer); mlStateSyncTimer=setTimeout(()=>pushWorkspaceServerState().catch(e=>console.error('Workspace sync failed',e)),500);
+}
+
+
+let mlStructuredSyncTimer=null;
+let mlStructuredHydrating=false;
+let mlSendJobs=[];
+let mlSenderProfile=null;
+
+async function fetchStructuredWorkspaceData(){
+  const r=await mlAuthorizedFetch('/api/data',{cache:'no-store'});
+  const d=await r.json();
+  if(!r.ok)throw new Error(d.error||'Could not load campaigns and leads');
+  return d;
+}
+function applyStructuredWorkspaceData(d){
+  mlStructuredHydrating=true;
+  const campaigns=Array.isArray(d?.campaigns)?d.campaigns:[];
+  if(campaigns.length)localStorage.setItem(STORAGE_CAMPAIGNS,JSON.stringify(campaigns));
+  mlSendJobs=Array.isArray(d?.sendJobs)?d.sendJobs:[];
+  mlSenderProfile=d?.senderProfile||null;
+  mlStructuredHydrating=false;
+}
+async function syncStructuredCampaignsNow(){
+  if(!mlWorkspaceStorageReady||mlStructuredHydrating)return;
+  const campaigns=getCampaigns();
+  const r=await mlAuthorizedFetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'syncCampaigns',campaigns})});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(d.error||'Could not save campaigns and leads');
+}
+function scheduleStructuredCampaignSync(){
+  if(!mlWorkspaceStorageReady||mlStructuredHydrating)return;
+  clearTimeout(mlStructuredSyncTimer);
+  mlStructuredSyncTimer=setTimeout(()=>syncStructuredCampaignsNow().catch(e=>{
+    console.error('Structured campaign sync failed',e);
+    const b=document.getElementById('connectionBanner');if(b){b.textContent=`Campaign save delayed: ${e.message}`;b.classList.add('visible')}
+  }),350);
+}
+async function saveStructuredSenderProfile(profile){
+  const r=await mlAuthorizedFetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'saveSenderProfile',profile})});
+  const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||'Could not save sender profile');
+  mlSenderProfile=d.profile||profile;
+}
+async function createPersistentSendJob(payload){
+  const jobId=makeId('sendjob');
+  const job={id:jobId,campaignId:payload.campaign?.id,campaignName:payload.campaign?.name,provider:payload.provider,sequenceStep:payload.sequenceStep,status:'ready',payload};
+  const r=await mlAuthorizedFetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'createSendJob',job,items:payload.emails})});
+  const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||'Could not create send job');
+  return jobId;
+}
+async function updatePersistentSendJob(jobId,patch){
+  const r=await mlAuthorizedFetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'updateSendJob',jobId,patch})});
+  const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||'Could not update send job');
 }
 
 async function openPrivateWorkspace(session){
@@ -1771,10 +1835,20 @@ async function openPrivateWorkspace(session){
       migrateLegacyAdminStorageOnce(workspaceData.workspace.id,true);
       await pushWorkspaceServerState();
     }
+    const structured=await fetchStructuredWorkspaceData();
+    if(structured.campaigns?.length){
+      applyStructuredWorkspaceData(structured);
+    }else{
+      const legacyCampaigns=getCampaigns();
+      if(legacyCampaigns.length)await syncStructuredCampaignsNow();
+      const migrated=await fetchStructuredWorkspaceData();
+      applyStructuredWorkspaceData(migrated);
+    }
     leads=[]; selectedId=null; activeTab='overview'; currentBatch=[]; currentBatchMeta=null;
     batchSelection=new Set(); batchCandidateIds=[]; backOfficeSelected=new Set();
     loadSaved();
     loadBrevoSettings();
+    await hydratePersistentSenderAndProvider();
     enforceDailyCap100();
     renderEmailPerformance();
     renderSendJournal();
@@ -1791,7 +1865,24 @@ function closePrivateWorkspace(){document.getElementById('loginGate').style.disp
 async function mlAccessToken(){if(!mlSupabase)return'';const {data:{session}}=await mlSupabase.auth.getSession();return session?.access_token||'';}
 async function mlAuthorizedFetch(url,options={}){const token=await mlAccessToken();const headers={...(options.headers||{}),...(token?{Authorization:`Bearer ${token}`}:{})};return fetch(url,{...options,headers});}
 
-async function saveProviderAndSenderSettings(){saveBrevoSettings();await saveWorkspaceProviderConnection();}
+async function hydratePersistentSenderAndProvider(){
+  const preferred=mlSenderProfile?.provider||document.getElementById('mailProvider')?.value||'brevo';
+  const select=document.getElementById('mailProvider');if(select)select.value=preferred;
+  if(mlSenderProfile){
+    const set=(id,v)=>{const el=document.getElementById(id);if(el&&v!=null)el.value=v};
+    set('brevoFromName',mlSenderProfile.from_name||mlSenderProfile.fromName||'');
+    set('brevoFromEmail',mlSenderProfile.from_email||mlSenderProfile.fromEmail||'');
+    set('brevoReplyTo',mlSenderProfile.reply_to||mlSenderProfile.replyTo||'');
+    set('brevoOptOutEmail',mlSenderProfile.opt_out_email||mlSenderProfile.optOutEmail||'');
+    set('brevoComplianceLine',mlSenderProfile.compliance_line||mlSenderProfile.complianceLine||'soft');
+  }
+  await loadWorkspaceProviderStatus();
+}
+async function saveProviderAndSenderSettings(){
+  const settings=saveBrevoSettings();
+  await saveWorkspaceProviderConnection();
+  await saveStructuredSenderProfile(settings);
+}
 async function loadWorkspaceProviderStatus(){
   const provider=document.getElementById('mailProvider')?.value||'brevo';
   const status=document.getElementById('workspaceProviderStatus');
@@ -1809,6 +1900,12 @@ async function loadWorkspaceProviderStatus(){
     status.textContent=d.configured?`${provider.toUpperCase()} is privately connected to this workspace.`:`No private ${provider} connection. Sending is disabled until this workspace connects its own account.`;
     const domain=document.getElementById('workspaceProviderDomain');
     if(domain&&d.settings?.domain)domain.value=d.settings.domain;
+    const set=(id,v)=>{const el=document.getElementById(id);if(el&&v)el.value=v};
+    set('brevoFromName',d.settings?.fromName);
+    set('brevoFromEmail',d.settings?.fromEmail);
+    set('brevoReplyTo',d.settings?.replyTo);
+    set('brevoOptOutEmail',d.settings?.optOutEmail);
+    set('brevoComplianceLine',d.settings?.complianceLine);
   }catch(e){
     status.className='small statusBad';
     status.textContent=e.message;
@@ -1822,7 +1919,7 @@ async function saveWorkspaceProviderConnection(){
   const domain=document.getElementById('workspaceProviderDomain')?.value||'';
   if(apiKey.trim().length<12){showToast('Enter your provider API key');return}
   try{
-    const r=await mlAuthorizedFetch('/api/provider-settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'save',provider,apiKey,domain})});
+    const r=await mlAuthorizedFetch('/api/provider-settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'save',provider,apiKey,domain,fromName:document.getElementById('brevoFromName')?.value||'',fromEmail:document.getElementById('brevoFromEmail')?.value||'',replyTo:document.getElementById('brevoReplyTo')?.value||'',optOutEmail:document.getElementById('brevoOptOutEmail')?.value||'',complianceLine:document.getElementById('brevoComplianceLine')?.value||'soft'})});
     const d=await r.json();
     if(!r.ok)throw new Error(d.error||'Could not save provider');
     document.getElementById('workspaceProviderApiKey').value='';
@@ -1994,6 +2091,7 @@ function saveOperatorProfile(){
   scheduleWorkspaceStateSync();
   renderOperatorProfile();
   renderV5CommandCenter();
+  renderPersistentJobHistory();
 }
 function renderOperatorProfile(){
   const p=getOperatorProfile();
@@ -2075,7 +2173,7 @@ function getCampaigns(){
   if(!mlWorkspaceStorageReady) return [];
   try { const data = JSON.parse(localStorage.getItem(STORAGE_CAMPAIGNS) || "[]"); return Array.isArray(data) ? data : []; } catch(e){ return []; }
 }
-function saveCampaigns(campaigns){ if(!mlWorkspaceStorageReady) return; localStorage.setItem(STORAGE_CAMPAIGNS, JSON.stringify(campaigns)); scheduleWorkspaceStateSync(); }
+function saveCampaigns(campaigns){ if(!mlWorkspaceStorageReady) return; localStorage.setItem(STORAGE_CAMPAIGNS, JSON.stringify(campaigns)); scheduleStructuredCampaignSync(); }
 function getCurrentCampaignId(){ return mlWorkspaceStorageReady ? (localStorage.getItem(STORAGE_CURRENT_CAMPAIGN) || "default") : "default"; }
 function setCurrentCampaignId(id){ if(mlWorkspaceStorageReady){ localStorage.setItem(STORAGE_CURRENT_CAMPAIGN, id); scheduleWorkspaceStateSync(); } }
 function getCurrentCampaign(){
@@ -2159,6 +2257,7 @@ function deleteCampaign(){
   if(!confirm(`Delete campaign "${current.name}"? This removes leads from this browser for this campaign.`)) return;
   campaigns = campaigns.filter(c => c.id !== current.id);
   saveCampaigns(campaigns);
+  mlAuthorizedFetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'deleteCampaign',campaignId:current.id})}).catch(e=>console.error('Campaign delete sync failed',e));
   setCurrentCampaignId(campaigns[0].id);
   switchCampaign(campaigns[0].id);
 }
@@ -2817,7 +2916,7 @@ function generate(lead){
   const categoryTruth=`In ${lead.category || "this category"}, buyers are weighing ${risk.buyer}. ${risk.opener.charAt(0).toUpperCase()+risk.opener.slice(1)}.`;
   const microOffer=`I noted two areas I would pressure-test first. I can send them in a short email—no deck or sales pitch.`;
 
-  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.0.3\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
+  const trigger = `#${lead.rowNumber} — ${company}\n\nPERSUASION INTELLIGENCE v5.1.0\n\nMessage readiness: ${s.readiness.score}/100 — ${s.readiness.label}\nContext available: ${s.readiness.reasons.join(", ") || "limited"}\n\nDecision-maker archetype:\n${role.archetype}\nPrimary motivation: ${role.primary}\nLikely fear: ${role.fear}\nInternal decision question: ${role.decision}\n\nCommercial maturity:\n${maturity.label}\nPressure: ${maturity.pressure}\nProof required: ${maturity.proof}\n\nCampaign intent:\n${campaign.intent} — frame the message around ${campaign.frame}.\n\nEvidence signals detected:\n${s.evidence.length?s.evidence.map(x=>"• "+x).join("\n"):"• No strong external signal yet — research before sending."}\n\nCore commercial tension:\n${s.tension}\n\nBuyer psychology:\nIn ${lead.category || "this category"}, buyers compare ${risk.buyer}. ${risk.angle}.\n\nChosen persuasion sequence:\n1. Pattern recognition — show a credible reason for noticing the brand.\n2. Commercial tension — name a risk the recipient may recognize but not see clearly.\n3. Category truth — demonstrate understanding of how the end buyer decides.\n4. Micro-value offer — offer two observations, not a meeting.\n5. Binary low-friction CTA — make replying easier than ignoring.\n\nRecommended subjects:\n• ${s.subjects.join("\n• ")}\n\nDo not say:\n${role.avoid}. Avoid generic claims, fake praise, inflated certainty, “we help brands grow,” and asking for a call before value is established.\n\nQuality rule:\nOne email = one tension, one useful promise, one CTA. The objective is a reply, not to explain every service.`;
 
   const email1 = `Subject: ${subject1}\n\n${greeting}\n\n${observation}\n\n${roleBridge}\n\n${categoryTruth}\n\n${microOffer}\n\n${replyCTA(lead,1)}`;
 
@@ -2878,6 +2977,20 @@ async function refreshWorkspace(){
 function v5StatusText(lead){
   try{return String(getLeadState(lead)?.status||"").toLowerCase()}catch(_){return ""}
 }
+
+async function refreshPersistentJobHistory(){
+  try{
+    const d=await fetchStructuredWorkspaceData();
+    mlSendJobs=Array.isArray(d.sendJobs)?d.sendJobs:[];
+    renderPersistentJobHistory();
+  }catch(e){showToast(e.message)}
+}
+function renderPersistentJobHistory(){
+  const box=document.getElementById('persistentJobList');if(!box)return;
+  const rows=(mlSendJobs||[]).slice(0,12);
+  box.innerHTML=rows.length?rows.map(j=>`<div class="persistentJobRow"><span><strong>${escapeHtml(j.campaign_name||'Campaign')}</strong><small>${escapeHtml(String(j.provider||'').toUpperCase())} · ${escapeHtml(stepLabel(j.sequence_step||'email1'))} · ${new Date(j.created_at).toLocaleString()}</small></span><span class="jobCounts"><b>${Number(j.sent_count||0)} sent</b><b>${Number(j.failed_count||0)} failed</b><em class="jobStatus ${escapeHtml(j.status||'draft')}">${escapeHtml(j.status||'draft')}</em></span></div>`).join(''):'<div class="v5Empty">No permanent send jobs yet.</div>';
+}
+
 function renderV5CommandCenter(){
   const all=Array.isArray(leads)?leads:[];
   const qualified=all.filter(l=>fitScore(l)>=75);
@@ -3375,7 +3488,8 @@ function prepareLockedBatch(showNotice){
 }
 function ensureLockedBatchBeforeAction(actionName){
   syncVisibleCheckboxesToState();
-  let active=getActiveBatch(true);
+  const stored=getPreparedBatch();
+  let active=(stored&&stored.status==='completed')?[]:getActiveBatch(true);
   if(active.length) return active;
   active=prepareLockedBatch(false);
   if(active.length){ showToast(`Batch prepared automatically for ${actionName}`); }
@@ -3399,7 +3513,7 @@ function renderBatchQueue(showNotice, opts={}){
     summary.className="batchSummary warning";
     summary.innerHTML=`<strong>${escapeHtml(stepLabel(settings.step))} review list for ${escapeHtml(c.name)}</strong><br>
       <span class="batchPill">Due now: ${built.due.length}</span> <span class="batchPill">Selected: ${selectedCount}</span> <span class="batchPill">Daily cap: ${settings.cap}</span> <span class="batchPill">After selected: ${remaining}</span><br>
-      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.0.3 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
+      <span class="small">Tick the leads you want, then click <strong>Prepare selected batch</strong>. v5.1.0 keeps the operator view simple: choose Email 1–4, select the leads, prepare, then send. Technical/provider settings are hidden in Admin.</span>`;
     list.innerHTML = renderBatchTable(built.due, false);
     updateBatchCockpitStats();
     updateSendFlow(false, selectedCount, built.due.length);
@@ -3739,35 +3853,49 @@ async function sendBatchViaBrevo(){
   if(validation){ setBrevoStatus(validation, true); return; }
   if(!confirm(`Send ${payload.emails.length} real ${payload.sequenceLabel} emails through the mail bridge now? This will contact live leads.`)) return;
   const journalId=makeId("sendAttempt");
-  addSendJournalEntry({id:journalId, status:"Sending", payload});
-  setBrevoStatus(`Sending ${payload.emails.length} emails through mail bridge...`, false);
+  let persistentJobId=null;
+  try{persistentJobId=await createPersistentSendJob(payload);await updatePersistentSendJob(persistentJobId,{status:'sending',startedAt:new Date().toISOString()})}
+  catch(e){setBrevoStatus(`Could not create a permanent send job: ${e.message}`,true);return}
+  addSendJournalEntry({id:journalId, persistentJobId, status:"Sending", payload});
+  setBrevoStatus(`Sending ${payload.emails.length} emails through ${String(payload.provider||'provider').toUpperCase()}...`, false);
   try{
     const res=await mlAuthorizedFetch(brevo.bridgeUrl, { method:"POST", headers:{"Content-Type":"application/json", ...(brevo.bridgeToken?{"X-LeadRadar-Token":brevo.bridgeToken}:{})}, body:JSON.stringify(payload) });
     const rawText=await res.text();
     let data={}; try{ data=JSON.parse(rawText); } catch(parseErr){ throw new Error(`Bridge returned non-JSON response: ${rawText.slice(0,140)}`); }
     if(!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
-    updateSendJournalEntry(journalId, {status:"Bridge completed", result:data});
+    updateSendJournalEntry(journalId, {status:"Completed", result:data});
     recordMailSendResults(data, payload);
     const successes=(data.results || []).filter(r=>r.ok).map(r=>r.leadId).filter(Boolean);
-    if(successes.length){ createLeadSnapshot("before send status update"); markLeadIdsSent(successes, payload.sequenceStep); removeSentFromPreparedBatch(successes); saveCurrentCampaignLeads("successful send"); }
     const failures=(data.results || []).filter(r=>!r.ok);
+    await updatePersistentSendJob(persistentJobId,{status:'completed',sentCount:successes.length,failedCount:failures.length,completedAt:new Date().toISOString(),result:data,items:(data.results||[]).map(r=>({leadId:r.leadId,status:r.ok?'sent':'failed',messageId:r.messageId,error:r.error}))});
+    if(successes.length){ createLeadSnapshot("before send status update"); markLeadIdsSent(successes, payload.sequenceStep); markPreparedBatchCompleted(successes,failures,persistentJobId); saveCurrentCampaignLeads("successful send"); }
     const failureText=failures.length ? `\nFailures:\n` + failures.slice(0,8).map(f=>`${f.to}: ${f.error || "unknown error"}`).join("\n") : "";
     setBrevoStatus(`Mail bridge send finished. Sent: ${data.sent || successes.length}. Failed: ${data.failed || failures.length}. Remaining today: ${data.remainingToday ?? "unknown"}.${failureText}`, failures.length>0);
     showToast(`Mail bridge sent ${data.sent || successes.length}`);
   } catch(err){
     console.error(err);
-    if(typeof journalId !== "undefined") updateSendJournalEntry(journalId, {status:"Failed before confirmation", error:err.message});
-    setBrevoStatus(`Mail bridge send failed: ${err.message}`, true);
+    if(typeof journalId !== "undefined") updateSendJournalEntry(journalId, {status:"Failed", error:err.message});
+    if(typeof persistentJobId!=='undefined'&&persistentJobId)await updatePersistentSendJob(persistentJobId,{status:'failed',failedCount:payload?.emails?.length||0,completedAt:new Date().toISOString(),result:{error:err.message}}).catch(()=>{});
+    setBrevoStatus(`Send job failed: ${err.message}`, true);
   }
 }
-function removeSentFromPreparedBatch(sentLeadIds){
+function markPreparedBatchCompleted(sentLeadIds,failures=[],jobId=null){
   const batch=getPreparedBatch();
-  if(!batch || !Array.isArray(batch.items)) return;
-  const sentSet=new Set(sentLeadIds || []);
-  batch.items=batch.items.filter(item=>!sentSet.has(item.leadId));
-  if(batch.items.length){ savePreparedBatch(batch); }
-  else { clearPreparedBatch(false); }
-  renderBatchQueue(false, {useStored:true});
+  if(!batch || !Array.isArray(batch.items))return;
+  const sentSet=new Set(sentLeadIds||[]);
+  const failMap=new Map((failures||[]).map(f=>[f.leadId,f.error||'Send failed']));
+  batch.status='completed';
+  batch.completedAt=new Date().toISOString();
+  batch.jobId=jobId||batch.jobId||null;
+  batch.items=batch.items.map(item=>({
+    ...item,
+    sendStatus:sentSet.has(item.leadId)?'sent':(failMap.has(item.leadId)?'failed':(item.sendStatus||'not-sent')),
+    error:failMap.get(item.leadId)||item.error||null
+  }));
+  savePreparedBatch(batch);
+  currentBatchMeta=batch;
+  currentBatch=resolvePreparedBatch(batch,false);
+  renderBatchQueue(false,{useStored:true});
 }
 
 function cleanClipboardText(text){
