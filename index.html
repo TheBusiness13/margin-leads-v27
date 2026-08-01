@@ -1046,6 +1046,10 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
 .rawProviderError{margin:3px 0 7px 18px;font-size:9px;color:#f0a0a0;word-break:break-word}
 .senderVerifyHint{font-size:9px;color:#f4c77b;margin-top:4px}
 
+
+/* v5.3 AI Ark Lead Finder */
+.aiArkGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.85fr);gap:16px}.aiArkPanel{padding:18px;border:1px solid rgba(148,163,184,.12);border-radius:16px;background:rgba(8,20,34,.72)}.aiArkPanel h3{margin:0 0 6px}.aiArkFormGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:15px 0}.aiArkField label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8191a8;margin-bottom:6px}.aiArkField input,.aiArkField select,.aiArkJson{width:100%;box-sizing:border-box;background:#07111f;color:#e7eef8;border:1px solid rgba(148,163,184,.16);border-radius:10px;padding:10px}.aiArkJson{min-height:150px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;resize:vertical}.aiArkActions{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}.aiArkStatus{padding:10px 12px;border-radius:10px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.16);font-size:12px;color:#b9d3ff}.aiArkResults{display:grid;gap:8px;margin-top:12px;max-height:620px;overflow:auto}.aiArkRow{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:start;padding:12px;border:1px solid rgba(148,163,184,.1);border-radius:12px;background:rgba(148,163,184,.035)}.aiArkRow strong{display:block}.aiArkRow small{display:block;margin-top:3px;color:#8191a8}.aiArkBadge{font-size:9px;border-radius:999px;padding:5px 7px;background:rgba(16,185,129,.1);color:#7fe0bb}.aiArkEmpty{padding:24px;text-align:center;color:#8191a8;border:1px dashed rgba(148,163,184,.16);border-radius:12px}.aiArkRaw{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;white-space:pre-wrap;word-break:break-word;max-height:250px;overflow:auto;background:#06101d;padding:10px;border-radius:10px}.aiArkCreditBox{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:12px;border-radius:12px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.14);margin-bottom:12px}.aiArkCreditBox strong{font-size:20px}.aiArkHelp{font-size:11px;color:#8fa1b8;line-height:1.55}.aiArkJob{padding:12px;border-radius:12px;border:1px solid rgba(148,163,184,.12);background:rgba(148,163,184,.035);margin-top:10px}@media(max-width:980px){.aiArkGrid{grid-template-columns:1fr}.aiArkFormGrid{grid-template-columns:1fr 1fr}}@media(max-width:620px){.aiArkFormGrid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -1102,6 +1106,7 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
       <div class="sideGroupLabel">WORKSPACE</div>
       <button class="sideBtn shellNav active" data-shell-page="dashboard" onclick="openShellPage('dashboard')"><b><i>◫</i> Overview</b></button>
       <button class="sideBtn shellNav" data-shell-page="leads" onclick="openShellPage('leads')"><b><i>◎</i> Leads</b></button>
+      <button class="sideBtn shellNav adminOnly" id="aiArkNavBtn" data-shell-page="finder" onclick="openShellPage('finder')"><b><i>⌕</i> AI Ark Lead Finder</b></button>
       <button class="sideBtn shellNav" data-shell-page="opportunities" onclick="openShellPage('opportunities')"><b><i>✦</i> Opportunities</b></button>
       <button class="sideBtn shellNav" data-shell-page="campaigns" onclick="openShellPage('campaigns')"><b><i>↗</i> Campaigns</b></button>
       <button class="sideBtn shellNav" data-shell-page="activity" onclick="openShellPage('activity')"><b><i>✉</i> Inbox & Activity</b></button>
@@ -1142,6 +1147,36 @@ body:not(.shellPage-settings) [data-advanced="true"]{display:none!important}
         <button class="primary" onclick="openCampaignTemplateModal()">Create campaign</button>
       </div>
     </div>
+
+
+    <section class="card shell-visible adminPanel" id="aiArkLeadFinderSection" data-shell-section="finder">
+      <div class="v5PanelHead"><div><span class="v5Kicker">AI ARK INTEGRATION · ADMIN TEST MODE</span><h3>Find and import verified B2B prospects</h3></div><span class="planBadge">Admin only</span></div>
+      <div class="aiArkGrid">
+        <div class="aiArkPanel">
+          <h3>Search setup</h3>
+          <div class="aiArkHelp">Search previews do not use Margin Credits. Verified-email exports use one Margin Credit per requested person and are capped at 10 per request during beta.</div>
+          <div class="aiArkFormGrid">
+            <div class="aiArkField"><label>Search type</label><select id="aiArkSearchType"><option value="people">People</option><option value="companies">Companies</option></select></div>
+            <div class="aiArkField"><label>Page</label><input id="aiArkPage" type="number" min="0" value="0"></div>
+            <div class="aiArkField"><label>Results</label><input id="aiArkSize" type="number" min="1" max="100" value="10"></div>
+          </div>
+          <div class="aiArkField"><label>AI Ark filter payload</label><textarea class="aiArkJson" id="aiArkPayload">{
+  "account": {},
+  "contact": {}
+}</textarea></div>
+          <div class="aiArkActions"><button class="primary" onclick="aiArkSearch()">Search AI Ark</button><button class="secondary" onclick="aiArkLoadExample()">Load clean template</button><button class="secondary" onclick="aiArkCheckConnection()">Check connection</button></div>
+          <div class="aiArkStatus" id="aiArkStatus">Ready. Paste account/contact filters from the AI Ark API panel, then search.</div>
+          <div class="aiArkResults" id="aiArkResults"><div class="aiArkEmpty">No AI Ark results loaded yet.</div></div>
+        </div>
+        <div class="aiArkPanel">
+          <div class="aiArkCreditBox"><div><span class="v5Kicker">MARGIN CREDITS</span><div class="aiArkHelp">Used for verified-email exports</div></div><strong id="aiArkBalance">—</strong></div>
+          <h3>Selected prospects</h3><div class="aiArkHelp"><span id="aiArkSelectedCount">0 selected</span>. Preview records can be imported when they already include an email. For missing emails, start a verified export.</div>
+          <div class="aiArkActions"><button class="primary" onclick="aiArkImportSelected()">Import selected</button><button class="blue" onclick="aiArkExportSelected()">Find verified emails</button></div>
+          <div class="aiArkJob" id="aiArkJobBox" style="display:none"><strong>Verified-email export</strong><div class="small" id="aiArkJobStatus">Waiting…</div><div class="aiArkActions"><button class="secondary" onclick="aiArkPollExport()">Check status</button><button class="secondary" onclick="aiArkLoadExportResults()">Load results</button></div></div>
+          <h3 style="margin-top:18px">Raw response</h3><div class="aiArkRaw" id="aiArkRaw">No response yet.</div>
+        </div>
+      </div>
+    </section>
 
     <section class="v5CommandCenter shell-visible" id="v5CommandCenter" data-shell-section="dashboard">
       <div class="v5MetricGrid">
@@ -2066,6 +2101,8 @@ async function loadSecureWorkspace(){
   const banner=document.getElementById('connectionBanner');
   window.mlIsPlatformAdmin=false;
   document.getElementById('adminNavBtn')?.classList.remove('visible');
+  document.getElementById('aiArkNavBtn')?.classList.remove('visible');
+  document.getElementById('aiArkLeadFinderSection')?.classList.remove('visible');
   closeAdminConsole?.();
   try{
     const r=await mlAuthorizedFetch('/api/workspace',{cache:'no-store'});const d=await r.json();
@@ -2081,6 +2118,9 @@ async function loadSecureWorkspace(){
     document.getElementById('creditBarFill').style.width=`${Math.max(0,Math.min(100,(credits/total)*100))}%`;
     const end=d.subscription?.current_period_end||d.subscription?.trial_ends_at;document.getElementById('creditRenewal').textContent=end?`Until ${new Date(end).toLocaleDateString()}`:'Protected usage';
     document.getElementById('adminNavBtn')?.classList.toggle('visible',!!d.isPlatformAdmin);
+    document.getElementById('aiArkNavBtn')?.classList.toggle('visible',!!d.isPlatformAdmin);
+    document.getElementById('aiArkLeadFinderSection')?.classList.toggle('visible',!!d.isPlatformAdmin);
+    if(!d.isPlatformAdmin && document.body.classList.contains('shellPage-finder')) openShellPage('dashboard');
     document.getElementById('serviceSupabase')?.classList.add('good');
     if(d.services?.brevo)document.getElementById('serviceBrevo')?.classList.add('good');else document.getElementById('serviceBrevo')?.classList.add('warn');
     if(d.services?.openai)document.getElementById('serviceOpenAI')?.classList.add('good');else document.getElementById('serviceOpenAI')?.classList.add('warn');
@@ -4888,11 +4928,65 @@ function exportConnectedLogsCSV(){
 
 <div style="position:fixed;left:18px;bottom:12px;z-index:9999;font-size:11px;line-height:1.35;color:#8fa0b5;opacity:.9;max-width:240px;pointer-events:none;">© 2026 MarginBusiness FZE LLC · Proprietary beta software · Unauthorized copying, resale, reverse engineering or distribution prohibited.</div>
 
+
+<script>
+let aiArkRows=[],aiArkSelected=new Set(),aiArkTrackId='';
+function aiArkParseJson(){
+  let payload={};try{payload=JSON.parse(document.getElementById('aiArkPayload').value||'{}')}catch(e){throw new Error('The filter payload is not valid JSON.');}
+  payload.page=Math.max(0,Number(document.getElementById('aiArkPage').value)||0);
+  payload.size=Math.max(1,Math.min(100,Number(document.getElementById('aiArkSize').value)||10));
+  return payload;
+}
+function aiArkArray(data){
+  const candidates=[data?.content,data?.items,data?.results,data?.records,data?.data?.content,data?.data?.items,data?.data?.results,data?.data?.records,data?.data];
+  for(const x of candidates){if(Array.isArray(x))return x}return [];
+}
+function aiArkPick(o,paths){for(const p of paths){let v=o;for(const k of p.split('.'))v=v?.[k];if(v!==undefined&&v!==null&&String(v).trim()!=='')return v}return ''}
+function aiArkNormalize(row,index){
+  const emailOut=aiArkPick(row,['email.output','emails','contact.email','email']);
+  const email=Array.isArray(emailOut)?(emailOut[0]?.email||emailOut[0]?.value||emailOut[0]||''):(typeof emailOut==='object'?(emailOut?.email||emailOut?.value||''):emailOut);
+  const first=aiArkPick(row,['firstName','first_name','profile.firstName','contact.firstName']);
+  const last=aiArkPick(row,['lastName','last_name','profile.lastName','contact.lastName']);
+  const name=aiArkPick(row,['fullName','full_name','name','profile.fullName','contact.fullName'])||[first,last].filter(Boolean).join(' ');
+  const companyObj=aiArkPick(row,['company','account','organization','currentCompany']);
+  const company=typeof companyObj==='object'?(companyObj?.name||companyObj?.companyName||''):companyObj;
+  const domain=aiArkPick(row,['company.domain','account.domain','organization.domain','domain','website']);
+  return {raw:row,id:String(aiArkPick(row,['id','personId','person_id','profile.id'])||`aiark-${Date.now()}-${index}`),contact:String(name||''),company:String(company||aiArkPick(row,['companyName','accountName'])||''),role:String(aiArkPick(row,['title','jobTitle','currentTitle','profile.title','contact.title'])||''),email:String(email||''),website:String(domain||''),linkedin:String(aiArkPick(row,['linkedin','linkedinUrl','linkedInUrl','profile.linkedin','contact.linkedin'])||''),category:String(aiArkPick(row,['company.industry','account.industry','industry'])||''),source:'AI Ark',importProfile:'AI Ark'};
+}
+function aiArkEscape(v){return typeof escapeHtml==='function'?escapeHtml(String(v??'')):String(v??'').replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]))}
+function aiArkRender(){
+  const box=document.getElementById('aiArkResults'),count=document.getElementById('aiArkSelectedCount');if(count)count.textContent=`${aiArkSelected.size} selected`;
+  if(!aiArkRows.length){box.innerHTML='<div class="aiArkEmpty">No matching records were returned.</div>';return}
+  box.innerHTML=aiArkRows.map((r,i)=>`<label class="aiArkRow"><input type="checkbox" ${aiArkSelected.has(r.id)?'checked':''} onchange="aiArkToggle('${aiArkEscape(r.id)}',this.checked)"><span><strong>${aiArkEscape(r.contact||r.company||'Unnamed record')}</strong><small>${aiArkEscape([r.role,r.company].filter(Boolean).join(' · ')||r.website||'AI Ark record')}</small><small>${aiArkEscape(r.email||'Email not included in preview')}</small></span><span class="aiArkBadge">${r.email?'Email ready':'Preview'}</span></label>`).join('');
+}
+function aiArkToggle(id,on){if(on)aiArkSelected.add(id);else aiArkSelected.delete(id);aiArkRender()}
+function aiArkSetStatus(text){document.getElementById('aiArkStatus').textContent=text}
+function aiArkLoadExample(){document.getElementById('aiArkPayload').value='{'+'\n  "account": {},\n  "contact": {}\n}';aiArkSetStatus('Clean template loaded. Add filters supported by your AI Ark account.');}
+async function aiArkCall(action,extra={}){const r=await mlAuthorizedFetch('/api/ai-ark',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,...extra})});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||`AI Ark request failed (${r.status})`);return d}
+async function aiArkCheckConnection(){try{aiArkSetStatus('Checking AI Ark connection…');const d=await aiArkCall('health');document.getElementById('aiArkBalance').textContent=Number(d.balance||0);aiArkSetStatus(d.configured?'AI Ark is connected and ready.':'AI Ark API key is missing in Vercel.')}catch(e){aiArkSetStatus(e.message)}}
+async function aiArkSearch(){try{const payload=aiArkParseJson(),type=document.getElementById('aiArkSearchType').value;aiArkSetStatus(`Searching AI Ark ${type}…`);const d=await aiArkCall(type==='companies'?'searchCompanies':'searchPeople',{payload});document.getElementById('aiArkRaw').textContent=JSON.stringify(d.data,null,2);aiArkRows=aiArkArray(d.data).map(aiArkNormalize);aiArkSelected=new Set();aiArkRender();aiArkSetStatus(`${aiArkRows.length} result${aiArkRows.length===1?'':'s'} loaded.`);}catch(e){aiArkSetStatus(e.message)}}
+function aiArkSelectedRows(){return aiArkRows.filter(r=>aiArkSelected.has(r.id))}
+async function aiArkImportSelected(){
+  const rows=aiArkSelectedRows().filter(r=>r.email);if(!rows.length){aiArkSetStatus('Select records that already contain an email, or use Find verified emails first.');return}
+  const campaign=getCurrentCampaign(),existing=new Set((campaign.leads||[]).map(l=>String(l.email||'').toLowerCase()).filter(Boolean));let added=0;
+  const mapped=rows.filter(r=>!existing.has(r.email.toLowerCase())).map((r,i)=>{added++;return {id:makeId('aiark'),rowNumber:(campaign.leads||[]).length+i+1,company:r.company,contact:r.contact,role:r.role,email:r.email,website:r.website,linkedin:r.linkedin,category:r.category,product:'',revenue:0,revenueRaw:'',source:'AI Ark',importProfile:'AI Ark',status:'New',sequenceStep:'email1',stopped:false,aiArkId:r.id};});
+  updateCampaign(campaign.id,{leads:[...(campaign.leads||[]),...mapped]});leads=getCurrentCampaign().leads||[];selectedId=leads[0]?.id||null;updateCategories();render();aiArkSetStatus(`${added} AI Ark lead${added===1?'':'s'} imported into ${campaign.name}.`);
+}
+async function aiArkExportSelected(){
+  try{const selected=aiArkSelectedRows();if(!selected.length)throw new Error('Select at least one preview result first.');const payload=aiArkParseJson();payload.size=Math.min(10,selected.length);aiArkSetStatus(`Starting verified-email export for ${payload.size} people…`);const d=await aiArkCall('exportPeople',{payload});aiArkTrackId=d.trackId||d.data?.trackId||d.data?.track_id||'';localStorage.setItem('marginLeads.aiArkTrackId',aiArkTrackId);document.getElementById('aiArkJobBox').style.display='block';document.getElementById('aiArkJobStatus').textContent=`Submitted · Track ID ${aiArkTrackId||'received'}`;if(d.credits)document.getElementById('aiArkBalance').textContent=d.credits.remaining;aiArkSetStatus('AI Ark is finding and verifying emails. Check status shortly.');
+  }catch(e){aiArkSetStatus(e.message)}
+}
+async function aiArkPollExport(){try{aiArkTrackId=aiArkTrackId||localStorage.getItem('marginLeads.aiArkTrackId')||'';if(!aiArkTrackId)throw new Error('No export Track ID is available.');const d=await aiArkCall('exportStatus',{trackId:aiArkTrackId});document.getElementById('aiArkRaw').textContent=JSON.stringify(d.data,null,2);const state=d.data?.state||d.data?.status||'Processing';const stats=d.data?.statistics||{};document.getElementById('aiArkJobStatus').textContent=`${state} · ${stats.found??0} found of ${stats.total??'—'}`;aiArkSetStatus(`Export status: ${state}`);}catch(e){aiArkSetStatus(e.message)}}
+async function aiArkLoadExportResults(){try{aiArkTrackId=aiArkTrackId||localStorage.getItem('marginLeads.aiArkTrackId')||'';if(!aiArkTrackId)throw new Error('No export Track ID is available.');aiArkSetStatus('Loading verified AI Ark results…');const d=await aiArkCall('exportResults',{trackId:aiArkTrackId,page:0,size:100});document.getElementById('aiArkRaw').textContent=JSON.stringify(d.data,null,2);aiArkRows=aiArkArray(d.data).map(aiArkNormalize);aiArkSelected=new Set(aiArkRows.filter(r=>r.email).map(r=>r.id));aiArkRender();aiArkSetStatus(`${aiArkRows.filter(r=>r.email).length} verified-email result${aiArkRows.filter(r=>r.email).length===1?'':'s'} ready to import.`);}catch(e){aiArkSetStatus(e.message)}}
+document.addEventListener('DOMContentLoaded',()=>{aiArkTrackId=localStorage.getItem('marginLeads.aiArkTrackId')||'';if(aiArkTrackId){const b=document.getElementById('aiArkJobBox');if(b)b.style.display='block';const s=document.getElementById('aiArkJobStatus');if(s)s.textContent=`Saved Track ID ${aiArkTrackId}`;}setTimeout(()=>{if(window.mlSupabase&&window.mlIsPlatformAdmin)aiArkCheckConnection().catch(()=>{})},1600);});
+</script>
+
 <script>
 (function(){
   const pageConfig = {
     dashboard:{eyebrow:'Workspace',title:'Overview',description:'Your pipeline, priorities and next best action.',actions:'dashboard'},
     leads:{eyebrow:'Pipeline',title:'Leads',description:'Qualify, analyse and progress every prospect from one workspace.',actions:'leads'},
+    finder:{eyebrow:'Data intelligence',title:'AI Ark Lead Finder',description:'Search B2B data, verify emails and import prospects into campaigns.',actions:'finder'},
     opportunities:{eyebrow:'Intelligence',title:'Opportunity Radar',description:'Prioritise leads by commercial fit, evidence and outreach readiness.',actions:'opportunities'},
     campaigns:{eyebrow:'Outreach',title:'Campaigns',description:'Build sequences, prepare batches and launch controlled outreach.',actions:'campaigns'},
     activity:{eyebrow:'Communication',title:'Inbox & Activity',description:'Review replies, sending activity and events requiring attention.',actions:'activity'},
@@ -4907,6 +5001,7 @@ function exportConnectedLogsCSV(){
   function actionHtml(page){
     if(page==='dashboard') return '<button class="secondary" onclick="openLeadImporter()">Import leads</button><button class="primary" onclick="openCampaignTemplateModal()">Create campaign</button>';
     if(page==='leads') return '<button class="secondary" onclick="openLeadImporter()">Import leads</button><button class="blue" onclick="runAIForActiveLead()">Analyze active lead</button>';
+    if(page==='finder') return '<button class="secondary" onclick="aiArkCheckConnection()">Check connection</button><button class="primary" onclick="aiArkSearch()">Search AI Ark</button>';
     if(page==='opportunities') return '<button class="secondary" onclick="refreshWorkspace()">Refresh radar</button><button class="primary" onclick="runAIForActiveLead()">Analyze active lead</button>';
     if(page==='campaigns') return '<button class="secondary" onclick="openCampaignTemplateModal()">New campaign</button><button class="primary" onclick="prepareLockedBatch(true)">Prepare batch</button>';
     if(page==='activity') return '<button class="secondary" onclick="refreshConnectedLogs()">Refresh activity</button><button class="primary" onclick="runSystemDiagnostics()">Run diagnostics</button>';
@@ -4914,6 +5009,7 @@ function exportConnectedLogsCSV(){
     return '<button class="secondary" onclick="forceSaveAll()">Save workspace</button><button class="primary" onclick="runSystemDiagnostics()">System check</button>';
   }
   window.openShellPage = function(page, scrollTarget){
+    if(page==='finder' && !window.mlIsPlatformAdmin){showToast('AI Ark is temporarily available to the platform administrator only.');page='dashboard';}
     if(!pageConfig[page]) page='dashboard';
     document.body.className = document.body.className.replace(/\bshellPage-\S+/g,'').trim();
     document.body.classList.add('shellPage-'+page);
