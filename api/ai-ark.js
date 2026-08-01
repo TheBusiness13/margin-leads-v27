@@ -31,8 +31,7 @@ module.exports=async function handler(req,res){
   res.setHeader('Cache-Control','no-store');
   try{
     const user=await getUser(req);if(!user)return res.status(401).json({ok:false,error:'Sign in again.'});
-    const admin=await isPlatformAdmin(user.id);
-    if(!admin)return res.status(403).json({ok:false,code:'ADMIN_ONLY',error:'AI Ark access is temporarily restricted to the platform administrator.'});
+    if(!await isPlatformAdmin(user.id))return res.status(403).json({ok:false,code:'ADMIN_ONLY',error:'AI Ark is currently available to the platform administrator only.'});
     const membership=await ensureWorkspace(user),workspace=membership?.workspace;
     if(!workspace?.id)return res.status(409).json({ok:false,error:'Workspace unavailable.'});
     const body=parseBody(req),action=clean(body.action,80);
