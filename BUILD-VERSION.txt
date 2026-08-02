@@ -1,3 +1,5 @@
-MarginBusiness Leads v5.3.2
-Clean Vercel root structure
-AI Ark admin-only test integration
+MarginBusiness Leads v5.3.4
+Clean Vercel structure
+AI Ark merged into /api/admin
+Admin-only access
+12 deployable serverless functions
